@@ -18,9 +18,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
+import OpenKit
+#if !os(watchOS)
+import XCTest
 
-/// A file representation.
-public class OKFile : OKFileSystemItem {
-    /// TODO: read/write data, etc
+class KeychainTests : XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+    
+    func testSettingAndGettingPassword() {
+        let id = NSUUID().uuidString
+        let pass = NSUUID().uuidString
+        
+        let setResult = OKKeychain.set(password: pass, for: id)
+        XCTAssertTrue(setResult)
+        
+        let getResult = OKKeychain.getPassword(for: id)
+        XCTAssertEqual(pass, getResult)
+    }
 }
+#endif

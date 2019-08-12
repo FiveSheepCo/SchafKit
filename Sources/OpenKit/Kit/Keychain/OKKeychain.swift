@@ -29,8 +29,12 @@ public class OKKeychain {
                                        kSecValueData as String: password.data(using: .utf8)!]
         
         SecItemDelete(addquery as CFDictionary)
+        
+        if password.isEmpty {
+            return true
+        }
+        
         let status = SecItemAdd(addquery as CFDictionary, nil)
-        print("status:", status)
         return status == errSecSuccess
     }
     
@@ -43,7 +47,6 @@ public class OKKeychain {
         var item: CFTypeRef?
         let status = SecItemCopyMatching(getquery as CFDictionary, &item)
         guard status == errSecSuccess, let passwordData = item as? Data else {
-            print("status2:", status)
             return nil
         }
         return String(data: passwordData, encoding: .utf8)

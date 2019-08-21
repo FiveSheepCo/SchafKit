@@ -22,12 +22,12 @@
 import UIKit
 
 public struct OKInformation {
-    let type : String
-    var text : String?
-    var isLoading : Bool
-    var canCopy : Bool
-    var handler:(() -> Void)?
-    var accessoryImage : UIImage?
+    public let type : String
+    public var text : String?
+    public var isLoading : Bool
+    public var canCopy : Bool
+    public var handler:(() -> Void)?
+    public var accessoryImage : UIImage?
     
     public init(title : String, text : String?, canCopy : Bool = true, accessoryImage : UIImage? = nil) {
         self.type = title

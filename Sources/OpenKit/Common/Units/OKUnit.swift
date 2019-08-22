@@ -55,6 +55,22 @@ public class OKUnit {
         return getString(from: Double(byteSize), with: byteSizeMilestones, threshold: 1, useAbbreviation: useAbbreviation)
     }
     
+    /// The common milestones for bit sizes.
+    static let bitSizeMilestones : [Milestone] = [
+        Milestone(milestone: 1, name: "Bit", abbreviation: "bit"),
+        Milestone(milestone: 1000, name: "Kilobit", abbreviation: "Kbit"),
+        Milestone(milestone: 1000000, name: "Megabit", abbreviation: "Mbit"),
+        Milestone(milestone: 1000000000, name: "Gigabit", abbreviation: "Gbit"),
+        Milestone(milestone: 1000000000000, name: "Petabit", abbreviation: "Pbit")
+    ]
+    
+    /// Converts a bit size into a human readable string.
+    ///
+    /// - example: 1200 -> "1.2 Kbit"
+    public static func getBitSizeString(from bitSize : Int, useAbbreviation : Bool = true) -> String {
+        return getString(from: Double(bitSize), with: bitSizeMilestones, threshold: 1, useAbbreviation: useAbbreviation)
+    }
+    
     // MARK: - Time
     
     /// The common milestones for time.

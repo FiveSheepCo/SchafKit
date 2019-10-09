@@ -55,7 +55,7 @@ public extension UIViewController {
             controller = popoverController.shownController
         } else {
             let visible = self.navigationController?.visibleViewController
-            if visible == self, visible == self.navigationController, visible == self.tabBarController {
+            if visible == self || visible == self.navigationController || visible == self.tabBarController {
                 return self
             } else {
                 return visible?.topmostViewController ?? self

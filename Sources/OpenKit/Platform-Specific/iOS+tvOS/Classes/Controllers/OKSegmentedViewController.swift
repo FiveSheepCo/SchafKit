@@ -70,6 +70,7 @@ public class OKSegmentedViewController : UINavigationController {
     
     public func selectViewController(at index : Int) {
         segmentedControl.selectedSegmentIndex = index
+        segmentedControl.becomeFirstResponder()
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

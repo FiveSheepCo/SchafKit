@@ -24,6 +24,7 @@ import UIKit
 public extension UIView {
     internal static let standardSystemSpacing : CGFloat = 8
     internal static let standardProminentSystemSpacing : CGFloat = 12
+    internal static let standardSystemTableViewCellSpacing : CGFloat = 20
     
     /// The system spacing.
     var systemSpacing : CGFloat { return UIView.standardSystemSpacing }
@@ -35,6 +36,9 @@ public extension UIView {
     ///
     /// - Note: This is commonly used as the spacing between the border of the dislpay and the first element or other elements that have to be clearly separated.
     var doubleSystemSpacing : CGFloat { return 2 * UIView.standardSystemSpacing }
+    
+    /// The system table view cell spacing.
+    var systemTableViewCellSpacing : CGFloat { return UIView.standardSystemTableViewCellSpacing }
     
     /// Detects whether the responder contains the given touch.
     func contains(_ touch : UITouch) -> Bool {

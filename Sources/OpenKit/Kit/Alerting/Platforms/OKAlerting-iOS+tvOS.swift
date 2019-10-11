@@ -26,9 +26,10 @@ extension OKAlerting {
     class func _showAlert(title : String?,
                           message : String?,
                           actions:[OKAlerting.Action] = [],
-                          textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [])
+                          textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [],
+                          preferredStyle: OKAlerting.Style = .alert)
     {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle.value)
         
         for action in actions {
             controller.addAction(action: action)

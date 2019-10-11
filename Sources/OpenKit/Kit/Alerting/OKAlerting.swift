@@ -34,7 +34,8 @@ public class OKAlerting {
                          okBlock : OKAlerting.Action.Block? = nil,
                          cancelBlock : OKAlerting.Action.Block? = nil,
                          additionalActions:[OKAlerting.Action] = [],
-                         textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [])
+                         textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [],
+                         preferredStyle: OKAlerting.Style = .alert)
     {
         var actions:[OKAlerting.Action] = additionalActions
         
@@ -49,7 +50,8 @@ public class OKAlerting {
         _showAlert(title: title,
                    message: message,
                    actions: actions,
-                   textFieldConfigurations: textFieldConfigurations)
+                   textFieldConfigurations: textFieldConfigurations,
+                   preferredStyle: preferredStyle)
     }
     
     /**

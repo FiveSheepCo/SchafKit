@@ -26,7 +26,8 @@ extension OKAlerting {
     class func _showAlert(title : String?,
                          message : String?,
                          actions:[OKAlerting.Action] = [],
-                         textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [])
+                         textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [],
+                         preferredStyle: OKAlerting.Style = .alert)
     {
         guard textFieldConfigurations.isEmpty else {
             fatalError("TextFields are not supported in alerts on watchOS.")

@@ -115,5 +115,17 @@ public class OKSegmentedViewController : UINavigationController {
             print("Setting the preferredContentSize on a JSSegmentedViewController is not supported and will be ignored.")
         }
     }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        activeViewController?.viewWillAppear(animated)
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        activeViewController?.viewDidAppear(animated)
+    }
 }
 #endif

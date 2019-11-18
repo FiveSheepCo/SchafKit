@@ -96,14 +96,14 @@ public class OKLoadingIndicator : UIView {
     
     override public func draw(_ rect : CGRect) {
         let startAngle = OKLoadingIndicator._getCurrentPortion() * .pi * 2
-        OKLoadingIndicator._draw(center: actualCenter, startAngle: startAngle, endAngle: startAngle + .pi * OKLoadingIndicator.portion)
+        OKLoadingIndicator._draw(center: actualCenter, startAngle: startAngle, endAngle: startAngle + .pi * OKLoadingIndicator.portion, tintColor: self.tintColor)
     }
     
-    internal static func _draw(center : CGPoint, startAngle : CGFloat, endAngle : CGFloat) {
+    internal static func _draw(center : CGPoint, startAngle : CGFloat, endAngle : CGFloat, tintColor : UIColor) {
         let context : CGContext = UIGraphicsGetCurrentContext()!
         context.beginPath()
         context.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
-        context.setStrokeColor(OKAppearance.Style.shared.tintColor.cgColor)
+        context.setStrokeColor(tintColor.cgColor)
         context.setLineWidth(1)
         context.strokePath()
     }

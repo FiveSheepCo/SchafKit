@@ -83,7 +83,7 @@ public class OKRefreshControl : UIRefreshControl {
             endAngle = startAngle + .pi * OKLoadingIndicator.portion * min(1, relativeHeight / (_currentEndBarrier ?? endBarrier))
         }
         
-        OKLoadingIndicator._draw(center : CGPoint(x: self.center.x, y: yCenter), startAngle: startAngle, endAngle: endAngle)
+        OKLoadingIndicator._draw(center : CGPoint(x: self.center.x, y: yCenter), startAngle: startAngle, endAngle: endAngle, tintColor: self.tintColor)
     }
     
     public override func endRefreshing() {

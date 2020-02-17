@@ -18,7 +18,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(UIKitForMac)
 import AppKit
 
 extension OKAlerting {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class OrderedDictionary<Key: Equatable, Value>: Sequence {
+public struct OrderedDictionary<Key: Equatable, Value>: Sequence {
     private var keys: [Key] = []
     private var values: [Value] = []
     

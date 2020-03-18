@@ -11,6 +11,8 @@ public class OrderedDictionary<Key: Equatable, Value>: Sequence {
     private var keys: [Key] = []
     private var values: [Value] = []
     
+    public init() {}
+    
     public subscript(key: Key) -> Value? {
         get {
             if let index = keys.firstIndex(of: key) {

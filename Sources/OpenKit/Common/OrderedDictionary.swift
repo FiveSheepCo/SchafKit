@@ -7,11 +7,11 @@
 
 import Foundation
 
-class OrderedDictionary<Key: Equatable, Value>: Sequence {
-    var keys: [Key] = []
-    var values: [Value] = []
+public class OrderedDictionary<Key: Equatable, Value>: Sequence {
+    private var keys: [Key] = []
+    private var values: [Value] = []
     
-    subscript(key: Key) -> Value? {
+    public subscript(key: Key) -> Value? {
         get {
             if let index = keys.firstIndex(of: key) {
                 return values[index]
@@ -35,7 +35,7 @@ class OrderedDictionary<Key: Equatable, Value>: Sequence {
         }
     }
     
-    func makeIterator() -> IndexingIterator<[(Key, Value)]> {
+    public func makeIterator() -> IndexingIterator<[(Key, Value)]> {
         (0..<keys.count).map { (index) -> (Key, Value) in
             return (keys[index], values[index])
         }.makeIterator()

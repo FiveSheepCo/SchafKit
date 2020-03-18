@@ -37,6 +37,10 @@ public struct OrderedDictionary<Key: Equatable, Value>: Sequence {
         }
     }
     
+    public var count: Int {
+        return keys.count
+    }
+    
     public func makeIterator() -> IndexingIterator<[(Key, Value)]> {
         (0..<keys.count).map { (index) -> (Key, Value) in
             return (keys[index], values[index])

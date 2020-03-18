@@ -89,7 +89,7 @@ public class OKDirectory : OKFileSystemItem {
     /// Saves the data to the path.
     public func save(data : Data, at path : String) -> Bool {
         do {
-            try data.write(to : URL(fileURLWithPath: _getPath(at: path)))
+            try data.write(to: URL(fileURLWithPath: _getPath(at: path)))
         } catch let err {
             print("Data Save Error:", err)
             return false

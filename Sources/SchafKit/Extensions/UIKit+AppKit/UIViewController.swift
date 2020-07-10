@@ -122,7 +122,7 @@ public extension UIViewController {
     
     /// Shows the responder.
     func show(in container : Container? = nil, type : ShowType) {
-        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
             return
         }
         let actualController = container?.get(for: self) ?? self

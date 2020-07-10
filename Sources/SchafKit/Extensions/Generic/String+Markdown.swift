@@ -5,22 +5,54 @@
 //  Created by Jann Schafranek on 10.07.20.
 //
 
-#if os(iOS)
-
 import Foundation
 import SwiftUI
+
+#if os(iOS)
 import UIKit
+
+extension UIFont {
+    func withTraits(_ symbolicTraits: UIFontDescriptor.SymbolicTraits) -> UIFont {
+        return UIFont(
+            descriptor: fontDescriptor.withSymbolicTraits(symbolicTraits)!,
+            size: pointSize
+        )
+    }
+}
+
+extension UIFontDescriptor.SymbolicTraits {
+    static var bold: UIFontDescriptor.SymbolicTraits {
+        return .traitBold
+    }
+    
+    static var italic: UIFontDescriptor.SymbolicTraits {
+        return .traitItalic
+    }
+}
+#elseif os(macOS)
+public typealias UIFont = NSFont
+
+extension NSFont {
+    func withTraits(_ symbolicTraits: NSFontDescriptor.SymbolicTraits) -> NSFont {
+        return NSFont(
+            descriptor: fontDescriptor.withSymbolicTraits(symbolicTraits),
+            size: pointSize
+        )!
+    }
+}
+#endif
 
 private let boldIndicator: Character = "*"
 private let italicIndicator: Character = "_"
 
 public extension String {
     
+    @available(macOS 10.16, *)
     func markdowned(with style: UIFont.TextStyle = .body) -> NSAttributedString {
         let font = UIFont.preferredFont(forTextStyle: style)
-        let bold = UIFont(descriptor: font.fontDescriptor.withSymbolicTraits([.traitBold])!, size: font.pointSize)
-        let italic = UIFont(descriptor: font.fontDescriptor.withSymbolicTraits([.traitItalic])!, size: font.pointSize)
-        let boldItalic = UIFont(descriptor: font.fontDescriptor.withSymbolicTraits([.traitBold, .traitItalic])!, size: font.pointSize)
+        let bold = font.withTraits([.bold])
+        let italic = font.withTraits([.italic])
+        let boldItalic = font.withTraits([.bold, .italic])
         
         var isBold = false
         var isItalic = false
@@ -64,5 +96,3 @@ public extension String {
         return string
     }
 }
-
-#endif

@@ -14,7 +14,7 @@ import UIKit
 private let boldIndicator: Character = "*"
 private let italicIndicator: Character = "_"
 
-extension String {
+public extension String {
     
     func markdowned(with style: UIFont.TextStyle = .body) -> NSAttributedString {
         let font = UIFont.preferredFont(forTextStyle: style)

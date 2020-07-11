@@ -8,20 +8,21 @@
 import SwiftUI
 
 /// Sheet presentation button analogue to NavigationLink.
-struct PresentationLink<Label, Destination>: View where Label: View, Destination: View {
+public struct PresentationLink<Label, Destination>: View
+where Label: View, Destination: View {
     @State var isPresented = false
     
     var destination: Destination
     var label: () -> Label
     var withNavigationView: Bool
     
-    init(destination: Destination, label: @escaping () -> Label, withNavigationView: Bool = true) {
+    public init(destination: Destination, label: @escaping () -> Label, withNavigationView: Bool = true) {
         self.destination = destination
         self.label = label
         self.withNavigationView = withNavigationView
     }
     
-    var body: some View {
+    public var body: some View {
         Button(
             action: {
                 self.isPresented.toggle()

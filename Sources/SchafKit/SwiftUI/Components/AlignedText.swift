@@ -7,24 +7,24 @@
 
 import SwiftUI
 
-struct AlignedText: View {
+public struct AlignedText: View {
     private let string: String?
     private let stringKey: LocalizedStringKey?
     private let alignment: TextAlignment
     
-    init(_ string: String, alignment: TextAlignment = .center) {
+    public init(_ string: String, alignment: TextAlignment = .center) {
         self.string = string
         self.stringKey = nil
         self.alignment = alignment
     }
     
-    init(_ key: LocalizedStringKey, alignment: TextAlignment = .center) {
+    public init(_ key: LocalizedStringKey, alignment: TextAlignment = .center) {
         self.string = nil
         self.stringKey = key
         self.alignment = alignment
     }
     
-    var body: some View {
+    public var body: some View {
         HStack {
             if alignment != .leading {
                 Spacer()

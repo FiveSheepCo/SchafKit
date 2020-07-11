@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct LabeledView<A: View, B: View>: View {
+public struct LabeledView<A: View, B: View>: View {
     let title: A
     let content: B
     
-    init(_ title: A, content: () -> B) {
+    public init(_ title: A, content: () -> B) {
         self.title = title
         self.content = content()
     }
     
-    var body: some View {
+    public var body: some View {
         HStack {
             title.multilineTextAlignment(.leading)
             Spacer()

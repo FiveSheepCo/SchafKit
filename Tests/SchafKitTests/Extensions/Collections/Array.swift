@@ -128,5 +128,11 @@ class ArrayTests : XCTestCase {
         array.remove(exactObject: objectA)
         XCTAssertEqual(array, [objectB])
     }
+    
+    func testAny() {
+        let arr = ["aaa", "aba", "aca", "ada", "aea"]
+        XCTAssertTrue(arr.any({ $0.contains("c") }))
+        XCTAssertFalse(arr.any({ $0.contains("f") }))
+    }
 }
 #endif

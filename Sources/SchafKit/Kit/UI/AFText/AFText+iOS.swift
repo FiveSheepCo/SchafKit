@@ -52,8 +52,10 @@ struct AFTextInternal: UIViewRepresentable {
     
     func updateUIView(_ uiView: UILabel, context: Context) {
         uiView.attributedText = text.localized.markdowned(with: arguments)
-        uiView.sizeToFit()
-        height = uiView.frame.size.height
+        Timer.scheduledTimer(withTimeInterval: 0.01) {
+            uiView.sizeToFit()
+            height = uiView.frame.size.height + 4
+        }
     }
 }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 public extension Color {
     static let lightText = Color(UIColor.lightText)
     static let darkText = Color(UIColor.darkText)
@@ -25,3 +26,4 @@ public extension Color {
     static let tertiarySystemFill = Color(UIColor.tertiarySystemFill)
     static let quaternarySystemFill = Color(UIColor.quaternarySystemFill)
 }
+#endif

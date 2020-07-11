@@ -6,6 +6,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 final class KeyboardResponder: ObservableObject {
     private var notificationCenter: NotificationCenter
     @Published private(set) var currentHeight: CGFloat = 0
@@ -30,3 +31,4 @@ final class KeyboardResponder: ObservableObject {
         currentHeight = 0
     }
 }
+#endif

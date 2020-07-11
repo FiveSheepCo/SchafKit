@@ -40,6 +40,7 @@ public struct AFText: UIViewRepresentable {
     
     public func updateUIView(_ uiView: UILabel, context: Context) {
         uiView.attributedText = text.localized.markdowned(with: arguments)
+        uiView.sizeToFit()
     }
 }
 

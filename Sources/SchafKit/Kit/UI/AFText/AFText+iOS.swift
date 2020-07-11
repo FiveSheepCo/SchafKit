@@ -23,17 +23,17 @@ import SwiftUI
 #if os(iOS)
 import UIKit
 
-struct AFText: UIViewRepresentable {
+public struct AFText: UIViewRepresentable {
     @State var text: String
     @State var arguments: [String] = []
     
-    func makeUIView(context: Context) -> UILabel {
+    public func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         return label
     }
     
-    func updateUIView(_ uiView: UILabel, context: Context) {
+    public func updateUIView(_ uiView: UILabel, context: Context) {
         uiView.attributedText = text.localized.markdowned(with: arguments)
     }
 }

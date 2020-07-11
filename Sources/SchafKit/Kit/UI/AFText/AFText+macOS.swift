@@ -24,18 +24,18 @@ import SwiftUI
 import AppKit
 
 @available(macOS 10.16, *)
-struct AFText: NSViewRepresentable {
+public struct AFText: NSViewRepresentable {
     @State var text: String
     @State var arguments: [String] = []
     
-    func makeNSView(context: Context) -> NSTextField {
+    public func makeNSView(context: Context) -> NSTextField {
         let label = NSTextField()
         label.isBezeled = false
         label.isEditable = false
         return label
     }
     
-    func updateNSView(_ nsView: NSTextField, context: Context) {
+    public func updateNSView(_ nsView: NSTextField, context: Context) {
         nsView.attributedStringValue = text.localized.markdowned(with: arguments)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Color+Components.swift
 //  
 //
 //  Created by Jann Schafranek on 10.07.20.

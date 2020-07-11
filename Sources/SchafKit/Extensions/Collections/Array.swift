@@ -90,6 +90,16 @@ public extension Array {
         }
         return false
     }
+    
+    /// Test whether anyat element matches the given predicate.
+    func any(_ predicate: (Element) -> Bool) -> Bool {
+        for item in self {
+            if predicate(item) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 public extension Array where Element : Equatable {

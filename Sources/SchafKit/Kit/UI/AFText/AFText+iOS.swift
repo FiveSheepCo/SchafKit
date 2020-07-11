@@ -23,25 +23,37 @@ import SwiftUI
 #if os(iOS)
 import UIKit
 
-public struct AFText: UIViewRepresentable {
+public struct AFText: View {
     @State var text: String
-    @State var arguments: [String] = []
+    @State var arguments: [String]
+    @State var height: CGFloat = 0
     
     public init(_ text: String, arguments: [String] = []) {
         self._text = State(initialValue: text)
         self._arguments = State(initialValue: arguments)
     }
     
-    public func makeUIView(context: Context) -> UILabel {
+    public var body: some View {
+        AFTextInternal(text: text, arguments: arguments, height: $height)
+            .frame(height: height)
+    }
+}
+
+struct AFTextInternal: UIViewRepresentable {
+    @State var text: String
+    @State var arguments: [String]
+    @Binding var height: CGFloat
+    
+    func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         return label
     }
     
-    public func updateUIView(_ uiView: UILabel, context: Context) {
+    func updateUIView(_ uiView: UILabel, context: Context) {
         uiView.attributedText = text.localized.markdowned(with: arguments)
         uiView.sizeToFit()
-        print("height:", uiView.frame.size.height)
+        height = uiView.frame.size.height
     }
 }
 

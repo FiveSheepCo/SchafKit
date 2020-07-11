@@ -90,7 +90,7 @@ public extension String {
                     if char == argumentPluralizationEndIndicator {
                         let argument = arguments[/*ifExists:*/ curArgumentNumber]
                         
-                        let pluralizationToUse = (abs(Int(argument) ?? 0) == 1) ? 0 : 1
+                        let pluralizationToUse = (abs(Double(argument) ?? 0) == 1) ? 0 : 1
                         toAppend = curPluralizationContent.components(separatedBy: argumentPluralizationSeparationIndicator)[/*ifExists:*/pluralizationToUse]
                         
                         argumentNumber = nil

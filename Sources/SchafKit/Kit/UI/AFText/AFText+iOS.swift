@@ -25,6 +25,7 @@ import UIKit
 
 struct AFText: UIViewRepresentable {
     @State var text: String
+    @State var arguments: [String] = []
     
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
@@ -33,7 +34,7 @@ struct AFText: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UILabel, context: Context) {
-        uiView.attributedText = text.localized.markdowned()
+        uiView.attributedText = text.localized.markdowned(with: arguments)
     }
 }
 

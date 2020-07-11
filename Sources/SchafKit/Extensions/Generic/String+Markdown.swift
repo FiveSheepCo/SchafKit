@@ -45,10 +45,26 @@ extension NSFont {
 private let boldIndicator: Character = "*"
 private let italicIndicator: Character = "_"
 
+private let argumentIndicator: Character = "$"
+private let argumentPluralizationStartIndicator: Character = "("
+private let argumentPluralizationEndIndicator: Character = ")"
+private let argumentPluralizationSeparationIndicator = "|"
+
 public extension String {
     
+    /**
+     *   Marks down a string
+     *
+     *   Supports:
+     *      - \* as indicator for beginning and end of bold
+     *      - _ as indicator for beginning and end of italic
+     *      - $n as a specifier for inserting the argument n
+     *      - $n(a|b) as indicator that:
+     *           - String a should be inserted when argument n is a number and equals 1
+     *           - String b should be inserted else
+     */
     @available(macOS 10.16, *)
-    func markdowned(with style: UIFont.TextStyle = .body) -> NSAttributedString {
+    func markdowned(as style: UIFont.TextStyle = .body, with arguments: [String] = []) -> NSAttributedString {
         let font = UIFont.preferredFont(forTextStyle: style)
         let bold = font.withTraits([.bold])
         let italic = font.withTraits([.italic])
@@ -58,17 +74,58 @@ public extension String {
         var isItalic = false
         
         let string = NSMutableAttributedString()
+        var toAppend: String = ""
         var last: Character?
+        
+        var argumentNumber: Int?
+        var pluralizationContent: String?
         for char in self {
             let lastWasSame = (char == last)
             last = char
             
-            switch char {
-            case boldIndicator, italicIndicator:
-                if char == boldIndicator {
-                    isBold.toggle()
+            // argumentNumber being set indicates there was an argument indicator
+            if let curArgumentNumber = argumentNumber {
+                // pluralizationContent being set indicates we are collecting pluralization content
+                if let curPluralizationContent = pluralizationContent {
+                    if char == argumentPluralizationEndIndicator {
+                        let argument = arguments[/*ifExists:*/ curArgumentNumber]
+                        
+                        let pluralizationToUse = (abs(Int(argument) ?? 0) == 1) ? 0 : 1
+                        toAppend = curPluralizationContent.components(separatedBy: argumentPluralizationSeparationIndicator)[/*ifExists:*/pluralizationToUse]
+                        
+                        argumentNumber = nil
+                        pluralizationContent = nil
+                    } else {
+                        pluralizationContent = curPluralizationContent + String(char)
+                    }
+                    continue
+                }
+                
+                if char.isNumber {
+                    argumentNumber = curArgumentNumber * 10 + Int(String(char))!
+                    continue
+                } else if char == argumentPluralizationStartIndicator {
+                    pluralizationContent = ""
+                    continue
                 } else {
+                    toAppend = arguments[/*ifExists:*/ curArgumentNumber]
+                    argumentNumber = nil
+                }
+            }
+            
+            switch char {
+            case boldIndicator, italicIndicator, argumentIndicator:
+                switch char {
+                case boldIndicator:
+                    isBold.toggle()
+                case italicIndicator:
                     isItalic.toggle()
+                default: // argumentIndicator
+                    if argumentNumber == nil {
+                        argumentNumber = 0
+                    } else {
+                        argumentNumber = nil
+                    }
                 }
                 
                 if !lastWasSame {
@@ -90,7 +147,8 @@ public extension String {
                 currentFont = boldItalic
             }
             
-            string.append(NSAttributedString(string: String(char), attributes: [.font: currentFont]))
+            string.append(NSAttributedString(string: toAppend + String(char), attributes: [.font: currentFont]))
+            toAppend = ""
         }
         
         return string

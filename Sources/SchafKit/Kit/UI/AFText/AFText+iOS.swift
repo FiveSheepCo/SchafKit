@@ -27,6 +27,11 @@ public struct AFText: UIViewRepresentable {
     @State var text: String
     @State var arguments: [String] = []
     
+    public init(_ text: String, arguments: [String] = []) {
+        self._text = State(initialValue: text)
+        self._arguments = State(initialValue: arguments)
+    }
+    
     public func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
@@ -43,6 +48,6 @@ public struct AFText: UIViewRepresentable {
 @available(macOS 10.16, *)
 struct AFText_Previews: PreviewProvider {
     static var previews: some View {
-        AFText(text: "test *toast* _toasty_ *_test*ing_")
+        AFText("test *toast* _toasty_ *_test*ing_")
     }
 }

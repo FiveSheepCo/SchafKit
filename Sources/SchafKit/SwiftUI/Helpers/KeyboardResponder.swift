@@ -9,7 +9,7 @@ import SwiftUI
 #if os(iOS)
 public final class KeyboardResponder: ObservableObject {
     private var notificationCenter: NotificationCenter
-    @Published private(set) var currentHeight: CGFloat = 0
+    @Published public private(set) var currentHeight: CGFloat = 0
 
     public init(center: NotificationCenter = .default) {
         notificationCenter = center

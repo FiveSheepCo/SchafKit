@@ -12,6 +12,18 @@ public struct RoundedCorners: Shape {
     var tr: CGFloat = 0.0
     var bl: CGFloat = 0.0
     var br: CGFloat = 0.0
+    
+    public init(
+        topLeft: CGFloat,
+        topRight: CGFloat,
+        bottomLeft: CGFloat,
+        bottomRight: CGFloat
+    ) {
+        tl = topLeft
+        tr = topRight
+        bl = bottomLeft
+        br = bottomRight
+    }
 
     public func path(in rect: CGRect) -> Path {
         var path = Path()

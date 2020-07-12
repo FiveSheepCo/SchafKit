@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct RoundedCorners: Shape {
+public struct RoundedCorners: Shape {
     var tl: CGFloat = 0.0
     var tr: CGFloat = 0.0
     var bl: CGFloat = 0.0
     var br: CGFloat = 0.0
 
-    func path(in rect: CGRect) -> Path {
+    public func path(in rect: CGRect) -> Path {
         var path = Path()
 
         let w = rect.size.width

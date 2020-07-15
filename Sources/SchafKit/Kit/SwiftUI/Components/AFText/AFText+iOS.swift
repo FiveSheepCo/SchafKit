@@ -23,8 +23,26 @@ import SwiftUI
 #if os(iOS)
 import UIKit
 
-struct AFText: UIViewRepresentable {
+public struct AFText: View {
     @State var text: String
+    @State var arguments: [String]
+    @State var height: CGFloat = 0
+    
+    public init(_ text: String, arguments: [String] = []) {
+        self._text = State(initialValue: text)
+        self._arguments = State(initialValue: arguments)
+    }
+    
+    public var body: some View {
+        AFTextInternal(text: text, arguments: arguments, height: $height)
+            .frame(height: height)
+    }
+}
+
+struct AFTextInternal: UIViewRepresentable {
+    @State var text: String
+    @State var arguments: [String]
+    @Binding var height: CGFloat
     
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
@@ -33,7 +51,11 @@ struct AFText: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UILabel, context: Context) {
-        uiView.attributedText = text.localized.markdowned()
+        uiView.attributedText = text.localized.markdowned(with: arguments)
+        Timer.scheduledTimer(withTimeInterval: 0.01) {
+            uiView.sizeToFit()
+            height = uiView.frame.size.height + 4
+        }
     }
 }
 
@@ -42,6 +64,6 @@ struct AFText: UIViewRepresentable {
 @available(macOS 10.16, *)
 struct AFText_Previews: PreviewProvider {
     static var previews: some View {
-        AFText(text: "test *toast* _toasty_ *_test*ing_")
+        AFText("test *toast* _toasty_ *_test*ing_")
     }
 }

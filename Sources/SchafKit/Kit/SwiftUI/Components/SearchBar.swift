@@ -35,13 +35,13 @@ fileprivate extension View {
     }
 }
 
-struct SearchBar: View {
-    @Binding var searchText: String
+public struct SearchBar: View {
+    @Binding public var searchText: String
     @State private var showCancelButton: Bool = false
     
-    var onCommit: () -> Void = {}
+    public var onCommit: () -> Void = {}
     
-    var body: some View {
+    public var body: some View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")

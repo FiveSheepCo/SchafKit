@@ -36,10 +36,15 @@ fileprivate extension View {
 }
 
 public struct SearchBar: View {
-    @Binding public var searchText: String
+    @Binding private var searchText: String
     @State private var showCancelButton: Bool = false
     
-    public var onCommit: () -> Void = {}
+    private var onCommit: () -> Void = {}
+    
+    public init(searchText: Binding<String>, onCommit: @escaping () -> Void = {}) {
+        self._searchText = searchText
+        self.onCommit = onCommit
+    }
     
     public var body: some View {
         HStack {

@@ -27,6 +27,7 @@ public struct AFText: View {
     @State var text: String
     @State var arguments: [String]
     @State var height: CGFloat = 0
+    @State var width: CGFloat = 0
     
     public init(_ text: String, arguments: [String] = []) {
         self._text = State(initialValue: text)
@@ -34,8 +35,8 @@ public struct AFText: View {
     }
     
     public var body: some View {
-        AFTextInternal(text: text, arguments: arguments, height: $height)
-            .frame(height: height)
+        AFTextInternal(text: text, arguments: arguments, height: $height, width: $width)
+            .frame(width: width, height: height)
     }
 }
 
@@ -43,6 +44,7 @@ struct AFTextInternal: UIViewRepresentable {
     @State var text: String
     @State var arguments: [String]
     @Binding var height: CGFloat
+    @Binding var width: CGFloat
     
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
@@ -55,6 +57,7 @@ struct AFTextInternal: UIViewRepresentable {
         Timer.scheduledTimer(withTimeInterval: 0.01) {
             uiView.sizeToFit()
             height = uiView.frame.size.height + 4
+            width = uiView.frame.size.width
         }
     }
 }

@@ -1,4 +1,7 @@
-# OpenKit
+# SchafKit
+
+**WARNING**: The documentation is out of sync with the code.
+Since we forked OpenKit, we've changed a lot and didn't update the documentation to reflect that yet.
 
 [![Build Status](https://travis-ci.org/JannThomas/OpenKit.svg?branch=master)](https://travis-ci.org/JannThomas/OpenKit)
 

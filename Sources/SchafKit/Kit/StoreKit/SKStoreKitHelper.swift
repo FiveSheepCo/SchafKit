@@ -9,23 +9,23 @@
 import Foundation
 import StoreKit
 
-typealias SKPurchaseHandler = (Bool) -> Void
+public typealias SKPurchaseHandler = (Bool) -> Void
 
-class SKStoreKitHelper {
-    static let shared = SKStoreKitHelper()
+public class SKStoreKitHelper {
+    public static let shared = SKStoreKitHelper()
     
     private let queueHelper = _SKPaymentQueueHelper.shared
     
-    func requestInAppProduct(for identifier : String,
-                              completionHandler : @escaping (SKProduct?) -> Void)
+    public func requestInAppProduct(for identifier : String,
+                                    completionHandler : @escaping (SKProduct?) -> Void)
     {
         self.requestInAppProducts(for: [identifier], completionHandler: { (products) in
             completionHandler(products.first)
         })
     }
     
-    func requestInAppProducts(for identifiers : Set<String>,
-                              completionHandler : @escaping ([SKProduct]) -> Void)
+    public func requestInAppProducts(for identifiers : Set<String>,
+                                     completionHandler : @escaping ([SKProduct]) -> Void)
     {
         let request = _SKStoreKitProductRequest(productIdentifiers: identifiers)
         
@@ -34,17 +34,17 @@ class SKStoreKitHelper {
         request.start()
     }
     
-    func purchase(product : SKProduct,
-                  completionHandler : @escaping SKPurchaseHandler)
+    public func purchase(product : SKProduct,
+                         completionHandler : @escaping SKPurchaseHandler)
     {
         queueHelper.purchase(product: product, completionHandler: completionHandler)
     }
     
-    func restorePurchases(completionHandler : @escaping SKPurchaseHandler) {
+    public func restorePurchases(completionHandler : @escaping SKPurchaseHandler) {
         queueHelper.restorePurchases(completionHandler: completionHandler)
     }
     
-    func isPurchased(identifier : String) -> Bool {
+    public func isPurchased(identifier : String) -> Bool {
         return UserDefaults.standard.bool(forKey: "IAP-Purchased-\(identifier)")
     }
 }

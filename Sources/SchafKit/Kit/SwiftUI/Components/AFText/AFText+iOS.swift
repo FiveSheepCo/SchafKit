@@ -73,9 +73,23 @@ struct AFTextInternal: UIViewRepresentable {
 
 #endif
 
+struct AFTextWrapper: View {
+    @State var test: Int = 0
+    
+    var body: some View {
+        Button(action: {
+            test += 1
+        }, label: {
+            AFText("$0 *toast* _toasty_ *_test*ing_",
+                   arguments: [String(test)])
+        })
+    }
+}
+
 @available(macOS 10.16, *)
 struct AFText_Previews: PreviewProvider {
+    
     static var previews: some View {
-        AFText("test *toast* _toasty_ *_test*ing_")
+        AFTextWrapper()
     }
 }

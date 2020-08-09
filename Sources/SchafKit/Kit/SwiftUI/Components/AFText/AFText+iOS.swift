@@ -35,7 +35,7 @@ public struct AFText: View {
     }
     
     public var body: some View {
-        AFTextInternal(text: $text, arguments: $arguments, height: $height, width: $width)
+        AFTextInternal(text: text, arguments: arguments, height: $height, width: $width)
             .frame(width: width, height: height)
     }
 }
@@ -50,8 +50,8 @@ public struct AFText: View {
 }*/
 
 struct AFTextInternal: UIViewRepresentable {
-    @Binding var text: String
-    @Binding var arguments: [String]
+    var text: String
+    var arguments: [String]
     @Binding var height: CGFloat
     @Binding var width: CGFloat
     

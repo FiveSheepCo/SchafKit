@@ -37,6 +37,7 @@ public struct AFText: View {
     public var body: some View {
         AFTextInternal(text: $text, arguments: $arguments, height: $height, width: $width)
             .frame(width: width, height: height)
+            .id(arguments)
     }
 }
 

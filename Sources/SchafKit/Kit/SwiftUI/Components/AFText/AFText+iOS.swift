@@ -24,22 +24,30 @@ import SwiftUI
 import UIKit
 
 public struct AFText: View {
-    @State var text: String
-    @State var arguments: [String]
+    var text: String
+    var arguments: [String]
     @State var height: CGFloat = 0
     @State var width: CGFloat = 0
     
     public init(_ text: String, arguments: [String] = []) {
-        self._text = State(initialValue: text)
-        self._arguments = State(initialValue: arguments)
+        self.text = text
+        self.arguments = arguments
     }
     
     public var body: some View {
         AFTextInternal(text: $text, arguments: $arguments, height: $height, width: $width)
             .frame(width: width, height: height)
-            .id(arguments)
     }
 }
+
+/*public struct AFTextIntermediate: View {
+    @State var text: String
+    @State var arguments: [Bindings<String>]
+    @Binding var height: CGFloat
+    @Binding var width: CGFloat
+    
+    
+}*/
 
 struct AFTextInternal: UIViewRepresentable {
     @Binding var text: String

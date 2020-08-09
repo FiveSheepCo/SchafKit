@@ -44,6 +44,7 @@ public struct AlignedText: View {
     }
 }
 
+@available(iOS 14, *)
 struct AlignedText_Previews: PreviewProvider {
     static var previews: some View {
         AlignedText("AlignedText")

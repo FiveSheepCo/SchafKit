@@ -73,6 +73,7 @@ struct AFTextInternal: UIViewRepresentable {
 
 #endif
 
+@available(macOS 10.16, *)
 struct AFTextWrapper: View {
     @State var test: Int = 0
     

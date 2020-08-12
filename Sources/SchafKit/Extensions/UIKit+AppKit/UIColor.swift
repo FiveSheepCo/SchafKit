@@ -80,6 +80,29 @@ public extension UIColor {
         return OK8BitRGBARepresentation(red : UInt8(red * 255), green : UInt8(green * 255), blue : UInt8(blue * 255), alpha : UInt8(alpha * 255))
     }
     
+    /// Returns a `OKHSLARepresentation` representing the color.
+    var HSLARepresentation : OKHSLARepresentation {
+        var hue : CGFloat = 0
+        var saturation : CGFloat = 0
+        var brightness : CGFloat = 0
+        var alpha : CGFloat = 0
+        
+        #if os(OSX)
+        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        #else
+        if !self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+            fatalError()
+        }
+        #endif
+        
+        return OKHSLARepresentation(
+            hue: hue,
+            saturation: saturation,
+            brightness: brightness,
+            alpha: alpha
+        )
+    }
+    
     /// Initializes and returns a color object using the specified `OKRGBARepresentation`.
     convenience init(representation : OKRGBARepresentation) {
         self.init(intermediateDisplayP3Red: representation.red,
@@ -102,6 +125,16 @@ public extension UIColor {
                   green: green,
                   blue: blue,
                   alpha: 1)
+    }
+    
+    /// Initializes and returns a color object using the specified RGB component values.
+    convenience init(representation: OKHSLARepresentation) {
+        self.init(
+            hue: representation.hue,
+            saturation: representation.saturation,
+            brightness: representation.brightness,
+            alpha: representation.alpha
+        )
     }
     
     internal convenience init(intermediateDisplayP3Red red : CGFloat, green : CGFloat, blue : CGFloat, alpha : CGFloat) {

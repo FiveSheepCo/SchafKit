@@ -14,7 +14,7 @@ public struct SettingStorage<Value>: Publishable {
     private let key: String
     private var value: Value
     
-    init(wrappedValue: Value, key: String) {
+    public init(wrappedValue: Value, key: String) {
         self.key = key
         self.value = (UserDefaults.standard.object(forKey: key) as? Value) ?? wrappedValue
     }

@@ -274,3 +274,11 @@ public extension String {
         return self[aRange.location..<aRange.upperBound]
     }
 }
+
+// - MARK: Identifiable
+
+extension String: Identifiable {
+    public var id: String {
+        return self
+    }
+}

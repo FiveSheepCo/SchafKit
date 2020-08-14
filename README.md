@@ -1,6 +1,7 @@
-# OpenKit
+# SchafKit
 
-[![Build Status](https://travis-ci.org/JannThomas/OpenKit.svg?branch=master)](https://travis-ci.org/JannThomas/OpenKit)
+**WARNING**: The documentation is out of sync with the code.
+Since we forked OpenKit, we've changed a lot and didn't update the documentation to reflect that yet.
 
 An open kit providing useful functions across iOS, watchOS, macOS and tvOS, taking advantage of Swifts rich feature set.
 

@@ -79,7 +79,7 @@ public extension String {
         
         var argumentNumber: Int?
         var pluralizationContent: String?
-        for char in self {
+        for (index, char) in (self + " ").enumerated() {
             let lastWasSame = (char == last)
             last = char
             
@@ -147,7 +147,7 @@ public extension String {
                 currentFont = boldItalic
             }
             
-            string.append(NSAttributedString(string: toAppend + String(char), attributes: [.font: currentFont]))
+            string.append(NSAttributedString(string: toAppend + ((self.count == index) ? "" : String(char)), attributes: [.font: currentFont]))
             toAppend = ""
         }
         

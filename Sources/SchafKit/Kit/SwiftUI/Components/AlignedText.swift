@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14, *)
 public struct AlignedText: View {
     private let string: String?
     private let stringKey: LocalizedStringKey?
@@ -43,6 +44,7 @@ public struct AlignedText: View {
     }
 }
 
+@available(iOS 14, *)
 struct AlignedText_Previews: PreviewProvider {
     static var previews: some View {
         AlignedText("AlignedText")

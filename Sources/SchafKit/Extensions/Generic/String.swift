@@ -221,6 +221,15 @@ public extension String {
     }
     
     /**
+     Returns the character at the specified index.
+     
+     - Remark: The built-in subscringing system is burdensome.
+     */
+    subscript (_ index: Int) -> Character {
+        self[self.indexAt(index)]
+    }
+    
+    /**
      Returns a new string containing the characters of the receiver within the range.
     
      - Remark : The built-in substringing system is burdensome.

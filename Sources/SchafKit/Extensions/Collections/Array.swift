@@ -82,7 +82,7 @@ public extension Array {
     }
     
     /// Returns a Boolean value indicating whether the sequence contains the exact given element.
-    mutating func contains(exactObject : Element) -> Bool {
+    func contains(exactObject : Element) -> Bool {
         for i in (0..<self.count).reversed() {
             if self[i] as AnyObject? === exactObject as AnyObject? {
                 return true

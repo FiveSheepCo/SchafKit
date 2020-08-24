@@ -31,9 +31,9 @@ public struct PublishablePublisher<Value>: Combine.Publisher {
         subject.subscribe(subscriber)
     }
     
-    let subject: Combine.CurrentValueSubject<Value, Never>
+    public let subject: Combine.CurrentValueSubject<Value, Never>
     
-    init(_ output: Output) {
+    public init(_ output: Output) {
         subject = .init(output)
     }
 }

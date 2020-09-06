@@ -54,7 +54,7 @@ public extension Publishable {
         }
     }
     
-    static subscript<EnclosingSelf: AnyObject>(
+    static subscript<EnclosingSelf: ObservableObject>(
         _enclosingInstance object: EnclosingSelf,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Value>,
         storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Self>
@@ -63,6 +63,7 @@ public extension Publishable {
             return object[keyPath: storageKeyPath].wrappedValue
         }
         set {
+            (object.objectWillChange as! ObservableObjectPublisher).send()
             object[keyPath: storageKeyPath].objectWillChange?.send()
             object[keyPath: storageKeyPath].publisher?.subject.send(newValue)
             object[keyPath: storageKeyPath].wrappedValue = newValue

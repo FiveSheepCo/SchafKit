@@ -47,3 +47,5 @@ public struct OrderedDictionary<Key: Equatable, Value>: Sequence {
         }.makeIterator()
     }
 }
+
+extension OrderedDictionary: Equatable where Value: Equatable {}

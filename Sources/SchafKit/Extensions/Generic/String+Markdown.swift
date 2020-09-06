@@ -11,7 +11,7 @@ import SwiftUI
 #if os(iOS)
 import UIKit
 
-extension UIFont {
+public extension UIFont {
     func withTraits(_ symbolicTraits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         return UIFont(
             descriptor: fontDescriptor.withSymbolicTraits(symbolicTraits)!,
@@ -20,7 +20,7 @@ extension UIFont {
     }
 }
 
-extension UIFontDescriptor.SymbolicTraits {
+public extension UIFontDescriptor.SymbolicTraits {
     static var bold: UIFontDescriptor.SymbolicTraits {
         return .traitBold
     }
@@ -32,7 +32,7 @@ extension UIFontDescriptor.SymbolicTraits {
 #elseif os(macOS)
 public typealias UIFont = NSFont
 
-extension NSFont {
+public extension NSFont {
     func withTraits(_ symbolicTraits: NSFontDescriptor.SymbolicTraits) -> NSFont {
         return NSFont(
             descriptor: fontDescriptor.withSymbolicTraits(symbolicTraits),

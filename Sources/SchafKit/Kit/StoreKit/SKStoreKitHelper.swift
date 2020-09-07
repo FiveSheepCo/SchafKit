@@ -10,6 +10,8 @@ import Foundation
 import StoreKit
 
 public typealias SKPurchaseHandler = (Bool) -> Void
+public typealias SKProductFetchCompletionHandler = ((Result<SKProduct, Error>) -> Void)
+public typealias SKProductsFetchCompletionHandler = ((Result<[SKProduct], Error>) -> Void)
 
 public class SKStoreKitHelper {
     public static let shared = SKStoreKitHelper()
@@ -17,16 +19,17 @@ public class SKStoreKitHelper {
     private let queueHelper = _SKPaymentQueueHelper.shared
     
     public func requestInAppProduct(for identifier : String,
-                                    completionHandler : @escaping (SKProduct?) -> Void)
-    {
+                                    completionHandler : @escaping SKProductFetchCompletionHandler
+    ) {
         self.requestInAppProducts(for: [identifier], completionHandler: { (products) in
-            completionHandler(products.first)
+            completionHandler(products.map{ $0.first! })
         })
     }
     
-    public func requestInAppProducts(for identifiers : Set<String>,
-                                     completionHandler : @escaping ([SKProduct]) -> Void)
-    {
+    public func requestInAppProducts(
+        for identifiers : Set<String>,
+        completionHandler : @escaping SKProductsFetchCompletionHandler
+    ) {
         let request = _SKStoreKitProductRequest(productIdentifiers: identifiers)
         
         request.completionHandler = completionHandler
@@ -34,9 +37,10 @@ public class SKStoreKitHelper {
         request.start()
     }
     
-    public func purchase(product : SKProduct,
-                         completionHandler : @escaping SKPurchaseHandler)
-    {
+    public func purchase(
+        product : SKProduct,
+        completionHandler : @escaping SKPurchaseHandler
+    ) {
         queueHelper.purchase(product: product, completionHandler: completionHandler)
     }
     
@@ -116,7 +120,7 @@ internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
 internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
     private static var currentRequests : [_SKStoreKitProductRequest] = []
     
-    var completionHandler : (([SKProduct]) -> Void)?
+    var completionHandler : SKProductsFetchCompletionHandler?
     private let request : SKProductsRequest
     
     init(productIdentifiers : Set<String>) {
@@ -134,8 +138,14 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        completionHandler?(response.products)
-        
+        completionHandler?(.success(response.products))
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        completionHandler?(.failure(error))
+    }
+    
+    func requestDidFinish(_ request: SKRequest) {
         _SKStoreKitProductRequest.currentRequests.remove(object: self)
     }
 }

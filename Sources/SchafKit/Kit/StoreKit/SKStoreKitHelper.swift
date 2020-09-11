@@ -97,8 +97,10 @@ internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
             
             if isDone {
                 UserDefaults.standard.set(true, forKey: "IAP-Purchased-\(transaction.payment.productIdentifier)")
-                queue.finishTransaction(transaction)
+            } else {
+                OKAlerting.showAlert(title: "Error", message: "There was a problem with your In-App Purchase: \(transaction.error?.localizedDescription ?? "Unknown error.")")
             }
+            queue.finishTransaction(transaction)
         }
     }
     

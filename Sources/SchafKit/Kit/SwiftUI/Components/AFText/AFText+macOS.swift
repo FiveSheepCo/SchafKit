@@ -28,6 +28,8 @@ public struct AFText: NSViewRepresentable {
     @State var text: String
     @State var arguments: [String]
     
+    @Environment(\.lineLimit) var lineLimit
+    
     public init(_ text: String, arguments: [String] = []) {
         self._text = State(initialValue: text)
         self._arguments = State(initialValue: arguments)
@@ -42,6 +44,7 @@ public struct AFText: NSViewRepresentable {
     
     public func updateNSView(_ nsView: NSTextField, context: Context) {
         nsView.attributedStringValue = text.localized.markdowned(with: arguments)
+        nsView.maximumNumberOfLines = lineLimit ?? 0
     }
 }
 

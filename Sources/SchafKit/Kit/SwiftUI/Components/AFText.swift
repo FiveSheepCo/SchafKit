@@ -18,34 +18,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-
 import SwiftUI
 import AppKit
 
 @available(macOS 10.16, *)
-public struct AFText: NSViewRepresentable {
+public struct AFText: View {
     @State var text: String
     @State var arguments: [String]
     
-    @Environment(\.lineLimit) var lineLimit
+    @Environment(\EnvironmentValues.font) var font
     
     public init(_ text: String, arguments: [String] = []) {
         self._text = State(initialValue: text)
         self._arguments = State(initialValue: arguments)
     }
     
-    public func makeNSView(context: Context) -> NSTextField {
-        let label = NSTextField()
-        label.isBezeled = false
-        label.isEditable = false
-        return label
-    }
-    
-    public func updateNSView(_ nsView: NSTextField, context: Context) {
-        nsView.attributedStringValue = text.localized.markdowned(with: arguments)
-        nsView.maximumNumberOfLines = lineLimit ?? 0
+    public var body: some View {
+        text.markdownedText(with: font ?? .body, with: arguments)
     }
 }
-
-#endif

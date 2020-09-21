@@ -153,4 +153,99 @@ public extension String {
         
         return string
     }
+    
+    /**
+     *   Marks down a string
+     *
+     *   Supports:
+     *      - \* as indicator for beginning and end of bold
+     *      - _ as indicator for beginning and end of italic
+     *      - $n as a specifier for inserting the argument n
+     *      - $n(a|b) as indicator that:
+     *           - String a should be inserted when argument n is a number and equals 1
+     *           - String b should be inserted else
+     */
+    @available(macOS 10.16, *)
+    func markdownedText(with font: Font = .body, with arguments: [String] = []) -> Text {
+        
+        var isBold = false
+        var isItalic = false
+        
+        var text = Text("")
+        var toAppend: String = ""
+        var last: Character?
+        
+        var argumentNumber: Int?
+        var pluralizationContent: String?
+        for (index, char) in (self + " ").enumerated() {
+            let lastWasSame = (char == last)
+            last = char
+            
+            // argumentNumber being set indicates there was an argument indicator
+            if let curArgumentNumber = argumentNumber {
+                // pluralizationContent being set indicates we are collecting pluralization content
+                if let curPluralizationContent = pluralizationContent {
+                    if char == argumentPluralizationEndIndicator {
+                        let argument = arguments[/*ifExists:*/ curArgumentNumber]
+                        
+                        let pluralizationToUse = (abs(Double(argument) ?? 0) == 1) ? 0 : 1
+                        toAppend = curPluralizationContent.components(separatedBy: argumentPluralizationSeparationIndicator)[/*ifExists:*/pluralizationToUse]
+                        
+                        argumentNumber = nil
+                        pluralizationContent = nil
+                    } else {
+                        pluralizationContent = curPluralizationContent + String(char)
+                    }
+                    continue
+                }
+                
+                if char.isNumber {
+                    argumentNumber = curArgumentNumber * 10 + Int(String(char))!
+                    continue
+                } else if char == argumentPluralizationStartIndicator {
+                    pluralizationContent = ""
+                    continue
+                } else {
+                    toAppend = arguments[/*ifExists:*/ curArgumentNumber]
+                    argumentNumber = nil
+                }
+            }
+            
+            switch char {
+            case boldIndicator, italicIndicator, argumentIndicator:
+                switch char {
+                case boldIndicator:
+                    isBold.toggle()
+                case italicIndicator:
+                    isItalic.toggle()
+                default: // argumentIndicator
+                    if argumentNumber == nil {
+                        argumentNumber = 0
+                    } else {
+                        argumentNumber = nil
+                    }
+                }
+                
+                if !lastWasSame {
+                    continue
+                }
+            default:
+                break
+            }
+            
+            var textToAppend = Text(toAppend + ((self.count == index) ? "" : String(char))).font(font)
+            
+            if isBold {
+                textToAppend = textToAppend.bold()
+            }
+            if isItalic {
+                textToAppend = textToAppend.italic()
+            }
+            
+            text = text + textToAppend
+            toAppend = ""
+        }
+        
+        return text
+    }
 }

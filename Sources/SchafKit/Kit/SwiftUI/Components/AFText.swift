@@ -19,7 +19,6 @@
 //  THE SOFTWARE.
 
 import SwiftUI
-import AppKit
 
 @available(macOS 10.16, *)
 public struct AFText: View {

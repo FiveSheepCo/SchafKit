@@ -166,7 +166,7 @@ public extension String {
      *           - String b should be inserted else
      */
     @available(macOS 10.16, *)
-    func markdownedText(with font: Font = .body, with arguments: [String] = []) -> Text {
+    func markdownedText(with font: Font = .body, arguments: [String] = []) -> Text {
         
         var isBold = false
         var isItalic = false

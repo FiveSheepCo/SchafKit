@@ -33,6 +33,6 @@ public struct AFText: View {
     }
     
     public var body: some View {
-        text.localized.markdownedText(with: font ?? .body, with: arguments)
+        text.localized.markdownedText(with: font ?? .body, arguments: arguments)
     }
 }

@@ -25,5 +25,11 @@ class UIColorTests : XCTestCase {
         
         XCTAssertEqual(white.rgbaRepresentation.red, 1)
     }
+    
+    func testCatalogRepresentation() {
+        let background = UIColor.textBackgroundColor
+        
+        XCTAssertTrue(background.rgbaRepresentation.red > 0)
+    }
 }
 #endif

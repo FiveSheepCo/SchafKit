@@ -100,6 +100,50 @@ public extension Array {
         }
         return false
     }
+    
+    /// Get the max value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].max(by: \.count)
+    /// ```
+    ///
+    /// - Parameter f: A function/keypath returning the value to be compared.
+    func max<T: Comparable>(by f: (Element) -> T) -> T? {
+        self.map(f).max()
+    }
+    
+    /// Get the max value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].max(by: \.count)
+    /// ```
+    ///
+    /// - Parameter f: A function/keypath returning the optional value to be compared.
+    func max<T: Comparable>(by f: (Element) -> T?) -> T? {
+        self.compactMap(f).max()
+    }
+    
+    /// Get the min value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].min(by: \.count)
+    /// ```
+    ///
+    /// - Parameter f: A function/keypath returning the value to be compared.
+    func min<T: Comparable>(by f: (Element) -> T) -> T? {
+        self.map(f).min()
+    }
+    
+    /// Get the min value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].min(by: \.count)
+    /// ```
+    ///
+    /// - Parameter f: A function/keypath returning the optional value to be compared.
+    func min<T: Comparable>(by f: (Element) -> T?) -> T? {
+        self.compactMap(f).min()
+    }
 }
 
 public extension Array where Element : Equatable {

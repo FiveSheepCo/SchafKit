@@ -22,7 +22,8 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class OKTimeUnitTests : XCTestCase {
+class OKUnitTests : XCTestCase {
+    let locale = Locale(identifier: "en-US")
     
     override func setUp() {
         super.setUp()
@@ -34,26 +35,22 @@ class OKTimeUnitTests : XCTestCase {
         super.tearDown()
     }
     
-    func testSimpleConversion() {
-        XCTAssertEqual(OKTimeUnit.minute.convert(to: .second), 60)
+    func testByteConversion() {
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60, locale: locale), "60 B")
+        
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123, locale: locale), "60.12 KB")
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobyte")
+        
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123000, locale: locale), "60.12 MB")
     }
     
-    func testChainConversion() {
-        XCTAssertEqual(
-            OKTimeUnit.second.convert(to: .millisecond) *
-            OKTimeUnit.minute.convert(to: .second) *
-            OKTimeUnit.hour.convert(to: .minute) *
-            OKTimeUnit.day.convert(to: .hour) *
-            OKTimeUnit.year.convert(to: .day) *
-            OKTimeUnit.decade.convert(to: .year) *
-            OKTimeUnit.century.convert(to: .decade),
-            1000 * 60 * 60 * 24 * 365 * 10 * 10)
-    }
-    
-    func testChainCompleteConversion() {
-        XCTAssertEqual(
-            OKTimeUnit.century.convert(to: .millisecond),
-            1000 * 60 * 60 * 24 * 365 * 10 * 10)
+    func testBitConversion() {
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60, locale: locale), "60 bit")
+        
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123, locale: locale), "60.12 Kbit")
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobit")
+        
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123000, locale: locale), "60.12 Mbit")
     }
 }
 #endif

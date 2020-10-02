@@ -21,7 +21,6 @@
 import Foundation
 
 // TODO: Put in enum
-// TODO: Standard Metric Stuff
 
 /// A class helping with the display of measurements in units, currently bytes and time.
 public class OKUnit {

@@ -104,10 +104,10 @@ public extension Array {
     /// Get the max value of a field of the array element type.
     ///
     /// ```
-    /// ["foo", "bar", "toast"].max(by: \.count)
+    /// ["foo", "bar", "toast"].max(of: \.count)
     /// ```
     ///
-    /// - Parameter f: A function/keypath returning the value to be compared.
+    /// - Parameter of: A function/keypath returning the value to be compared.
     func max<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
         self.map(mappingFunc).max()
     }
@@ -115,10 +115,10 @@ public extension Array {
     /// Get the max value of a field of the array element type.
     ///
     /// ```
-    /// ["foo", "bar", "toast"].max(by: \.count)
+    /// ["foo", "bar", "toast"].max(of: \.count)
     /// ```
     ///
-    /// - Parameter f: A function/keypath returning the optional value to be compared.
+    /// - Parameter of: A function/keypath returning the optional value to be compared.
     func max<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
         self.compactMap(mappingFunc).max()
     }
@@ -126,10 +126,10 @@ public extension Array {
     /// Get the min value of a field of the array element type.
     ///
     /// ```
-    /// ["foo", "bar", "toast"].min(by: \.count)
+    /// ["foo", "bar", "toast"].min(of: \.count)
     /// ```
     ///
-    /// - Parameter f: A function/keypath returning the value to be compared.
+    /// - Parameter of: A function/keypath returning the value to be compared.
     func min<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
         self.map(mappingFunc).min()
     }
@@ -137,10 +137,10 @@ public extension Array {
     /// Get the min value of a field of the array element type.
     ///
     /// ```
-    /// ["foo", "bar", "toast"].min(by: \.count)
+    /// ["foo", "bar", "toast"].min(of: \.count)
     /// ```
     ///
-    /// - Parameter f: A function/keypath returning the optional value to be compared.
+    /// - Parameter of: A function/keypath returning the optional value to be compared.
     func min<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
         self.compactMap(mappingFunc).min()
     }

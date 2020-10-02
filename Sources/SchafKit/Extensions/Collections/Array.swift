@@ -107,7 +107,7 @@ public extension Array {
     /// ["foo", "bar", "toast"].max(of: \.count)
     /// ```
     ///
-    /// - Parameter of: A function/keypath returning the value to be compared.
+    /// - Parameter mappingFunc: A function/keypath returning the value to be compared.
     func max<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
         self.map(mappingFunc).max()
     }
@@ -118,7 +118,7 @@ public extension Array {
     /// ["foo", "bar", "toast"].max(of: \.count)
     /// ```
     ///
-    /// - Parameter of: A function/keypath returning the optional value to be compared.
+    /// - Parameter mappingFunc: A function/keypath returning the optional value to be compared.
     func max<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
         self.compactMap(mappingFunc).max()
     }
@@ -129,7 +129,7 @@ public extension Array {
     /// ["foo", "bar", "toast"].min(of: \.count)
     /// ```
     ///
-    /// - Parameter of: A function/keypath returning the value to be compared.
+    /// - Parameter mappingFunc: A function/keypath returning the value to be compared.
     func min<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
         self.map(mappingFunc).min()
     }
@@ -140,7 +140,7 @@ public extension Array {
     /// ["foo", "bar", "toast"].min(of: \.count)
     /// ```
     ///
-    /// - Parameter of: A function/keypath returning the optional value to be compared.
+    /// - Parameter mappingFunc: A function/keypath returning the optional value to be compared.
     func min<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
         self.compactMap(mappingFunc).min()
     }

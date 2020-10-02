@@ -22,6 +22,8 @@
 import XCTest
 
 class DoubleTests : XCTestCase {
+    let locale = Locale(identifier: "en-US")
+    let germanLocale = Locale(identifier: "de-DE")
     
     override func setUp() {
         super.setUp()
@@ -38,13 +40,23 @@ class DoubleTests : XCTestCase {
         
         XCTAssertEqual(double.toString, "1200.75")
         
-        XCTAssertEqual(double.toFormattedString(), "1,200.75")
+        XCTAssertEqual(double.toFormattedString(locale: locale), "1,200.75")
         
-        XCTAssertEqual(double.toFormattedString(decimals: 0), "1,201")
+        XCTAssertEqual(double.toFormattedString(decimals: 0, locale: locale), "1,201")
         
-        XCTAssertEqual(double.toFormattedString(separatesThousands: false), "1200.75")
+        XCTAssertEqual(double.toFormattedString(separatesThousands: false, locale: locale), "1200.75")
         
-        XCTAssertEqual(double.toFormattedString(decimals: 0, separatesThousands: false), "1201")
+        XCTAssertEqual(double.toFormattedString(decimals: 0, separatesThousands: false, locale: locale), "1201")
+    }
+    
+    func testToStringGerman() {
+        let double = 1200.75
+        
+        XCTAssertEqual(double.toFormattedString(locale: germanLocale), "1.200,75")
+        
+        XCTAssertEqual(double.toFormattedString(decimals: 0, locale: germanLocale), "1.201")
+        
+        XCTAssertEqual(double.toFormattedString(separatesThousands: false, locale: germanLocale), "1200,75")
     }
 }
 #endif

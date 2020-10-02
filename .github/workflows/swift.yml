@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: macos-latest
     
+    steps:
     - uses: fwal/setup-swift@v1
       with:
         swift-version: "5.3"

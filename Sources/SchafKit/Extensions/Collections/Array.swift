@@ -100,6 +100,50 @@ public extension Array {
         }
         return false
     }
+    
+    /// Get the max value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].max(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the value to be compared.
+    func max<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
+        self.map(mappingFunc).max()
+    }
+    
+    /// Get the max value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].max(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the optional value to be compared.
+    func max<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
+        self.compactMap(mappingFunc).max()
+    }
+    
+    /// Get the min value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].min(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the value to be compared.
+    func min<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
+        self.map(mappingFunc).min()
+    }
+    
+    /// Get the min value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].min(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the optional value to be compared.
+    func min<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
+        self.compactMap(mappingFunc).min()
+    }
 }
 
 public extension Array where Element : Equatable {

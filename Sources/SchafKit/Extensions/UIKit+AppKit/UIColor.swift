@@ -30,6 +30,17 @@
 
 public extension UIColor {
     
+    private var selfAsSRGB: UIColor {
+        #if os(iOS)
+        return self
+        #else
+        if self.colorSpace == .sRGB {
+            return self
+        }
+        return self.usingColorSpace(.sRGB)!
+        #endif
+    }
+    
     /// Returns a `OKRGBARepresentation` representing the color.
     var rgbaRepresentation : OKRGBARepresentation {
         var red : CGFloat = 0
@@ -38,9 +49,9 @@ public extension UIColor {
         var alpha : CGFloat = 0
         
         #if os(OSX)
-        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        selfAsSRGB.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         #else
-        if !self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+        if !selfAsSRGB.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
             guard let components = self.cgColor.components, components.count >= 3 else {
                 fatalError("rgbaRepresentation could not be evaluated properly.")
             }
@@ -63,9 +74,9 @@ public extension UIColor {
         var alpha : CGFloat = 0
         
         #if os(OSX)
-        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        selfAsSRGB.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         #else
-        if !self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+        if !selfAsSRGB.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
             guard let components = self.cgColor.components, components.count >= 3 else {
                 fatalError("rgbaRepresentation could not be evaluated properly.")
             }
@@ -88,9 +99,9 @@ public extension UIColor {
         var alpha : CGFloat = 0
         
         #if os(OSX)
-        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        selfAsSRGB.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
         #else
-        if !self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+        if !selfAsSRGB.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
             fatalError()
         }
         #endif

@@ -22,6 +22,7 @@
 import XCTest
 
 class StringTests : XCTestCase {
+    let locale = Locale(identifier: "en-US")
     
     override func setUp() {
         super.setUp()
@@ -195,11 +196,11 @@ class StringTests : XCTestCase {
     func testFormattedToDouble(){
         let string = "1,000,000.00"
         
-        XCTAssertEqual(string.formattedToDouble(), 1000000)
+        XCTAssertEqual(string.formattedToDouble(locale: locale), 1000000)
         
         let stringB = "1,000,000.005"
         
-        XCTAssertEqual(stringB.formattedToDouble(), 1000000.005)
+        XCTAssertEqual(stringB.formattedToDouble(locale: locale), 1000000.005)
     }
     
     func testExtractedSeconds() {

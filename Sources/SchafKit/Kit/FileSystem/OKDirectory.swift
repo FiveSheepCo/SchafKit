@@ -114,7 +114,7 @@ public class OKDirectory : OKFileSystemItem {
             fileSystem.fileExists(atPath: newPath, isDirectory: &isDirectory)
             if isDirectory.boolValue {
                 for content in try fileSystem.contentsOfDirectory(atPath: newPath) {
-                    OKDirectory(path: content).deleteRecursively()
+                    OKDirectory(path: _getPath(at: content)).deleteRecursively()
                 }
             } else {
                 try fileSystem.removeItem(atPath: newPath)

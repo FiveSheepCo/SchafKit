@@ -109,7 +109,7 @@ public class OKDirectory : OKFileSystemItem {
     /// Deletes the file at the given path, if it exists.
     public func deleteRecursively(at path : String) {
         do {
-            let newPath = path == nil ? self.path : _getPath(at: path!)
+            let newPath = _getPath(at: path)
             var isDirectory: ObjCBool = false
             fileSystem.fileExists(atPath: newPath, isDirectory: &isDirectory)
             if isDirectory.boolValue {

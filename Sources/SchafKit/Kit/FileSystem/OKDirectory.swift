@@ -116,9 +116,8 @@ public class OKDirectory : OKFileSystemItem {
                 for content in try fileSystem.contentsOfDirectory(atPath: newPath) {
                     OKDirectory(path: newPath).deleteRecursively(at: content)
                 }
-            } else {
-                try fileSystem.removeItem(atPath: newPath)
             }
+            try fileSystem.removeItem(atPath: newPath)
         } catch let err {
             print("File Deletion Error:", err)
         }

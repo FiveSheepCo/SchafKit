@@ -34,9 +34,6 @@ public extension UIColor {
         #if os(iOS)
         return self
         #else
-        if self.colorSpace == .sRGB {
-            return self
-        }
         return self.usingColorSpace(.sRGB)!
         #endif
     }

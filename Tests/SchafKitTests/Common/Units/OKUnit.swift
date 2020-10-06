@@ -18,12 +18,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class DoubleTests : XCTestCase {
+class OKUnitTests : XCTestCase {
     let locale = Locale(identifier: "en-US")
-    let germanLocale = Locale(identifier: "de-DE")
     
     override func setUp() {
         super.setUp()
@@ -35,28 +35,22 @@ class DoubleTests : XCTestCase {
         super.tearDown()
     }
     
-    func testToString() {
-        let double = 1200.75
+    func testByteConversion() {
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60, locale: locale), "60 B")
         
-        XCTAssertEqual(double.toString, "1200.75")
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123, locale: locale), "60.12 KB")
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobyte")
         
-        XCTAssertEqual(double.toFormattedString(locale: locale), "1,200.75")
-        
-        XCTAssertEqual(double.toFormattedString(decimals: 0, locale: locale), "1,201")
-        
-        XCTAssertEqual(double.toFormattedString(separatesThousands: false, locale: locale), "1200.75")
-        
-        XCTAssertEqual(double.toFormattedString(decimals: 0, separatesThousands: false, locale: locale), "1201")
+        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123000, locale: locale), "60.12 MB")
     }
     
-    func testToStringGerman() {
-        let double = 1200.75
+    func testBitConversion() {
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60, locale: locale), "60 bit")
         
-        XCTAssertEqual(double.toFormattedString(locale: germanLocale), "1.200,75")
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123, locale: locale), "60.12 Kbit")
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobit")
         
-        XCTAssertEqual(double.toFormattedString(decimals: 0, locale: germanLocale), "1.201")
-        
-        XCTAssertEqual(double.toFormattedString(separatesThousands: false, locale: germanLocale), "1200,75")
+        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123000, locale: locale), "60.12 Mbit")
     }
 }
 #endif

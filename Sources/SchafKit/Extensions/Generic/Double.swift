@@ -38,11 +38,12 @@ public extension Double {
        - decimals : The maximum number of decimals to display. Standard rounding is applied. The default is `2`.
        - separatesThousands : Whether thousands should be separated by the standard thousand separator of the current locale (e.g. `.` in english).
     */
-    func toFormattedString(decimals : Int = 2, separatesThousands : Bool = true) -> String {
+    func toFormattedString(decimals : Int = 2, separatesThousands : Bool = true, locale: Locale = .autoupdatingCurrent) -> String {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = decimals
         formatter.usesGroupingSeparator = separatesThousands
         formatter.groupingSize = 3
+        formatter.locale = locale
         return formatter.string(from : NSNumber(value: self)) ?? "0"
     }
 }

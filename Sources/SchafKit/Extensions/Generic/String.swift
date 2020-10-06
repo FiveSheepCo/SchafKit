@@ -169,10 +169,11 @@ public extension String {
     
      - Remark : Double() does not support optional chaining.
     */
-    func formattedToDouble(separatesThousands : Bool = true) -> Double?{
+    func formattedToDouble(separatesThousands : Bool = true, locale: Locale = .autoupdatingCurrent) -> Double?{
         let formatter = NumberFormatter()
         formatter.usesGroupingSeparator = separatesThousands
         formatter.groupingSize = 3
+        formatter.locale = locale
         return formatter.number(from: self)?.doubleValue
     }
     

@@ -10,7 +10,6 @@ There is also a section for custom iOS UI and one for all Extensions.
 
 - [Features](#features)
    - [Components](#components)
-      - [Alerting](#alerting)
       - [Appearance (iOS only)](#appearance)
       - [Cryptography](#cryptography)
       - [Dispatch](#dispatch)
@@ -28,55 +27,6 @@ There is also a section for custom iOS UI and one for all Extensions.
 # Features
 
 ## Components
-
-### Alerting
-Alerting defines a uniform way to show alerts, login prompts and other messages using easy to use and understand syntax.
-
-```swift
-OKAlerting.showAlert(title: "Test")
-```
-
-| iOS | watchOS | macOS | tvOS |
-| :---: | :---: | :---: | :---: |
-| ![](https://jannthomas.com/OpenKit/Resources/iOS/alert1.png) | ![](https://jannthomas.com/OpenKit/Resources/watchOS/alert1.png) | ![](https://jannthomas.com/OpenKit/Resources/macOS/alert1.png) | ![](https://jannthomas.com/OpenKit/Resources/tvOS/alert1.png) |
-
-```swift
-let block : OKAlerting.Action.Block = { (action, textFieldValues) -> Void in 
-    // Do something here
-}
-
-OKAlerting.showAlert(title: "Test",
-                        message: "Toast",
-                        showOKAction: true,
-                        showCancelAction: true,
-                        okBlock: block,
-                        cancelBlock: nil,
-                        additionalActions: [OKAlerting.Action(title: "Something Else", handler: block)],
-                        textFieldConfigurations: [])
-```
-
-| iOS | watchOS | macOS | tvOS |
-| :---: | :---: | :---: | :---: |
-| ![](https://jannthomas.com/OpenKit/Resources/iOS/alert2.png) | ![](https://jannthomas.com/OpenKit/Resources/watchOS/alert2.png) | ![](https://jannthomas.com/OpenKit/Resources/macOS/alert2.png) | ![](https://jannthomas.com/OpenKit/Resources/tvOS/alert2.png) |
-
-```swift
-let block : OKLoginReturnBlock = { (user, password) -> Void in 
-    // Do something here
-}
-
-OKAlerting.showLoginPrompt(title: "Login",
-                           message: "Enter your credentials",
-                           userPlaceholder: "Username",
-                           passwordPlaceholder: "Password",
-                           completion: block,
-                           cancellation: nil)
-```
-
-| iOS | watchOS | macOS | tvOS |
-| :---: | :---: | :---: | :---: |
-| ![](https://jannthomas.com/OpenKit/Resources/iOS/alert3.png) | - | ![](https://jannthomas.com/OpenKit/Resources/macOS/alert3.png) | ![](https://jannthomas.com/OpenKit/Resources/tvOS/alert3.png) |
-
-Documentation
 
 ### Appearance
 ###### iOS only

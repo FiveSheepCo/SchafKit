@@ -21,7 +21,6 @@
 import Foundation
 
 // TODO: Put in enum
-// TODO: Standard Metric Stuff
 
 /// A class helping with the display of measurements in units, currently bytes and time.
 public class OKUnit {
@@ -31,44 +30,57 @@ public class OKUnit {
         let name : String
         let abbreviation : String
         
-        func buildValueString(with value : Double, precision : Int = 2, withAbbreviation : Bool = true) -> String {
-            let stringValue = String(format: "%.\(precision)f", value/milestone)
+        func buildValueString(with value : Double, precision : Int = 2, withAbbreviation : Bool = true, locale: Locale) -> String {
+            let stringValue = (value/milestone).toFormattedString(decimals: precision, locale: locale)
             return "\(stringValue) \(withAbbreviation ? abbreviation : name)"
         }
     }
     
     // MARK: - Byte Size
     
+    private static func metricMilestones(for baseName: String, baseAbbreviation: String, hasSubZeroTypes: Bool) -> [Milestone] {
+        func milestone(_ milestone: Double, prefix: String, abbreviationPrefix: String) -> Milestone {
+            .init(milestone: milestone, name: "\(prefix)\(baseName)".capitalized, abbreviation: "\(abbreviationPrefix)\(baseAbbreviation)")
+        }
+        
+        var milestones: [Milestone] = []
+        
+        if hasSubZeroTypes {
+            milestones.append(contentsOf: [
+                milestone(0.000001, prefix: "Micro", abbreviationPrefix: "μ"),
+                milestone(0.001, prefix: "Milli", abbreviationPrefix: "m")
+            ])
+        }
+        
+        milestones.append(contentsOf: [
+            milestone(1, prefix: "", abbreviationPrefix: ""),
+            milestone(1000, prefix: "Kilo", abbreviationPrefix: "K"),
+            milestone(1000000, prefix: "Mega", abbreviationPrefix: "M"),
+            milestone(1000000000, prefix: "Giga", abbreviationPrefix: "G"),
+            milestone(1000000000000, prefix: "Peta", abbreviationPrefix: "P")
+        ])
+        
+        return milestones
+    }
+    
     /// The common milestones for byte sizes.
-    static let byteSizeMilestones : [Milestone] = [
-        Milestone(milestone: 1, name: "Byte", abbreviation: "B"),
-        Milestone(milestone: 1000, name: "Kilobyte", abbreviation: "KB"),
-        Milestone(milestone: 1000000, name: "Megabyte", abbreviation: "MB"),
-        Milestone(milestone: 1000000000, name: "Gigabyte", abbreviation: "GB"),
-        Milestone(milestone: 1000000000000, name: "Petabyte", abbreviation: "PB")
-    ]
+    static let byteSizeMilestones : [Milestone] = metricMilestones(for: "byte", baseAbbreviation: "B", hasSubZeroTypes: false)
     
     /// Converts a byte size into a human readable string.
     ///
     /// - example: 1200 -> "1.2 KB"
-    public static func getByteSizeString(from byteSize : Int, useAbbreviation : Bool = true) -> String {
-        return getString(from: Double(byteSize), with: byteSizeMilestones, threshold: 1, useAbbreviation: useAbbreviation)
+    public static func getByteSizeString(from byteSize : Int, useAbbreviation : Bool = true, locale: Locale = .autoupdatingCurrent) -> String {
+        return getString(from: Double(byteSize), with: byteSizeMilestones, threshold: 1, useAbbreviation: useAbbreviation, locale: locale)
     }
     
     /// The common milestones for bit sizes.
-    static let bitSizeMilestones : [Milestone] = [
-        Milestone(milestone: 1, name: "Bit", abbreviation: "bit"),
-        Milestone(milestone: 1000, name: "Kilobit", abbreviation: "Kbit"),
-        Milestone(milestone: 1000000, name: "Megabit", abbreviation: "Mbit"),
-        Milestone(milestone: 1000000000, name: "Gigabit", abbreviation: "Gbit"),
-        Milestone(milestone: 1000000000000, name: "Petabit", abbreviation: "Pbit")
-    ]
+    static let bitSizeMilestones : [Milestone] = metricMilestones(for: "bit", baseAbbreviation: "bit", hasSubZeroTypes: false)
     
     /// Converts a bit size into a human readable string.
     ///
     /// - example: 1200 -> "1.2 Kbit"
-    public static func getBitSizeString(from bitSize : Int, useAbbreviation : Bool = true) -> String {
-        return getString(from: Double(bitSize), with: bitSizeMilestones, threshold: 1, useAbbreviation: useAbbreviation)
+    public static func getBitSizeString(from bitSize : Int, useAbbreviation : Bool = true, locale: Locale = .autoupdatingCurrent) -> String {
+        return getString(from: Double(bitSize), with: bitSizeMilestones, threshold: 1, useAbbreviation: useAbbreviation, locale: locale)
     }
     
     // MARK: - Time
@@ -85,15 +97,16 @@ public class OKUnit {
     /// Converts seconds into a human readable string.
     ///
     /// - example: 1200 -> "20 min"
-    public static func getTimeString(from seconds: Double, useAbbreviation: Bool = true) -> String {
-        return getString(from: Double(seconds), with: timeMilestones, threshold: 1, useAbbreviation: useAbbreviation)
+    public static func getTimeString(from seconds: Double, useAbbreviation: Bool = true, locale: Locale = .autoupdatingCurrent) -> String {
+        return getString(from: Double(seconds), with: timeMilestones, threshold: 1, useAbbreviation: useAbbreviation, locale: locale)
     }
     
     /// Produces a string from the given value and milestones.
     static func getString(from value: Double,
                            with milestones: [Milestone],
                            threshold: Double,
-                           useAbbreviation: Bool = true) -> String {
+                           useAbbreviation: Bool = true,
+                           locale: Locale = .autoupdatingCurrent) -> String {
         var milestones = milestones.sorted(by: { (lhs, rhs) -> Bool in
             return lhs.milestone < rhs.milestone
         })
@@ -103,6 +116,6 @@ public class OKUnit {
             lastMilestone = milestone
         }
         
-        return lastMilestone.buildValueString(with: value, withAbbreviation: useAbbreviation)
+        return lastMilestone.buildValueString(with: value, withAbbreviation: useAbbreviation, locale: locale)
     }
 }

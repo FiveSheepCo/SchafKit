@@ -106,6 +106,23 @@ public class OKDirectory : OKFileSystemItem {
         }
     }
     
+    /// Deletes the file at the given path, if it exists.
+    public func deleteRecursively(at path : String) {
+        do {
+            let newPath = _getPath(at: path)
+            var isDirectory: ObjCBool = false
+            fileSystem.fileExists(atPath: newPath, isDirectory: &isDirectory)
+            if isDirectory.boolValue {
+                for content in try fileSystem.contentsOfDirectory(atPath: newPath) {
+                    OKDirectory(path: newPath).deleteRecursively(at: content)
+                }
+            }
+            try fileSystem.removeItem(atPath: newPath)
+        } catch let err {
+            print("File Deletion Error:", err)
+        }
+    }
+    
     /// Returns a new `OKDirectory` by appending the path to the receiver's path.
     public func directoryByAppending(path : String, createIfNonexistant : Bool = false) -> OKDirectory {
         return OKDirectory(path: _getPath(at: path), createIfNonexistant: createIfNonexistant)

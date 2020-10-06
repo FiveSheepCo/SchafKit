@@ -49,5 +49,11 @@ class OKTimeUnitTests : XCTestCase {
             OKTimeUnit.century.convert(to: .decade),
             1000 * 60 * 60 * 24 * 365 * 10 * 10)
     }
+    
+    func testChainCompleteConversion() {
+        XCTAssertEqual(
+            OKTimeUnit.century.convert(to: .millisecond),
+            1000 * 60 * 60 * 24 * 365 * 10 * 10)
+    }
 }
 #endif

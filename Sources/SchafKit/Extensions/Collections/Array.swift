@@ -91,7 +91,13 @@ public extension Array {
         return false
     }
     
-    /// Test whether anyat element matches the given predicate.
+    /// Test whether any element matches the given predicate.
+    ///
+    /// ```
+    /// ["hello", "world", "", "toast"].any(\.isEmpty) // true
+    /// ```
+    ///
+    /// - Parameter predicate: A function/keypath returning a boolean value.
     func any(_ predicate: (Element) -> Bool) -> Bool {
         for item in self {
             if predicate(item) {
@@ -99,6 +105,66 @@ public extension Array {
             }
         }
         return false
+    }
+    
+    /// Test whether no elements match the given predicate.
+    ///
+    /// ```
+    /// ["hello", "world", "toast"].none(\.isEmpty) // true
+    /// ```
+    ///
+    /// - Parameter predicate: A function/keypath returning a boolean value.
+    func none(_ predicate: (Element) -> Bool) -> Bool {
+        for item in self {
+            if predicate(item) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    /// Get the max value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].max(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the value to be compared.
+    func max<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
+        self.map(mappingFunc).max()
+    }
+    
+    /// Get the max value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].max(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the optional value to be compared.
+    func max<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
+        self.compactMap(mappingFunc).max()
+    }
+    
+    /// Get the min value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].min(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the value to be compared.
+    func min<T: Comparable>(of mappingFunc: (Element) -> T) -> T? {
+        self.map(mappingFunc).min()
+    }
+    
+    /// Get the min value of a field of the array element type.
+    ///
+    /// ```
+    /// ["foo", "bar", "toast"].min(of: \.count)
+    /// ```
+    ///
+    /// - Parameter mappingFunc: A function/keypath returning the optional value to be compared.
+    func min<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
+        self.compactMap(mappingFunc).min()
     }
 }
 

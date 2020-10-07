@@ -10,6 +10,7 @@ import SwiftUI
 
 #if os(iOS)
 import UIKit
+public typealias NativeFont = UIFont
 
 public extension UIFont {
     func withTraits(_ symbolicTraits: UIFontDescriptor.SymbolicTraits) -> UIFont {
@@ -30,7 +31,8 @@ public extension UIFontDescriptor.SymbolicTraits {
     }
 }
 #elseif os(macOS)
-public typealias UIFont = NSFont
+import AppKit
+public typealias NativeFont = NSFont
 
 public extension NSFont {
     func withTraits(_ symbolicTraits: NSFontDescriptor.SymbolicTraits) -> NSFont {
@@ -64,8 +66,8 @@ public extension String {
      *           - String b should be inserted else
      */
     @available(macOS 10.16, *)
-    func markdowned(as style: UIFont.TextStyle = .body, with arguments: [String] = []) -> NSAttributedString {
-        let font = UIFont.preferredFont(forTextStyle: style)
+    func markdowned(as style: NativeFont.TextStyle = .body, with arguments: [String] = []) -> NSAttributedString {
+        let font = NativeFont.preferredFont(forTextStyle: style)
         let bold = font.withTraits([.bold])
         let italic = font.withTraits([.italic])
         let boldItalic = font.withTraits([.bold, .italic])
@@ -135,7 +137,7 @@ public extension String {
                 break
             }
             
-            let currentFont: UIFont
+            let currentFont: NativeFont
             switch (isBold, isItalic) {
             case (false, false):
                 currentFont = font

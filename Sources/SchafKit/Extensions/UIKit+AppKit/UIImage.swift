@@ -244,22 +244,22 @@ public extension UIImage {
         self.init(named: name, in: bundle, compatibleWith: nil)
     }
     #endif
-    
-    #if os(macOS)
-    extension NSImage {
-        func tinted(with color: NSColor) -> NSImage {
-            let image = self.copy() as! NSImage
-            image.lockFocus()
-
-            color.set()
-
-            let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
-            imageRect.fill(using: .sourceAtop)
-
-            image.unlockFocus()
-
-            return image
-        }
-    }
-    #endif
 }
+
+#if os(macOS)
+public extension NSImage {
+    func tinted(with color: NSColor) -> NSImage {
+        let image = self.copy() as! NSImage
+        image.lockFocus()
+
+        color.set()
+
+        let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
+        imageRect.fill(using: .sourceAtop)
+
+        image.unlockFocus()
+
+        return image
+    }
+}
+#endif

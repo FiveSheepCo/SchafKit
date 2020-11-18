@@ -11,6 +11,8 @@ jobs:
     - uses: fwal/setup-swift@v1
       with:
         swift-version: "5.3"
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     - name: Get swift version
       run: swift --version
     - name: Build

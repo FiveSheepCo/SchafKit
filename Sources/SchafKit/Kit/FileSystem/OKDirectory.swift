@@ -71,6 +71,7 @@ public class OKDirectory : OKFileSystemItem {
     }
     
     /// Creates the receiver in the file system.
+    @discardableResult
     public func create() -> Bool {
         do {
             try fileSystem.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
@@ -87,6 +88,7 @@ public class OKDirectory : OKFileSystemItem {
     }
     
     /// Saves the data to the path.
+    @discardableResult
     public func save(data : Data, at path : String) -> Bool {
         do {
             try data.write(to: URL(fileURLWithPath: _getPath(at: path)))

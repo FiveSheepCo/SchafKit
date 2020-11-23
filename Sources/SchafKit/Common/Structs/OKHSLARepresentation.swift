@@ -25,7 +25,7 @@
 #endif
 
 /// A color representation containing representations of the `hue`, `saturation`, `brightness` and `alpha` values.
-public struct OKHSLARepresentation : Equatable {
+public struct OKHSLARepresentation : Equatable, Codable {
     public var hue : CGFloat
     public var saturation : CGFloat
     public var brightness : CGFloat

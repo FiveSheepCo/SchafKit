@@ -24,7 +24,7 @@
 #endif
 
 /// A color representation containing representations of the `red`, `blue`, `green` and `alpha` values.
-public struct OKRGBARepresentation : Equatable {
+public struct OKRGBARepresentation : Equatable, Codable {
     public let red : CGFloat
     public let green : CGFloat
     public let blue : CGFloat

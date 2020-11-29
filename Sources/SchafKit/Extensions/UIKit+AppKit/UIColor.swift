@@ -60,7 +60,11 @@ public extension UIColor {
         }
         #endif
         
-        return OKRGBARepresentation(red: red, green: green, blue: blue, alpha: alpha)
+        return OKRGBARepresentation(red: clamp(red), green: clamp(green), blue: clamp(blue), alpha: clamp(alpha))
+    }
+    
+    private func clamp(_ c: CGFloat) -> CGFloat {
+        max(0, min(1, c))
     }
     
     /// Returns a `OK8BitRGBARepresentation` representing the color.
@@ -85,7 +89,7 @@ public extension UIColor {
         }
         #endif
         
-        return OK8BitRGBARepresentation(red : UInt8(red * 255), green : UInt8(green * 255), blue : UInt8(blue * 255), alpha : UInt8(alpha * 255))
+        return OK8BitRGBARepresentation(red : UInt8(clamp(red) * 255), green : UInt8(clamp(green) * 255), blue : UInt8(clamp(blue) * 255), alpha : UInt8(clamp(alpha) * 255))
     }
     
     /// Returns a `OKHSLARepresentation` representing the color.

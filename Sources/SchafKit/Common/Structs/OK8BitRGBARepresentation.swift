@@ -25,7 +25,7 @@
 #endif
 
 /// A color representation containing 8-bit representations of the `red`, `blue`, `green` and `alpha` values.
-public struct OK8BitRGBARepresentation : Equatable, Codable {
+public struct OK8BitRGBARepresentation: Equatable, Hashable, Codable {
     public let red : UInt8
     public let green : UInt8
     public let blue : UInt8

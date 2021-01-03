@@ -51,7 +51,7 @@ extension OKAlerting {
         let firstButtonRawValue = NSApplication.ModalResponse.alertFirstButtonReturn.rawValue
         
         let action = actions[response.rawValue - firstButtonRawValue]
-        action.handler?(action, inputView?.values ?? [])
+        action.handler?(action, /*inputView?.values ??*/ [])
     }
 }
 #endif

@@ -13,6 +13,12 @@ public typealias SKPurchaseHandler = (Bool) -> Void
 public typealias SKProductFetchCompletionHandler = ((Result<SKProduct, Error>) -> Void)
 public typealias SKProductsFetchCompletionHandler = ((Result<[SKProduct], Error>) -> Void)
 
+public struct SKStoreKitProductInexistantError: Error {
+    var localizedDescription: String {
+        "SKStoreKitProductInexistantError.description"
+    }
+}
+
 public class SKStoreKitHelper {
     public static let shared = SKStoreKitHelper()
     
@@ -22,7 +28,17 @@ public class SKStoreKitHelper {
                                     completionHandler : @escaping SKProductFetchCompletionHandler
     ) {
         self.requestInAppProducts(for: [identifier], completionHandler: { (products) in
-            completionHandler(products.map{ $0.first! })
+            
+            switch products {
+            case .success(let array):
+                if let first = array.first {
+                    completionHandler(.success(first))
+                } else {
+                    completionHandler(.failure(SKStoreKitProductInexistantError()))
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
         })
     }
     

@@ -149,7 +149,9 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
         
         request.delegate = self
         
-        _SKStoreKitProductRequest.currentRequests.append(self)
+        OKDispatchHelper.dispatchOnMainQueue {
+            _SKStoreKitProductRequest.currentRequests.append(self)
+        }
     }
     
     func start() {
@@ -165,6 +167,8 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
     }
     
     func requestDidFinish(_ request: SKRequest) {
-        _SKStoreKitProductRequest.currentRequests.remove(object: self)
+        OKDispatchHelper.dispatchOnMainQueue {
+            _SKStoreKitProductRequest.currentRequests.remove(object: self)
+        }
     }
 }

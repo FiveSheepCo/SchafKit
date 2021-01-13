@@ -14,7 +14,7 @@ public typealias SKProductFetchCompletionHandler = ((Result<SKProduct, Error>) -
 public typealias SKProductsFetchCompletionHandler = ((Result<[SKProduct], Error>) -> Void)
 
 public struct SKStoreKitProductInexistantError: Error {
-    var localizedDescription: String {
+    public var localizedDescription: String {
         "SKStoreKitProductInexistantError.description"
     }
 }

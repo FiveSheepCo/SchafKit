@@ -106,10 +106,6 @@ internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
             }
             
             let isDone = [.purchased, .restored].contains(transaction.transactionState)
-            for handler in handlers {
-                handler(isDone)
-            }
-            completionHandlers[transaction.payment.productIdentifier] = nil
             
             if isDone {
                 UserDefaults.standard.set(true, forKey: "IAP-Purchased-\(transaction.payment.productIdentifier)")
@@ -117,6 +113,12 @@ internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
                 // TODO: fix
                 //OKAlerting.showAlert(title: "Error", message: "There was a problem with your In-App Purchase: \(transaction.error?.localizedDescription ?? "Unknown error.")")
             }
+            
+            for handler in handlers {
+                handler(isDone)
+            }
+            completionHandlers[transaction.payment.productIdentifier] = nil
+            
             queue.finishTransaction(transaction)
         }
     }

@@ -23,7 +23,7 @@ import AppKit
 class _MultiInputView : NSView {
     var textFields:[NSTextField] = []
     
-    init?(configurations:[JSTextFieldConfiguration]) {
+    init?(configurations:[OKAlerting.TextFieldConfiguration]) {
         guard configurations.count > 0 else {
             return nil
         }

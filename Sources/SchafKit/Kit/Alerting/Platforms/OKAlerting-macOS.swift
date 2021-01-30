@@ -41,9 +41,9 @@ extension OKAlerting {
         alert.layout()
         
         // TODO: Make switching with tab possible
-        //let inputView = _MultiInputView(configurations: textFieldConfigurations)
-        //inputView?.frame.size.width = alert.window.frame.size.width - 123 // TODO: Make constant
-        //alert.accessoryView = inputView
+        let inputView = _MultiInputView(configurations: textFieldConfigurations)
+        inputView?.frame.size.width = alert.window.frame.size.width - 123 // TODO: Make constant
+        alert.accessoryView = inputView
         
         // TODO: Decide : Should this actually be synchronous?
         let response = alert.runModal()
@@ -51,7 +51,7 @@ extension OKAlerting {
         let firstButtonRawValue = NSApplication.ModalResponse.alertFirstButtonReturn.rawValue
         
         let action = actions[response.rawValue - firstButtonRawValue]
-        action.handler?(action, /*inputView?.values ??*/ [])
+        action.handler?(action, inputView?.values ?? [])
     }
 }
 #endif

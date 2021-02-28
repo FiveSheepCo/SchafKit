@@ -283,6 +283,12 @@ public extension String {
     subscript (_ aRange: NSRange) -> String {
         return self[aRange.location..<aRange.upperBound]
     }
+    
+    /// Appends a utf8 encoded datarepresentation of the receiver to the file at the given url.
+    func appendToURL(fileURL: URL) throws {
+        let data = self.data(using: String.Encoding.utf8)!
+        try data.append(fileURL: fileURL)
+    }
 }
 
 // - MARK: Identifiable

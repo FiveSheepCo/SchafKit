@@ -99,6 +99,16 @@ public class OKDirectory : OKFileSystemItem {
         return true
     }
     
+    /// Appends the utf8 representation of the given string to the file at the given path.
+    public func append(_ string: String, at path: String) {
+        try! string.appendToURL(fileURL: URL(fileURLWithPath: path))
+    }
+    
+    /// Appends the given data to the file at the given path.
+    public func append(_ data: Data, at path: String) {
+        try! data.append(fileURL: URL(fileURLWithPath: path))
+    }
+    
     /// Deletes the file at the given path, if it exists.
     public func delete(at path : String) {
         do {

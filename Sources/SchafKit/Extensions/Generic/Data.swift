@@ -48,7 +48,7 @@ public extension Data {
     /// Appends the receiver to the file at the given url.
     func append(to fileURL: URL) throws {
         let manager = FileManager.default
-        if manager.fileExists(atPath: fileURL.path) {
+        if manager.fileExists(atPath: fileURL.relativePath) {
             if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
                 defer {
                     fileHandle.closeFile()
@@ -59,7 +59,7 @@ public extension Data {
                 try write(to: fileURL, options: .atomic)
             }
         } else {
-            FileManager.default.createFile(atPath: fileURL.path, contents: self, attributes: nil)
+            FileManager.default.createFile(atPath: fileURL.relativePath, contents: self, attributes: nil)
         }
     }
 }

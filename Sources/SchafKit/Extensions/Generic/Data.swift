@@ -22,6 +22,9 @@ import Foundation
 
 public extension Data {
     
+    /// Initialize data with secure random numbers.
+    ///
+    /// - Parameter count: The number of random bytes.
     init (randomWith count : Int) {
         var bytes = [Int8](repeating: 0, count: count)
         
@@ -30,6 +33,10 @@ public extension Data {
         self.init(bytes: &bytes, count: count)
     }
     
+    /// Append data to this instance, creating a new `Data` instance.
+    ///
+    /// - Parameter data: The `Data` instance to be appended.
+    /// - Returns: The combined data.
     func appending(_ data : Data) -> Data {
         var result = self
         

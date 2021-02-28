@@ -3,6 +3,8 @@
 **WARNING**: The documentation is out of sync with the code.
 Since we forked OpenKit, we've changed a lot and didn't update the documentation to reflect that yet.
 
+Up to date documentation can be found at: [SchafKit Wiki](https://github.com/Quintschaf/SchafKit/wiki)
+
 An open kit providing useful functions across iOS, watchOS, macOS and tvOS, taking advantage of Swifts rich feature set.
 
 OpenKit contains eight major components. To make these more comprehensible, each of them has its own documentation section, which is linked to in the sections below.

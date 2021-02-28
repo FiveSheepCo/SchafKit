@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Date {
+public extension Date {
     
     /// The time interval between  the current date and time and the date value.
     ///

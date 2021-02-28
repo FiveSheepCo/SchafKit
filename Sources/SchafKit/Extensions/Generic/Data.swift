@@ -46,7 +46,7 @@ public extension Data {
     }
     
     /// Appends the receiver to the file at the given url.
-    func append(fileURL: URL) throws {
+    func append(to fileURL: URL) throws {
         let manager = FileManager.default
         if manager.fileExists(atPath: fileURL.path) {
             if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {

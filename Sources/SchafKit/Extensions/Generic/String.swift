@@ -285,9 +285,9 @@ public extension String {
     }
     
     /// Appends a utf8 encoded datarepresentation of the receiver to the file at the given url.
-    func appendToURL(fileURL: URL) throws {
+    func appendToURL(to fileURL: URL) throws {
         let data = self.data(using: String.Encoding.utf8)!
-        try data.append(fileURL: fileURL)
+        try data.append(to: fileURL)
     }
 }
 

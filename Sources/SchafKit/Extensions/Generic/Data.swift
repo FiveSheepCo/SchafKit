@@ -45,21 +45,16 @@ public extension Data {
         return result
     }
     
-    /// Appends the receiver to the file at the given url.
-    func append(to fileURL: URL) throws {
-        let manager = FileManager.default
-        if manager.fileExists(atPath: fileURL.relativePath) {
-            if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
-                defer {
-                    fileHandle.closeFile()
-                }
-                fileHandle.seekToEndOfFile()
-                fileHandle.write(self)
-            } else {
-                try write(to: fileURL, options: .atomic)
+    /// Appends the receiver to the file at the given path.
+    func append(to filePath: String) throws {
+        if let fileHandle = FileHandle(forWritingAtPath: filePath) {
+            defer {
+                fileHandle.closeFile()
             }
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(self)
         } else {
-            FileManager.default.createFile(atPath: fileURL.relativePath, contents: self, attributes: nil)
+            FileManager.default.createFile(atPath: filePath, contents: self, attributes: nil)
         }
     }
 }

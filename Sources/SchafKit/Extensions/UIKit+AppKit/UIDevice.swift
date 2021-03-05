@@ -8,7 +8,7 @@
 #if os(iOS)
 import UIKit
 
-extension UIDevice {
+public extension UIDevice {
     var hasNotch: Bool {
         return UIApplication.shared.windows.any { $0.safeAreaInsets.bottom > 0 }
     }

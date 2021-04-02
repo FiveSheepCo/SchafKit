@@ -18,11 +18,11 @@ public struct Blur: UIViewRepresentable {
         self.style = style
     }
     
-    func makeUIView(context: Context) -> UIVisualEffectView {
+    public func makeUIView(context: Context) -> UIVisualEffectView {
         return UIVisualEffectView(effect: UIBlurEffect(style: style))
     }
     
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+    public func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
         uiView.effect = UIBlurEffect(style: style)
     }
 }

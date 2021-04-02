@@ -11,7 +11,7 @@ import SwiftUI
 import UIKit
 
 /// A native blur effect that can be used as background.
-struct Blur: UIViewRepresentable {
+public struct Blur: UIViewRepresentable {
     let style: UIBlurEffect.Style
     
     init(_ style: UIBlurEffect.Style) {

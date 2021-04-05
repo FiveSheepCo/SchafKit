@@ -1,0 +1,33 @@
+//
+//  File.swift
+//  
+//
+//  Created by Jann Schafranek on 05.04.21.
+//
+
+import Foundation
+import SwiftUI
+
+extension View {
+    
+    func onRender(perform: OKBlock) -> Self {
+        perform()
+        return self
+    }
+    
+    @available(iOS 14.0, tvOS 14.0, macOS 11.0, *)
+    func sizeReader(updateSize: @escaping (CGSize) -> Void) -> some View {
+        self
+            .background(
+                GeometryReader(content: { geometry in
+                    Rectangle().fill(Color.clear)
+                        .onAppear(perform: {
+                            updateSize(geometry.size)
+                        })
+                        .onChange(of: geometry.size, perform: { size in
+                            updateSize(size)
+                        })
+                })
+            )
+    }
+}

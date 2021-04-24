@@ -74,7 +74,7 @@ private struct AppearanceModifier: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     
     func onDidAppear(perform handler: @escaping () -> Void) -> some View {
         self.modifier(

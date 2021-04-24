@@ -44,4 +44,24 @@ extension OKAlerting {
                           }))
     }
 }
+
+extension WKAlertAction {
+    
+    /// Initializes a new `WKAlertAction` with the given `JSAlertAction`.
+    convenience init(action : OKAlerting.Action) {
+        let style : WKAlertActionStyle
+        switch action.style {
+        case .default:
+            style = .default
+        case .cancel:
+            style = .cancel
+        case .destructive:
+            style = .destructive
+        }
+        self.init(title: action.title, style: style) {
+            action.handler?(action, [])
+        }
+    }
+}
+
 #endif

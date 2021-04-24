@@ -31,10 +31,10 @@
 public extension UIColor {
     
     private var selfAsSRGB: UIColor {
-        #if os(iOS)
-        return self
-        #else
+        #if os(macOS)
         return self.usingColorSpace(.sRGB)!
+        #else
+        return self
         #endif
     }
     

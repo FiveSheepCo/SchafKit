@@ -8,7 +8,19 @@
 import Foundation
 import SwiftUI
 
-#if os(iOS)
+#if os(macOS)
+import AppKit
+public typealias NativeFont = NSFont
+
+public extension NSFont {
+    func withTraits(_ symbolicTraits: NSFontDescriptor.SymbolicTraits) -> NSFont {
+        return NSFont(
+            descriptor: fontDescriptor.withSymbolicTraits(symbolicTraits),
+            size: pointSize
+        )!
+    }
+}
+#else
 import UIKit
 public typealias NativeFont = UIFont
 
@@ -28,18 +40,6 @@ public extension UIFontDescriptor.SymbolicTraits {
     
     static var italic: UIFontDescriptor.SymbolicTraits {
         return .traitItalic
-    }
-}
-#elseif os(macOS)
-import AppKit
-public typealias NativeFont = NSFont
-
-public extension NSFont {
-    func withTraits(_ symbolicTraits: NSFontDescriptor.SymbolicTraits) -> NSFont {
-        return NSFont(
-            descriptor: fontDescriptor.withSymbolicTraits(symbolicTraits),
-            size: pointSize
-        )!
     }
 }
 #endif

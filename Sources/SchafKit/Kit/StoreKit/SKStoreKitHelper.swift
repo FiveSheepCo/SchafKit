@@ -72,6 +72,7 @@ public class SKStoreKitHelper {
     }
 }
 
+@available(watchOS 6.2, *)
 internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
     static let shared = _SKPaymentQueueHelper()
     

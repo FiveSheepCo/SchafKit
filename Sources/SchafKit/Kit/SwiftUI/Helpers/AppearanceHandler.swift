@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS)
+
 private struct AppearanceHandler: UIViewControllerRepresentable {
     
     let onDidAppear: () -> Void
@@ -92,3 +94,5 @@ extension View {
         )
     }
 }
+
+#endif

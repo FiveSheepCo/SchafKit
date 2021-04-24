@@ -91,7 +91,7 @@ class NetworkTests : XCTestCase {
         endpoint.request(path: "imghp") { (result) in
             XCTAssertNil(result.failureValue)
             
-            XCTAssertEqual(result.value?.response.response.url?.absoluteString.starts(with: "http://www.google.com/imghp"), true)
+            XCTAssertEqual(result.value?.response.response.url?.absoluteString.starts(with: "http://www.google.com/imghp") ?? false || result.value?.response.response.url?.absoluteString.starts(with: "https://www.google.com/imghp") ?? false, true)
             
             if result.value != nil {
                 expectation.fulfill()

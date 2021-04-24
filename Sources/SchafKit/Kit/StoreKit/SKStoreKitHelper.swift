@@ -10,7 +10,9 @@ import Foundation
 import StoreKit
 
 public typealias SKPurchaseHandler = (Bool) -> Void
+@available(watchOS 6.2, *)
 public typealias SKProductFetchCompletionHandler = ((Result<SKProduct, Error>) -> Void)
+@available(watchOS 6.2, *)
 public typealias SKProductsFetchCompletionHandler = ((Result<[SKProduct], Error>) -> Void)
 
 public struct SKStoreKitProductInexistantError: LocalizedError {
@@ -19,6 +21,7 @@ public struct SKStoreKitProductInexistantError: LocalizedError {
     }
 }
 
+@available(watchOS 6.2, *)
 public class SKStoreKitHelper {
     public static let shared = SKStoreKitHelper()
     
@@ -138,6 +141,7 @@ internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
     }
 }
 
+@available(watchOS 6.2, *)
 internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
     private static var currentRequests : [_SKStoreKitProductRequest] = []
     

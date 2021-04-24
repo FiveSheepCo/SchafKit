@@ -1,7 +1,7 @@
 # OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Algorithm for secret-key authenticated encryption.
@@ -18,7 +18,7 @@ class XSalsa20Poly1305SecretBoxAlgorithm
 ### `encrypt(_:with:nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Encrypts data.
@@ -39,7 +39,7 @@ public static func encrypt(_ data: Data, with key: Data, nonce: Data) -> Data
 ### `decrypt(_:with:nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Decrypts data.
@@ -60,7 +60,7 @@ public static func decrypt(_ data: Data, with key: Data, nonce: Data) -> Data?
 ### `encryptWithRandomNonceAppended(_:with:nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Encrypts data and appends the nonce to it.
@@ -81,7 +81,7 @@ public static func encryptWithRandomNonceAppended(_ data: Data, with key: Data, 
 ### `decryptWithNonceAppended(_:with:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Decrypts data emitted by the `encryptWithRandomNonceAppended(_:​, with:​)` method.

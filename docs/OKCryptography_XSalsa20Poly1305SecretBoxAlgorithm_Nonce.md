@@ -1,7 +1,7 @@
 # OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Nonce
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 A nonce for the `XSalsa20Poly1305SecretBoxAlgorithm`.
@@ -18,7 +18,7 @@ public struct Nonce
 ### `init(nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Initializes a new nonce.
@@ -39,7 +39,7 @@ public init(nonce: Data = Data(randomWith: Int(crypto_secretbox_NONCEBYTES)))
 ### `nonce`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The nonce.

@@ -1,7 +1,7 @@
 # OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.KeyPair
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 A key pair for the `Curve25519XSalsa20Poly1305BoxAlgorithm`.
@@ -18,7 +18,7 @@ public struct KeyPair
 ### `init(privateKey:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Initializes a new key pair.
@@ -37,7 +37,7 @@ public init(privateKey: Data = Data(randomWith: Int(crypto_box_SECRETKEYBYTES)))
 ### `init(privateKey:publicKey:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Initializes a new key pair with the given keys. These are used as-is, without any modification.
@@ -54,7 +54,7 @@ public init(privateKey: Data, publicKey: Data)
 ### `publicKey`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The public key.
@@ -69,7 +69,7 @@ let publicKey: Data
 ### `privateKey`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The private key.

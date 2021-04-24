@@ -18,7 +18,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(TweenNacl)
+#if canImport(TweetNacl)
 import SchafKit
 #if !os(watchOS)
 import XCTest

@@ -1,7 +1,7 @@
 # OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Key
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 A key for the `XSalsa20Poly1305SecretBoxAlgorithm`.
@@ -18,7 +18,7 @@ public struct Key
 ### `init(privateKey:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Initializes a new key.
@@ -39,7 +39,7 @@ public init(privateKey: Data = Data(randomWith: Int(crypto_secretbox_KEYBYTES)))
 ### `privateKey`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The private key.

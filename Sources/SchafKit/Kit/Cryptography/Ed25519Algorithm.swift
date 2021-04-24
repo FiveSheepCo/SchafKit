@@ -19,7 +19,7 @@
 //  THE SOFTWARE.
 
 import Foundation
-#if canImport(TweenNacl)
+#if canImport(TweetNacl)
 import TweetNacl
 
 public extension OKCryptography {

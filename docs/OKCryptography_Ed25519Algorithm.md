@@ -1,7 +1,7 @@
 # OKCryptography.Ed25519Algorithm
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Algorithm for public-key signatures.
@@ -18,7 +18,7 @@ class Ed25519Algorithm
 ### `sign(_:with:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Signs data.
@@ -38,7 +38,7 @@ public static func sign(_ data: Data, with privateKey: Data) -> Data
 ### `open(_:with:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Opens data.
@@ -58,7 +58,7 @@ public static func open(_ signedData: Data, with publicKey: Data) -> Data?
 ### `validate(signedData:publicKey:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Validates data. Returns true if the data is valid.

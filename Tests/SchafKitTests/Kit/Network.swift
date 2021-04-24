@@ -85,7 +85,6 @@ class NetworkTests : XCTestCase {
     func testEndpoint() {
         let googleURL = "http://www.google.com"
         let endpoint = OKNetworking.Endpoint(url: googleURL)
-        print("cc:", endpoint.baseURL)
         
         let expectation = XCTestExpectation(description: "Basic Endpoint Request Success")
         
@@ -109,20 +108,6 @@ class NetworkTests : XCTestCase {
         endpoint = endpoint.endpointByAppending(pathComponent: "imghp")
         
         XCTAssertEqual(endpoint.baseURL, "https://www.google.com/imghp")
-        
-        let expectation = XCTestExpectation(description: "Basic Endpoint Request Success")
-        
-        endpoint.request(path: "search") { (result) in
-            XCTAssertNil(result.failureValue)
-            
-            XCTAssertEqual(result.value?.response.response.url?.absoluteString, "https://www.google.com/imghp/search")
-            
-            if result.value != nil {
-                expectation.fulfill()
-            }
-        }
-        
-        wait(for: [expectation], timeout: 10)
     }
 }
 #endif

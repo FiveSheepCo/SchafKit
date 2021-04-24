@@ -1,7 +1,7 @@
 # OKCryptography.Ed25519Algorithm.KeyPair
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 A key pair for the `Ed25519Algorithm`.
@@ -18,7 +18,7 @@ public struct KeyPair
 ### `init(privateKey:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Initializes a new key pair.
@@ -39,7 +39,7 @@ public init(privateKey: Data = Data(randomWith: Int(crypto_sign_SECRETKEYBYTES))
 ### `publicKey`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The public key.
@@ -54,7 +54,7 @@ let publicKey: Data
 ### `privateKey`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The private key.

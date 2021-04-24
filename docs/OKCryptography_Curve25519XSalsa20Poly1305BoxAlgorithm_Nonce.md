@@ -1,7 +1,7 @@
 # OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.Nonce
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 A nonce for the `Curve25519XSalsa20Poly1305BoxAlgorithm`.
@@ -18,7 +18,7 @@ public struct Nonce
 ### `init(nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Initializes a new nonce.
@@ -39,7 +39,7 @@ public init(nonce: Data = Data(randomWith: Int(crypto_box_NONCEBYTES)))
 ### `nonce`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 The nonce.

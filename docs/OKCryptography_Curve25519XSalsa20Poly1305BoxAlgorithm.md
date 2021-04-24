@@ -1,7 +1,7 @@
 # OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Algorithm for public-key authenticated encryption.
@@ -18,7 +18,7 @@ class Curve25519XSalsa20Poly1305BoxAlgorithm
 ### `encrypt(_:with:publicKey:nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Encrypts data.
@@ -40,7 +40,7 @@ public static func encrypt(_ data: Data, with privateKey: Data, publicKey: Data,
 ### `decrypt(_:with:publicKey:nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Decrypts data.
@@ -62,7 +62,7 @@ public static func decrypt(_ data: Data, with privateKey: Data, publicKey: Data,
 ### `encryptWithRandomNonceAndPublicKeyAppended(_:with:ownKeyPair:nonce:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Encrypts data and appends the nonce and public key to it.
@@ -84,7 +84,7 @@ public static func encryptWithRandomNonceAndPublicKeyAppended(_ data: Data, with
 ### `decryptWithNonceAndPublicKeyAppended(_:with:)`
 
 <dl>
-<dt><code>canImport(TweenNacl)</code></dt>
+<dt><code>canImport(TweetNacl)</code></dt>
 <dd>
 
 Decrypts data emitted by the `encryptWithRandomNonceAndPublicKeyAppended(_:​, with:​, ownKeyPair:​)` method.

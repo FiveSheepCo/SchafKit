@@ -9,41 +9,41 @@
 
 import SwiftUI
 
-class TimeComponent: ObservableObject {
-    @Published var hour: Double
-    @Published var minute: Double
+public class TimeComponent: ObservableObject {
+    @Published public var hour: Double
+    @Published public var minute: Double
     
-    init(h: Double, m: Double) {
+    public init(h: Double, m: Double) {
         hour = h
         minute = m
     }
     
-    init(_ t: TimeInterval) {
+    public init(_ t: TimeInterval) {
         hour = trunc(t)
         minute = (t - trunc(t)) * 60
     }
     
-    func update(_ t: TimeInterval) {
+    public func update(_ t: TimeInterval) {
         hour = trunc(t)
         minute = (t - trunc(t)) * 60
     }
     
-    var wholeHour: Int {
+    public var wholeHour: Int {
         Int(hour.rounded(.toNearestOrAwayFromZero))
     }
     
-    var wholeMinute: Int {
+    public var wholeMinute: Int {
         Int(minute.rounded(.toNearestOrAwayFromZero))
     }
     
-    var time: TimeInterval {
+    public var time: TimeInterval {
         hour + minute / 60
     }
 }
 
 @available(watchOS 7, *)
-struct TimePicker: View {
-    @ObservedObject var timeComponent: TimeComponent
+public struct TimePicker: View {
+    @ObservedObject public var timeComponent: TimeComponent
     
     @State private var hourFocused: Bool = false
     @State private var minuteFocused: Bool = false
@@ -55,7 +55,7 @@ struct TimePicker: View {
         return formatter
     }()
 
-    var body: some View {
+    public var body: some View {
         HStack {
             Text("\(timeComponent.wholeHour, specifier: "%02d")")
                 .font(.title3)

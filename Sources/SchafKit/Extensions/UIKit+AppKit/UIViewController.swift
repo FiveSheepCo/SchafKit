@@ -121,6 +121,7 @@ public extension UIViewController {
     }
     
     /// Shows the responder.
+    @available(iOSApplicationExtension, unavailable)
     func show(in container : Container? = nil, type : ShowType) {
         guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
             return

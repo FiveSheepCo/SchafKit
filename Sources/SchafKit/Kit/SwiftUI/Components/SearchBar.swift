@@ -20,21 +20,7 @@ fileprivate extension UIApplication {
     }
 }
 
-fileprivate struct ResignKeyboardOnDragGesture: ViewModifier {
-    var gesture = DragGesture().onChanged{_ in
-        UIApplication.shared.endEditing(true)
-    }
-    func body(content: Content) -> some View {
-        content.gesture(gesture)
-    }
-}
-
-fileprivate extension View {
-    func resignKeyboardOnDragGesture() -> some View {
-        modifier(ResignKeyboardOnDragGesture())
-    }
-}
-
+@available(iOSApplicationExtension, unavailable)
 public struct SearchBar: View {
     @Binding private var searchText: String
     @State private var showCancelButton: Bool = false

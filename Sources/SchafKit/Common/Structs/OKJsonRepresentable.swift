@@ -23,7 +23,7 @@ import Foundation
 /// A JSON representable.
 public class OKJsonRepresentable : Sequence {
     /// The current value, if any.
-    public let value : Any?
+    public var value : Any?
     
     /// Whether the current representable exists.
     public var exists : Bool {
@@ -63,12 +63,19 @@ public class OKJsonRepresentable : Sequence {
     
     /// Returns a new `OKJsonRepresentable` with the value for the given index, if any.
     public subscript (index : Int) -> OKJsonRepresentable {
-        return OKJsonRepresentable(object: arrayValue?[ifExists: index] )
+        get {
+            OKJsonRepresentable(object: arrayValue?[ifExists: index] )
+        }
     }
     
     /// Returns a new `OKJsonRepresentable` with the value for the given key, if any.
     public subscript (key : String) -> OKJsonRepresentable {
-        return OKJsonRepresentable(object: dictionaryValue?[key] )
+        get {
+            OKJsonRepresentable(object: dictionaryValue?[key] )
+        }
+        set {
+            dictionaryValue?[key] = newValue.value
+        }
     }
     
     // MARK: - Values
@@ -112,7 +119,8 @@ public class OKJsonRepresentable : Sequence {
     
     /// The `Dictionary` value.
     public var dictionaryValue : [String : Any]? {
-        return value as? [String : Any]
+        get { value as? [String : Any] }
+        set { value = newValue }
     }
     
     // MARK: - Sequence

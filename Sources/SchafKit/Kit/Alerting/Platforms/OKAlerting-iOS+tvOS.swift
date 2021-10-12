@@ -23,6 +23,7 @@ import UIKit
 
 extension OKAlerting {
     
+    @available(iOSApplicationExtension, unavailable)
     class func _showAlert(title : String?,
                           message : String?,
                           actions:[OKAlerting.Action] = [],

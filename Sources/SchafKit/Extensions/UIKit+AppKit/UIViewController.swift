@@ -137,6 +137,7 @@ public extension UIViewController {
     }
     
     /// Shows the responder modally.
+    @available(iOSApplicationExtension, unavailable)
     func show(in container : Container? = nil) {
         show(in: container, type: .present)
     }

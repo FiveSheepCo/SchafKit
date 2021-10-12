@@ -27,6 +27,7 @@ public extension Array {
     
     #if os(iOS)
     /// Shares the items of the responder using a `UIActivityViewController`.
+    @available(iOSApplicationExtension, unavailable)
     func share(applicationActivities : [UIActivity]? = nil) {
         let controller : UIActivityViewController
         

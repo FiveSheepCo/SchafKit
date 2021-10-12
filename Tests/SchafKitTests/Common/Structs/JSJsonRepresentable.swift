@@ -77,5 +77,15 @@ class OKJsonRepresentableTests : XCTestCase {
             XCTAssertNil(original.jsonRepresentation)
         }
     }
+    
+    func testEditing() {
+        var original = OKJsonRepresentable(object: ["a": "Ho", "b": 2, "c": ["c1": "Tests"]])
+        
+        original["a"] = OKJsonRepresentable(object: nil)
+        original["c"]["c1"] = OKJsonRepresentable(object: nil)
+        
+        XCTAssertNil(original["a"].value)
+        XCTAssertNil(original["c"]["c1"].value)
+    }
 }
 #endif

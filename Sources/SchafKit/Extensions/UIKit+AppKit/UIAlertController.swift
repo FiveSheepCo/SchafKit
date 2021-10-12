@@ -119,12 +119,14 @@ public extension UIAlertController {
     // MARK: - Show Controller
     
     /// Shows the receiver after adding a localized 'OK' button to it.
+    @available(iOSApplicationExtension, unavailable)
     func showWithOKButton(){
         addOKAction()
         show(type: .present)
     }
     
     /// Shows the receiver after adding a localized 'Cancel' button to it.
+    @available(iOSApplicationExtension, unavailable)
     func showWithCancelButton(){
         addCancelAction()
         show(type: .present)

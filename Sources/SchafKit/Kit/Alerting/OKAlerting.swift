@@ -27,6 +27,7 @@ public class OKAlerting {
     
      - Remark : This crashes on watchOS if given a non-empty `textFieldConfigurations`, since there are no text fields in watchOS. This is a deliberate design choice to unify functions of this framework between all platforms.
     */
+    @available(iOSApplicationExtension, unavailable)
     public class func showAlert(title : String?,
                          message : String? = nil,
                          showOKAction : Bool = true,
@@ -63,6 +64,7 @@ public class OKAlerting {
     
      - Remark : This crashes on watchOS, since there are no text fields in watchOS. This is a deliberate design choice to unify functions of this framework between all platforms.
     */
+    @available(iOSApplicationExtension, unavailable)
     public class func showPrompt(title : String?,
                           message : String? = nil,
                           textFieldConfigurations:[OKAlerting.TextFieldConfiguration] = [],
@@ -89,6 +91,7 @@ public class OKAlerting {
     
      - Remark : This crashes on watchOS, since there are no text fields in watchOS. This is a deliberate design choice to unify functions of this framework between all platforms.
     */
+    @available(iOSApplicationExtension, unavailable)
     public class func showLoginPrompt(title : String = "Login".localized,
                                message : String? = nil,
                                userPlaceholder : String = "Username".localized,

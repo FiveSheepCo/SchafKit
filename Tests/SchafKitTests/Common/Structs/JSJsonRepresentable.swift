@@ -82,10 +82,10 @@ class OKJsonRepresentableTests : XCTestCase {
         let original = OKJsonRepresentable(object: ["a": "Ho", "b": 2, "c": ["c1": "Tests"]])
         
         original["a"] = OKJsonRepresentable(object: nil)
-        original["c"]["c1"] = OKJsonRepresentable(object: nil)
+        original["c"] = OKJsonRepresentable(object: ["c1": nil])
         
         XCTAssertNil(original["a"].value)
-        XCTAssertNil(original["c"]["c1"].value)
+        XCTAssertNil(original["c"]["c1"].value as? String)
     }
 }
 #endif

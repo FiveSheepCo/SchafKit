@@ -26,9 +26,12 @@ class UIColorTests : XCTestCase {
         XCTAssertEqual(white.rgbaRepresentation.red, 1)
     }
     
+    @available(tvOS, unavailable)
     func testCatalogRepresentation() {
         #if os(macOS)
         let background = UIColor.textBackgroundColor
+        #elseif os(tvOS)
+        let background = UIColor.red
         #else
         let background = UIColor.placeholderText
         #endif

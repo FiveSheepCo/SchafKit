@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-extension CGPoint {
+public extension CGPoint {
     
     func distance(from b: CGPoint) -> CGFloat {
         let xDist = self.x - b.x

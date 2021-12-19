@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // swiftlint:disable file_length
-extension Image {
+public extension Image {
     static let allSFSymbols = [
         "square.and.arrow.up",
         "square.and.arrow.up.fill",

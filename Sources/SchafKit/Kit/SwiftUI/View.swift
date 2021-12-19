@@ -30,4 +30,13 @@ public extension View {
                 })
             )
     }
+    
+    @available(iOS 14.0, *)
+    func onAppearAndChange<V>(of value: V, perform action: @escaping (V) -> Void) -> some View where V : Equatable {
+        self
+            .onAppear {
+                action(value)
+            }
+            .onChange(of: value, perform: action)
+    }
 }

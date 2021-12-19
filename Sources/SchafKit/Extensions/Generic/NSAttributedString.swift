@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NSAttributedString {
+public extension NSAttributedString {
     
     static func +(lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         let new = NSMutableAttributedString(attributedString: lhs)

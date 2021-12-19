@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
     
     private enum Constants {
         static let webURLSchemes = ["http", "https"]

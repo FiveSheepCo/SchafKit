@@ -167,6 +167,11 @@ public extension Array {
     func min<T: Comparable>(of mappingFunc: (Element) -> T?) -> T? {
         self.compactMap(mappingFunc).min()
     }
+    
+    /// Get the elements of the array sliced to include at most the first `count` items. If less items than `count` are in the array, all items are returned.
+    func sliced(upTo count: Int) -> [Element] {
+        Array(self[0..<Swift.min(count, self.count)])
+    }
 }
 
 public extension Array where Element : Equatable {

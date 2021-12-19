@@ -172,6 +172,39 @@ public extension Array {
     func sliced(upTo count: Int) -> [Element] {
         Array(self[0..<Swift.min(count, self.count)])
     }
+    
+    /// The map function but with a `handler` that provides a `callback` for asynchronous operations.
+    func asyncMap<T>(handler: (Element, @escaping (T) -> Void) -> Void, completion: @escaping ([T]) -> Void) {
+        
+        var waitingCount = count
+        
+        if waitingCount == 0 {
+            completion([])
+            return
+        }
+        
+        var ids = [UUID]()
+        var results = [UUID: T]()
+        for item in self {
+            let id = UUID()
+            ids.append(id)
+            
+            handler(item, { result in
+                results[id] = result
+                
+                waitingCount -= 1
+                if waitingCount == 0 {
+                    let resultsSorted = results.sorted(by: { lK, rK in
+                        ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
+                    }).map { kVP in
+                        kVP.value
+                    }
+                    
+                    completion(resultsSorted)
+                }
+            })
+        }
+    }
 }
 
 public extension Array where Element : Equatable {

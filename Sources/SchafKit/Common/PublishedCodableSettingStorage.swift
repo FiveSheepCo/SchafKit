@@ -11,16 +11,29 @@ import Combine
 @propertyWrapper
 public struct PublishedCodableSettingStorage<Value> where Value: Codable {
     private let key: String
+    private var dataHash: Int
     private var value: Value
     
     public init(wrappedValue: Value, key: String) {
         self.key = key
-        if let data = SettingStorageUserDefaultsInstance.data(forKey: key),
-           let value = try? JSONDecoder().decode(Value.self, from: data) {
-            self.value = value
-        } else {
-            self.value = wrappedValue
+        dataHash = 0
+        value = wrappedValue
+        self.updateValue()
+    }
+    
+    mutating private func updateValue() {
+        guard let data = SettingStorageUserDefaultsInstance.data(forKey: key) else { return }
+        
+        let newHash = data.hashValue
+        
+        if newHash == dataHash { return }
+        
+        dataHash = newHash
+        guard let value = try? JSONDecoder().decode(Value.self, from: data) else {
+            assertionFailure()
+            return
         }
+        self.value = value
     }
     
     // - MARK: Publishable
@@ -76,6 +89,7 @@ public struct PublishedCodableSettingStorage<Value> where Value: Codable {
         storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, PublishedCodableSettingStorage<Value>>
     ) -> Value {
         get {
+            object[keyPath: storageKeyPath].updateValue()
             return object[keyPath: storageKeyPath].value
         }
         set {

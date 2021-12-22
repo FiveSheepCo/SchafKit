@@ -9,14 +9,18 @@
 import Foundation
 import Combine
 
+/// The user defaults instance to use to store Settings. This applies to `SettingsStorage`, `PublishedSettingStorage`, `CodableSettingStorage` and `PublishedCodableSettingStorage`.
+public var SettingStorageUserDefaultsInstance: UserDefaults = .standard
+
 @propertyWrapper
 public struct SettingStorage<Value>: Publishable {
+    
     private let key: String
     private var value: Value
     
     public init(wrappedValue: Value, key: String) {
         self.key = key
-        self.value = (UserDefaults.standard.object(forKey: key) as? Value) ?? wrappedValue
+        self.value = (SettingStorageUserDefaultsInstance.object(forKey: key) as? Value) ?? wrappedValue
     }
     
     public var wrappedValue: Value {
@@ -25,7 +29,7 @@ public struct SettingStorage<Value>: Publishable {
         }
         set {
             value = newValue
-            UserDefaults.standard.set(value, forKey: key)
+            SettingStorageUserDefaultsInstance.set(value, forKey: key)
         }
     }
     

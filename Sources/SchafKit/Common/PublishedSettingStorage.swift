@@ -1,26 +1,21 @@
 //
-//  File.swift
+//  PublishedSettingStorage.swift
 //  
 //
-//  Created by Jann Schafranek on 19.12.21.
+//  Created by Jann Schafranek on 21.12.21.
 //
 
 import Foundation
 import Combine
 
 @propertyWrapper
-public struct PublishedCodableSettingStorage<Value> where Value: Codable {
-    private let key: String
-    private var value: Value
+public struct PublishedSettingStorage<Value> {
+    private let explicitKey: String?
+    private var initialValue: Value
     
-    public init(wrappedValue: Value, key: String) {
-        self.key = key
-        if let data = SettingStorageUserDefaultsInstance.data(forKey: key),
-           let value = try? JSONDecoder().decode(Value.self, from: data) {
-            self.value = value
-        } else {
-            self.value = wrappedValue
-        }
+    public init(wrappedValue: Value, key: String? = nil) {
+        self.explicitKey = key
+        self.initialValue = wrappedValue
     }
     
     // - MARK: Publishable
@@ -56,7 +51,7 @@ public struct PublishedCodableSettingStorage<Value> where Value: Codable {
             if let publisher = publisher {
                 return publisher
             }
-            let publisher = Publisher(value)
+            let publisher = Publisher(initialValue)
             self.publisher = publisher
             return publisher
         }
@@ -73,19 +68,25 @@ public struct PublishedCodableSettingStorage<Value> where Value: Codable {
     public static subscript<EnclosingSelf: ObservableObject>(
         _enclosingInstance object: EnclosingSelf,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Value>,
-        storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, PublishedCodableSettingStorage<Value>>
+        storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, PublishedSettingStorage<Value>>
     ) -> Value {
         get {
-            return object[keyPath: storageKeyPath].value
+            let storage = object[keyPath: storageKeyPath]
+            
+            // IMPORTANT: If your app crashes here, it means you are trying to use a non-explicit key and do not meet the requirement for doing so. The requirement is: Your property has to be exposed to Objective-C (`@objc @PublishedSettingStorage`).
+            let key = storage.explicitKey ?? NSExpression(forKeyPath: wrappedKeyPath).keyPath
+            return SettingStorageUserDefaultsInstance.object(forKey: key) as? Value ?? storage.initialValue
         }
         set {
+            // IMPORTANT: If your app crashes here, it means you are trying to use a non-explicit key and do not meet the requirement for doing so. The requirement is: Your property has to be exposed to Objective-C (`@objc @PublishedSettingStorage`).
+            let key = object[keyPath: storageKeyPath].explicitKey ?? NSExpression(forKeyPath: wrappedKeyPath).keyPath
+            
             OKDispatchHelper.dispatchOnMainQueue(sync: false) {
                 (object.objectWillChange as! ObservableObjectPublisher).send()
                 object[keyPath: storageKeyPath].objectWillChange?.send()
                 object[keyPath: storageKeyPath].publisher?.subject.send(newValue)
             }
-            object[keyPath: storageKeyPath].value = newValue
-            SettingStorageUserDefaultsInstance.set(try! JSONEncoder().encode(newValue), forKey: object[keyPath: storageKeyPath].key)
+            SettingStorageUserDefaultsInstance.set(newValue, forKey: key)
         }
         // TODO: Benchmark and explore a possibility to use _modify
     }

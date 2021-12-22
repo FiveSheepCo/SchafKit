@@ -16,7 +16,7 @@ public struct CodableSettingStorage<Value>: Publishable where Value: Codable {
     
     public init(wrappedValue: Value, key: String) {
         self.key = key
-        if let data = UserDefaults.standard.data(forKey: key),
+        if let data = SettingStorageUserDefaultsInstance.data(forKey: key),
            let value = try? JSONDecoder().decode(Value.self, from: data) {
             self.value = value
         } else {
@@ -30,7 +30,7 @@ public struct CodableSettingStorage<Value>: Publishable where Value: Codable {
         }
         set {
             value = newValue
-            UserDefaults.standard.set(try! JSONEncoder().encode(value), forKey: key)
+            SettingStorageUserDefaultsInstance.set(try! JSONEncoder().encode(value), forKey: key)
         }
     }
     

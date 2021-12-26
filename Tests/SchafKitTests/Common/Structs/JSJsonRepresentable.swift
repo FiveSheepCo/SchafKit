@@ -24,7 +24,7 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class OKJsonRepresentableTests : XCTestCase {
+class SKJsonRepresentableTests : XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -37,17 +37,17 @@ class OKJsonRepresentableTests : XCTestCase {
     }
     
     func testNilValues() {
-        let original = OKJsonRepresentable(object: nil)
-        let original2 = OKJsonRepresentable(jsonRepresentation: nil as Data?)
+        let original = SKJsonRepresentable(object: nil)
+        let original2 = SKJsonRepresentable(jsonRepresentation: nil as Data?)
         
         XCTAssertFalse(original.exists)
         XCTAssertFalse(original2.exists)
     }
     
     func testReversal() {
-        let original = OKJsonRepresentable(object: ["Hey": "Ho", "Ho": 2, "Toast": ["Test"]])
+        let original = SKJsonRepresentable(object: ["Hey": "Ho", "Ho": 2, "Toast": ["Test"]])
         
-        for rep in [original, OKJsonRepresentable(jsonRepresentation: original.jsonRepresentation), OKJsonRepresentable(jsonRepresentation : String(data: original.jsonRepresentation!, encoding: .utf8))]{
+        for rep in [original, SKJsonRepresentable(jsonRepresentation: original.jsonRepresentation), SKJsonRepresentable(jsonRepresentation : String(data: original.jsonRepresentation!, encoding: .utf8))]{
             XCTAssertNotNil(rep.jsonRepresentation)
             
             XCTAssertTrue(rep.exists)
@@ -69,7 +69,7 @@ class OKJsonRepresentableTests : XCTestCase {
     }
     
     func testNilability() {
-        let originals = [OKJsonRepresentable(object: nil), OKJsonRepresentable(jsonRepresentation: nil as Data?), OKJsonRepresentable(jsonRepresentation: nil as String?)]
+        let originals = [SKJsonRepresentable(object: nil), SKJsonRepresentable(jsonRepresentation: nil as Data?), SKJsonRepresentable(jsonRepresentation: nil as String?)]
         
         for original in originals {
             XCTAssertNotNil(original[0])
@@ -79,10 +79,10 @@ class OKJsonRepresentableTests : XCTestCase {
     }
     
     func testEditing() {
-        let original = OKJsonRepresentable(object: ["a": "Ho", "b": 2, "c": ["c1": "Tests"]])
+        let original = SKJsonRepresentable(object: ["a": "Ho", "b": 2, "c": ["c1": "Tests"]])
         
-        original["a"] = OKJsonRepresentable(object: nil)
-        original["c"] = OKJsonRepresentable(object: ["c1": nil])
+        original["a"] = SKJsonRepresentable(object: nil)
+        original["c"] = SKJsonRepresentable(object: ["c1": nil])
         
         XCTAssertNil(original["a"].value)
         XCTAssertNil(original["c"]["c1"].value as? String)

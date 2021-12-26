@@ -1,4 +1,4 @@
-# OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm
+# SKCryptography.XSalsa20Poly1305SecretBoxAlgorithm
 
 <dl>
 <dt><code>canImport(TweetNacl)</code></dt>

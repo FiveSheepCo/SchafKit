@@ -115,7 +115,7 @@ internal class _SKPaymentQueueHelper : NSObject, SKPaymentTransactionObserver {
                 UserDefaults.standard.set(true, forKey: "IAP-Purchased-\(transaction.payment.productIdentifier)")
             } else {
                 // TODO: fix
-                //OKAlerting.showAlert(title: "Error", message: "There was a problem with your In-App Purchase: \(transaction.error?.localizedDescription ?? "Unknown error.")")
+                //SKAlerting.showAlert(title: "Error", message: "There was a problem with your In-App Purchase: \(transaction.error?.localizedDescription ?? "Unknown error.")")
             }
             
             for handler in handlers {
@@ -156,7 +156,7 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
         
         request.delegate = self
         
-        OKDispatchHelper.dispatchOnMainQueue {
+        SKDispatchHelper.dispatchOnMainQueue {
             _SKStoreKitProductRequest.currentRequests.append(self)
         }
     }
@@ -174,7 +174,7 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
     }
     
     func requestDidFinish(_ request: SKRequest) {
-        OKDispatchHelper.dispatchOnMainQueue {
+        SKDispatchHelper.dispatchOnMainQueue {
             _SKStoreKitProductRequest.currentRequests.remove(object: self)
         }
     }

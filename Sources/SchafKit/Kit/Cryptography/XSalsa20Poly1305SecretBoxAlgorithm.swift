@@ -22,7 +22,7 @@ import Foundation
 #if canImport(TweetNacl)
 import TweetNacl
 
-public extension OKCryptography {
+public extension SKCryptography {
     /// Algorithm for secret-key authenticated encryption.
     class XSalsa20Poly1305SecretBoxAlgorithm {
         /// A key for the `XSalsa20Poly1305SecretBoxAlgorithm`.

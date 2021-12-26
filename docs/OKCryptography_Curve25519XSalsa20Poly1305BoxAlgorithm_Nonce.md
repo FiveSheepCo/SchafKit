@@ -1,4 +1,4 @@
-# OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.Nonce
+# SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.Nonce
 
 <dl>
 <dt><code>canImport(TweetNacl)</code></dt>

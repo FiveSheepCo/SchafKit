@@ -22,7 +22,7 @@ import Foundation
 #if canImport(TweetNacl)
 import TweetNacl
 
-public extension OKCryptography {
+public extension SKCryptography {
     /// Algorithm for public-key signatures.
     class Ed25519Algorithm {
         /// A key pair for the `Ed25519Algorithm`.

@@ -198,7 +198,7 @@ public extension String {
         let minutes = comps[ifExists: 1]?.toInt ?? 0
         let hours = comps[ifExists: 2]?.toInt ?? 0
         
-        return seconds + minutes * OKTimeUnit.minute.convertInteger(to: .second) + hours * OKTimeUnit.hour.convertInteger(to: .second)
+        return seconds + minutes * SKTimeUnit.minute.convertInteger(to: .second) + hours * SKTimeUnit.hour.convertInteger(to: .second)
     }
     
     // MARK: - Subscript

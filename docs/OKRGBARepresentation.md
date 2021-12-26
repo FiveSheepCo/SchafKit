@@ -1,9 +1,9 @@
-# OKRGBARepresentation
+# SKRGBARepresentation
 
 A color representation containing representations of the `red`, `blue`, `green` and `alpha` values.
 
 ``` swift
-public struct OKRGBARepresentation: Equatable
+public struct SKRGBARepresentation: Equatable
 ```
 
 ## Inheritance
@@ -14,7 +14,7 @@ public struct OKRGBARepresentation: Equatable
 
 ### `init(red:green:blue:alpha:)`
 
-Initializes and returns a `OKRGBARepresentation` object.
+Initializes and returns a `SKRGBARepresentation` object.
 
 ``` swift
 public init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1)
@@ -22,10 +22,10 @@ public init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1)
 
 ### `init(bitRepresentation:)`
 
-Initializes and returns a `OKRGBARepresentation` object.
+Initializes and returns a `SKRGBARepresentation` object.
 
 ``` swift
-public init(bitRepresentation: OK8BitRGBARepresentation)
+public init(bitRepresentation: SK8BitRGBARepresentation)
 ```
 
 ## Properties
@@ -56,7 +56,7 @@ let alpha: CGFloat
 
 ### `color`
 
-Initializes and returns a `UIColor` object using the specified `OKRGBARepresentation`.
+Initializes and returns a `UIColor` object using the specified `SKRGBARepresentation`.
 
 ``` swift
 var color: UIColor
@@ -67,5 +67,5 @@ var color: UIColor
 ### `==(left:right:)`
 
 ``` swift
-public static func ==(left: OKRGBARepresentation, right: OKRGBARepresentation) -> Bool
+public static func ==(left: SKRGBARepresentation, right: SKRGBARepresentation) -> Bool
 ```

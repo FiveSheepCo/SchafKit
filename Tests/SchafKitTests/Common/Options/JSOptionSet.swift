@@ -22,12 +22,12 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-fileprivate enum ExampleOptions : OKOptions {
+fileprivate enum ExampleOptions : SKOptions {
     case first(value : String)
     case second(value : Int)
 }
 
-class OKOptionSetTests : XCTestCase {
+class SKOptionSetTests : XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -40,7 +40,7 @@ class OKOptionSetTests : XCTestCase {
     }
     
     func testExampleOptions() {
-        var set : OKOptionSet = [ExampleOptions.first(value: "a"), ExampleOptions.second(value: 1)]
+        var set : SKOptionSet = [ExampleOptions.first(value: "a"), ExampleOptions.second(value: 1)]
         
         var result : String = ""
         for case .first(let value) in set {

@@ -3,5 +3,5 @@
 A block with a json value.
 
 ``` swift
-public typealias OKJsonRetrievalBlock = (_ json : OKJsonRepresentable?) -> Void
+public typealias OKJsonRetrievalBlock = (_ json : SKJsonRepresentable?) -> Void
 ```

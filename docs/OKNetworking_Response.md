@@ -1,4 +1,4 @@
-# OKNetworking.Response
+# SKNetworking.Response
 
 A network response.
 

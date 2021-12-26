@@ -93,13 +93,16 @@ public struct PublishedCodableSettingStorage<Value> where Value: Codable {
             return object[keyPath: storageKeyPath].value
         }
         set {
-            OKDispatchHelper.dispatchOnMainQueue(sync: false) {
+            SKDispatchHelper.dispatchOnMainQueue(sync: false) {
                 (object.objectWillChange as! ObservableObjectPublisher).send()
                 object[keyPath: storageKeyPath].objectWillChange?.send()
                 object[keyPath: storageKeyPath].publisher?.subject.send(newValue)
             }
             object[keyPath: storageKeyPath].value = newValue
-            SettingStorageUserDefaultsInstance.set(try! JSONEncoder().encode(newValue), forKey: object[keyPath: storageKeyPath].key)
+            
+            let encoded = try! JSONEncoder().encode(newValue)
+            object[keyPath: storageKeyPath].dataHash = encoded.hashValue
+            SettingStorageUserDefaultsInstance.set(encoded, forKey: object[keyPath: storageKeyPath].key)
         }
         // TODO: Benchmark and explore a possibility to use _modify
     }

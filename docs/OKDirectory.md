@@ -1,20 +1,20 @@
-# OKDirectory
+# SKDirectory
 
 A dictionary representation.
 
 ``` swift
-public class OKDirectory: OKFileSystemItem
+public class SKDirectory: SKFileSystemItem
 ```
 
 ## Inheritance
 
-[`OKFileSystemItem`](/OKFileSystemItem)
+[`SKFileSystemItem`](/SKFileSystemItem)
 
 ## Initializers
 
 ### `init(path:createIfNonexistant:)`
 
-Returns a new `OKDirectory` with the specified path.
+Returns a new `SKDirectory` with the specified path.
 
 ``` swift
 public init(path: String, createIfNonexistant: Bool = false)
@@ -26,7 +26,7 @@ public init(path: String, createIfNonexistant: Bool = false)
 
 ### `init(url:createIfNonexistant:)`
 
-Returns a new `OKDirectory` with the specified url.
+Returns a new `SKDirectory` with the specified url.
 
 ``` swift
 public convenience init(url: URL, createIfNonexistant: Bool = false)
@@ -97,7 +97,7 @@ var contents: [String]
 Returns the directory for the specified app group, if it exists.
 
 ``` swift
-public static func appGroupDirectory(forGroupNamed name: String) -> OKDirectory?
+public static func appGroupDirectory(forGroupNamed name: String) -> SKDirectory?
 ```
 
 ### `create()`
@@ -134,8 +134,8 @@ public func delete(at path: String)
 
 ### `directoryByAppending(path:createIfNonexistant:)`
 
-Returns a new `OKDirectory` by appending the path to the receiver's path.
+Returns a new `SKDirectory` by appending the path to the receiver's path.
 
 ``` swift
-public func directoryByAppending(path: String, createIfNonexistant: Bool = false) -> OKDirectory
+public func directoryByAppending(path: String, createIfNonexistant: Bool = false) -> SKDirectory
 ```

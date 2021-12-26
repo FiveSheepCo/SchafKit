@@ -1,4 +1,4 @@
-# OKNetworking.Endpoint
+# SKNetworking.Endpoint
 
 A class acting as a proxy to make network requests to a given endpoint.
 
@@ -10,10 +10,10 @@ public class Endpoint
 
 ### `init(url:baseOptions:)`
 
-Returns a new `OKNetworking.Endpoint`.
+Returns a new `SKNetworking.Endpoint`.
 
 ``` swift
-public init(url: String, baseOptions: OKOptionSet<OKNetworking.Request.Options> = [])
+public init(url: String, baseOptions: SKOptionSet<SKNetworking.Request.Options> = [])
 ```
 
 > 
@@ -33,7 +33,7 @@ let baseURL: String
 The base options.
 
 ``` swift
-let baseOptions: OKOptionSet<OKNetworking.Request.Options>
+let baseOptions: SKOptionSet<SKNetworking.Request.Options>
 ```
 
 > 
@@ -45,12 +45,12 @@ let baseOptions: OKOptionSet<OKNetworking.Request.Options>
 Makes a network request with the given path appended to the responders base url and options and calls the completion handler when finished.
 
 ``` swift
-public func request(path: String, options: OKOptionSet<OKNetworking.Request.Options> = [], completion: @escaping RequestCompletionBlock)
+public func request(path: String, options: SKOptionSet<SKNetworking.Request.Options> = [], completion: @escaping RequestCompletionBlock)
 ```
 
 ### `endpointByAppending(pathComponent:)`
 
-Returns a `OKNetworking.Endpoint` by appending the given path component to the base url of the responder.
+Returns a `SKNetworking.Endpoint` by appending the given path component to the base url of the responder.
 
 ``` swift
 public func endpointByAppending(pathComponent: String) -> Endpoint

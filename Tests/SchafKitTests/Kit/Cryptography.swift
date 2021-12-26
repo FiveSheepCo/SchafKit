@@ -44,7 +44,7 @@ class CryptographyTests : XCTestCase {
     
     // MARK: - Ed25519
     
-    let ed25519 = OKCryptography.Ed25519Algorithm.self
+    let ed25519 = SKCryptography.Ed25519Algorithm.self
     lazy var edKeyPair = ed25519.KeyPair()
     
     func testSignatureKeyRandomness() {
@@ -85,7 +85,7 @@ class CryptographyTests : XCTestCase {
     
     // MARK: - XSalsa20Poly1305 SecretBox
     
-    let secretBox = OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.self
+    let secretBox = SKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.self
     lazy var xsalsaKey = secretBox.Key().privateKey
     lazy var xsalsaNonce = secretBox.Nonce().nonce
     
@@ -168,7 +168,7 @@ class CryptographyTests : XCTestCase {
     
     // MARK: - Curve25519XSalsa20Poly1305 Box
     
-    let box = OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.self
+    let box = SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.self
     lazy var localBoxKeyPair = box.KeyPair()
     lazy var remoteBoxKeyPair = box.KeyPair()
     lazy var boxNonce = box.Nonce().nonce

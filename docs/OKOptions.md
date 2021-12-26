@@ -1,7 +1,7 @@
-# OKOptions
+# SKOptions
 
 An option.
 
 ``` swift
-public protocol OKOptions
+public protocol SKOptions
 ```

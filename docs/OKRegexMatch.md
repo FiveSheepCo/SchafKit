@@ -1,9 +1,9 @@
-# OKRegexMatch
+# SKRegexMatch
 
 A regular expression match.
 
 ``` swift
-public struct OKRegexMatch
+public struct SKRegexMatch
 ```
 
 ## Properties

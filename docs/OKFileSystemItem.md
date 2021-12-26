@@ -1,9 +1,9 @@
-# OKFileSystemItem
+# SKFileSystemItem
 
 An item in the filesystem.
 
 ``` swift
-public class OKFileSystemItem
+public class SKFileSystemItem
 ```
 
 ## Properties

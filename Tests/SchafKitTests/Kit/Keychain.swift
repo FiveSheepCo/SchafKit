@@ -40,10 +40,10 @@ class KeychainTests : XCTestCase {
         let id = NSUUID().uuidString
         let pass = NSUUID().uuidString
         
-        let setResult = OKKeychain.set(password: pass, for: id)
+        let setResult = SKKeychain.set(password: pass, for: id)
         XCTAssertTrue(setResult)
         
-        let getResult = OKKeychain.getPassword(for: id)
+        let getResult = SKKeychain.getPassword(for: id)
         XCTAssertEqual(pass, getResult)
     }
  */

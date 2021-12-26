@@ -1,4 +1,4 @@
-# OKNetworking.Response.Status
+# SKNetworking.Response.Status
 
 Defines common response statuses.
 

@@ -1,4 +1,4 @@
-# OKNetworking.Request.Body
+# SKNetworking.Request.Body
 
 The body to use on a network request.
 

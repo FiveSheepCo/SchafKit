@@ -1,4 +1,4 @@
-# OKNetworking.Request.Method
+# SKNetworking.Request.Method
 
 A method to use on a network request.
 

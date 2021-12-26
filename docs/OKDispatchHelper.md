@@ -1,9 +1,9 @@
-# OKDispatchHelper
+# SKDispatchHelper
 
 A dispatch helper.
 
 ``` swift
-public class OKDispatchHelper
+public class SKDispatchHelper
 ```
 
 ## Methods

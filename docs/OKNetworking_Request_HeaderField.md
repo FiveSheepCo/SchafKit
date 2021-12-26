@@ -1,4 +1,4 @@
-# OKNetworking.Request.HeaderField
+# SKNetworking.Request.HeaderField
 
 Header field keys to use on a network request.
 
@@ -22,7 +22,7 @@ public typealias StringLiteralType = String
 
 ### `init(stringLiteral:)`
 
-Returns a new `OKNetworking.Request.HeaderField` with the specified value.
+Returns a new `SKNetworking.Request.HeaderField` with the specified value.
 
 ``` swift
 public init(stringLiteral value: StringLiteralType)

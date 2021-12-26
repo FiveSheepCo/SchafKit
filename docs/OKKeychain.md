@@ -1,7 +1,7 @@
-# OKKeychain
+# SKKeychain
 
 ``` swift
-public class OKKeychain
+public class SKKeychain
 ```
 
 ## Methods

@@ -81,7 +81,7 @@ public struct PublishedSettingStorage<Value> {
             // IMPORTANT: If your app crashes here, it means you are trying to use a non-explicit key and do not meet the requirement for doing so. The requirement is: Your property has to be exposed to Objective-C (`@objc @PublishedSettingStorage`).
             let key = object[keyPath: storageKeyPath].explicitKey ?? NSExpression(forKeyPath: wrappedKeyPath).keyPath
             
-            OKDispatchHelper.dispatchOnMainQueue(sync: false) {
+            SKDispatchHelper.dispatchOnMainQueue(sync: false) {
                 (object.objectWillChange as! ObservableObjectPublisher).send()
                 object[keyPath: storageKeyPath].objectWillChange?.send()
                 object[keyPath: storageKeyPath].publisher?.subject.send(newValue)

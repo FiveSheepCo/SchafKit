@@ -1,9 +1,9 @@
-# OKJsonRepresentable
+# SKJsonRepresentable
 
 A JSON representable.
 
 ``` swift
-public class OKJsonRepresentable: Sequence
+public class SKJsonRepresentable: Sequence
 ```
 
 ## Inheritance
@@ -14,7 +14,7 @@ public class OKJsonRepresentable: Sequence
 
 ### `init(object:)`
 
-Returns a new `OKJsonRepresentable` with the given object.
+Returns a new `SKJsonRepresentable` with the given object.
 
 ``` swift
 public init(object: Any?)
@@ -22,7 +22,7 @@ public init(object: Any?)
 
 ### `init(jsonRepresentation:)`
 
-Returns a new `OKJsonRepresentable` with the given JSON representation.
+Returns a new `SKJsonRepresentable` with the given JSON representation.
 
 ``` swift
 public convenience init(jsonRepresentation: Data?)
@@ -30,7 +30,7 @@ public convenience init(jsonRepresentation: Data?)
 
 ### `init(jsonRepresentation:)`
 
-Returns a new `OKJsonRepresentable` with the given JSON representation.
+Returns a new `SKJsonRepresentable` with the given JSON representation.
 
 ``` swift
 public convenience init(jsonRepresentation: String?)
@@ -107,7 +107,7 @@ var doubleValue: Double?
 The `Array` value.
 
 ``` swift
-var jsonArrayValue: [OKJsonRepresentable]?
+var jsonArrayValue: [SKJsonRepresentable]?
 ```
 
 ### `arrayValue`
@@ -131,5 +131,5 @@ var dictionaryValue: [String : Any]?
 ### `makeIterator()`
 
 ``` swift
-public func makeIterator() -> IndexingIterator<[OKJsonRepresentable]>
+public func makeIterator() -> IndexingIterator<[SKJsonRepresentable]>
 ```

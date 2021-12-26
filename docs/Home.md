@@ -1,25 +1,25 @@
 # Types
 
   - [CodableSettingStorage](/CodableSettingStorage)
-  - [OKAxis](/OKAxis):
+  - [SKAxis](/SKAxis):
     Describes an axis in a 2D environment.
-  - [OKOptionSet](/OKOptionSet):
-    The `OKOptionSet` class implements a way to use Swift Enumerations as options. For this to work, the enum has to adapt to the `OKOption` protocol. A `OKOptionSet` can only contain one instance of a particular Element at a time. Enumerations with an associated values are equal, even if the associated values are not.
+  - [SKOptionSet](/SKOptionSet):
+    The `SKOptionSet` class implements a way to use Swift Enumerations as options. For this to work, the enum has to adapt to the `OKOption` protocol. A `SKOptionSet` can only contain one instance of a particular Element at a time. Enumerations with an associated values are equal, even if the associated values are not.
   - [OrderedDictionary](/OrderedDictionary)
   - [PublishablePublisher](/PublishablePublisher):
     A publisher for properties marked with the `@Published` attribute.
   - [SettingStorage](/SettingStorage)
-  - [OK8BitRGBARepresentation](/OK8BitRGBARepresentation):
+  - [SK8BitRGBARepresentation](/SK8BitRGBARepresentation):
     A color representation containing 8-bit representations of the `red`, `blue`, `green` and `alpha` values.
-  - [OKHSLARepresentation](/OKHSLARepresentation):
+  - [SKHSLARepresentation](/SKHSLARepresentation):
     A color representation containing representations of the `hue`, `saturation`, `brightness` and `alpha` values.
-  - [OKJsonRepresentable](/OKJsonRepresentable):
+  - [SKJsonRepresentable](/SKJsonRepresentable):
     A JSON representable.
-  - [OKRGBARepresentation](/OKRGBARepresentation):
+  - [SKRGBARepresentation](/SKRGBARepresentation):
     A color representation containing representations of the `red`, `blue`, `green` and `alpha` values.
-  - [OKTimeUnit](/OKTimeUnit):
+  - [SKTimeUnit](/SKTimeUnit):
     A common time unit.
-  - [OKUnit](/OKUnit):
+  - [SKUnit](/SKUnit):
     A class helping with the display of measurements in units, currently bytes and time.
   - [PixelFormat](/PixelFormat)
   - [UIViewController.ShowingStyle](/UIViewController_ShowingStyle):
@@ -30,55 +30,55 @@
     An enum representing possible containers of UIViewControllers.
   - [UIViewController.ShowType](/UIViewController_ShowType):
     A type representing methods of showing a UIViewController.
-  - [OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm](/OKCryptography_Curve25519XSalsa20Poly1305BoxAlgorithm):
+  - [SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm](/SKCryptography_Curve25519XSalsa20Poly1305BoxAlgorithm):
     Algorithm for public-key authenticated encryption.
-  - [OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.KeyPair](/OKCryptography_Curve25519XSalsa20Poly1305BoxAlgorithm_KeyPair):
+  - [SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.KeyPair](/SKCryptography_Curve25519XSalsa20Poly1305BoxAlgorithm_KeyPair):
     A key pair for the `Curve25519XSalsa20Poly1305BoxAlgorithm`.
-  - [OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.Nonce](/OKCryptography_Curve25519XSalsa20Poly1305BoxAlgorithm_Nonce):
+  - [SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.Nonce](/SKCryptography_Curve25519XSalsa20Poly1305BoxAlgorithm_Nonce):
     A nonce for the `Curve25519XSalsa20Poly1305BoxAlgorithm`.
-  - [OKCryptography.Ed25519Algorithm](/OKCryptography_Ed25519Algorithm):
+  - [SKCryptography.Ed25519Algorithm](/SKCryptography_Ed25519Algorithm):
     Algorithm for public-key signatures.
-  - [OKCryptography.Ed25519Algorithm.KeyPair](/OKCryptography_Ed25519Algorithm_KeyPair):
+  - [SKCryptography.Ed25519Algorithm.KeyPair](/SKCryptography_Ed25519Algorithm_KeyPair):
     A key pair for the `Ed25519Algorithm`.
-  - [OKCryptography](/OKCryptography):
+  - [SKCryptography](/SKCryptography):
     Defines Cryptographic Algorithms.
-  - [OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm](/OKCryptography_XSalsa20Poly1305SecretBoxAlgorithm):
+  - [SKCryptography.XSalsa20Poly1305SecretBoxAlgorithm](/SKCryptography_XSalsa20Poly1305SecretBoxAlgorithm):
     Algorithm for secret-key authenticated encryption.
-  - [OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Key](/OKCryptography_XSalsa20Poly1305SecretBoxAlgorithm_Key):
+  - [SKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Key](/SKCryptography_XSalsa20Poly1305SecretBoxAlgorithm_Key):
     A key for the `XSalsa20Poly1305SecretBoxAlgorithm`.
-  - [OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Nonce](/OKCryptography_XSalsa20Poly1305SecretBoxAlgorithm_Nonce):
+  - [SKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Nonce](/SKCryptography_XSalsa20Poly1305SecretBoxAlgorithm_Nonce):
     A nonce for the `XSalsa20Poly1305SecretBoxAlgorithm`.
-  - [OKDispatchHelper](/OKDispatchHelper):
+  - [SKDispatchHelper](/SKDispatchHelper):
     A dispatch helper.
-  - [OKDirectory](/OKDirectory):
+  - [SKDirectory](/SKDirectory):
     A dictionary representation.
-  - [OKFile](/OKFile):
+  - [SKFile](/SKFile):
     A file representation.
-  - [OKFileSystemItem](/OKFileSystemItem):
+  - [SKFileSystemItem](/SKFileSystemItem):
     An item in the filesystem.
-  - [OKKeychain](/OKKeychain)
-  - [OKNetworking.Endpoint](/OKNetworking_Endpoint):
+  - [SKKeychain](/SKKeychain)
+  - [SKNetworking.Endpoint](/SKNetworking_Endpoint):
     A class acting as a proxy to make network requests to a given endpoint.
-  - [OKNetworking](/OKNetworking):
+  - [SKNetworking](/SKNetworking):
     A class helping to make web requests.
-  - [OKNetworking.Request.Body](/OKNetworking_Request_Body):
+  - [SKNetworking.Request.Body](/SKNetworking_Request_Body):
     The body to use on a network request.
-  - [OKNetworking.Request.HeaderField](/OKNetworking_Request_HeaderField):
+  - [SKNetworking.Request.HeaderField](/SKNetworking_Request_HeaderField):
     Header field keys to use on a network request.
-  - [OKNetworking.Request.Method](/OKNetworking_Request_Method):
+  - [SKNetworking.Request.Method](/SKNetworking_Request_Method):
     A method to use on a network request.
-  - [OKNetworking.Request.Options](/OKNetworking_Request_Options):
+  - [SKNetworking.Request.Options](/SKNetworking_Request_Options):
     Options to use on a network request.
-  - [OKNetworking.Request](/OKNetworking_Request)
-  - [OKNetworking.Response.Status](/OKNetworking_Response_Status):
+  - [SKNetworking.Request](/SKNetworking_Request)
+  - [SKNetworking.Response.Status](/SKNetworking_Response_Status):
     Defines common response statuses.
-  - [OKNetworking.Response](/OKNetworking_Response):
+  - [SKNetworking.Response](/SKNetworking_Response):
     A network response.
-  - [OKNetworking.RequestResult](/OKNetworking_RequestResult):
+  - [SKNetworking.RequestResult](/SKNetworking_RequestResult):
     A network request result.
-  - [OKNetworking.DownloadResult](/OKNetworking_DownloadResult):
+  - [SKNetworking.DownloadResult](/SKNetworking_DownloadResult):
     A network download request result.
-  - [OKRegexMatch](/OKRegexMatch):
+  - [SKRegexMatch](/SKRegexMatch):
     A regular expression match.
   - [SKStoreKitHelper](/SKStoreKitHelper)
   - [AFText](/AFText)
@@ -97,7 +97,7 @@
 
 # Protocols
 
-  - [OKOptions](/OKOptions):
+  - [SKOptions](/SKOptions):
     An option.
   - [Publishable](/Publishable)
 

@@ -27,7 +27,7 @@ public typealias OKBlock = () -> Void
 public typealias OKCompletionStatusBlock = (_ completed : Bool) -> Void
 
 /// A block with a json value.
-public typealias OKJsonRetrievalBlock = (_ json : OKJsonRepresentable?) -> Void
+public typealias OKJsonRetrievalBlock = (_ json : SKJsonRepresentable?) -> Void
 
 /// A login block.
 public typealias OKLoginReturnBlock = (_ user : String, _ password : String) -> Void

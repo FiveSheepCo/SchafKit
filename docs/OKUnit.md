@@ -1,9 +1,9 @@
-# OKUnit
+# SKUnit
 
 A class helping with the display of measurements in units, currently bytes and time.
 
 ``` swift
-public class OKUnit
+public class SKUnit
 ```
 
 ## Methods

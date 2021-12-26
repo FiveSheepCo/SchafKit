@@ -39,8 +39,8 @@ public extension UIAlertController {
     
     // MARK: - Managing TextFields
     
-    /// Adds a `UITextField` using the specified `OKAlerting.TextFieldConfiguration`.
-    func addTextField(configuration : OKAlerting.TextFieldConfiguration){
+    /// Adds a `UITextField` using the specified `SKAlerting.TextFieldConfiguration`.
+    func addTextField(configuration : SKAlerting.TextFieldConfiguration){
         addTextField(configurationHandler: { (field) in
             field.text = configuration.text
             field.placeholder = configuration.placeholder
@@ -52,8 +52,8 @@ public extension UIAlertController {
     
     // MARK: - Managing Actions
     
-    /// Adds an action using the specified `OKAlerting.Action`.
-    func addAction(action : OKAlerting.Action){
+    /// Adds an action using the specified `SKAlerting.Action`.
+    func addAction(action : SKAlerting.Action){
         let style : UIAlertAction.Style
         switch action.style {
         case .default:
@@ -102,8 +102,8 @@ public extension UIAlertController {
      - Parameters:
        - handler : The handler to execute when the action gets selected.
     */
-    func addOKAction(handler: @escaping OKAlerting.Action.Block = { (action, arr) in}){ // TODO: Add `= nil` when bug is resolved by apple
-        addAction(action : OKAlerting.Action.constructOKAction(handler: handler))
+    func addOKAction(handler: @escaping SKAlerting.Action.Block = { (action, arr) in}){ // TODO: Add `= nil` when bug is resolved by apple
+        addAction(action : SKAlerting.Action.constructOKAction(handler: handler))
     }
     
     /**
@@ -112,8 +112,8 @@ public extension UIAlertController {
      - Parameters:
        - handler : The handler to execute when the action gets selected.
     */
-    func addCancelAction(handler: @escaping OKAlerting.Action.Block = { (action, arr) in}){
-        addAction(action : OKAlerting.Action.constructCancelAction(handler: handler))
+    func addCancelAction(handler: @escaping SKAlerting.Action.Block = { (action, arr) in}){
+        addAction(action : SKAlerting.Action.constructCancelAction(handler: handler))
     }
     
     // MARK: - Show Controller

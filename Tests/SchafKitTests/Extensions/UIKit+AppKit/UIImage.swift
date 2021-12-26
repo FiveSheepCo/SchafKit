@@ -45,7 +45,7 @@ class UIImageTests : XCTestCase {
     }
     
     func testAllColorRepresentations() {
-        let image = UIImage(named: "TestImage.jpg", in: Bundle(for: OKNetworking.self))!
+        let image = UIImage(named: "TestImage.jpg", in: Bundle(for: SKNetworking.self))!
         
         self.measure() {
             _ = image.colorRepresentations

@@ -1,9 +1,9 @@
-# OKNetworking
+# SKNetworking
 
 A class helping to make web requests.
 
 ``` swift
-public class OKNetworking
+public class SKNetworking
 ```
 
 ## Nested Type Aliases
@@ -23,7 +23,7 @@ public typealias AuthChallengeBlock = (_ challenge : URLAuthenticationChallenge,
 A network request completion block.
 
 ``` swift
-public typealias RequestCompletionBlock = (_ result : Result<OKNetworking.RequestResult, Error>) -> Void
+public typealias RequestCompletionBlock = (_ result : Result<SKNetworking.RequestResult, Error>) -> Void
 ```
 
 ### `DownloadRequestUpdateBlock`
@@ -39,7 +39,7 @@ public typealias DownloadRequestUpdateBlock = (_ bytesWritten : Int64, _ bytesEx
 A network download request completion block.
 
 ``` swift
-public typealias DownloadRequestCompletionBlock = (_ result : Result<OKNetworking.DownloadResult, Error>) -> Void
+public typealias DownloadRequestCompletionBlock = (_ result : Result<SKNetworking.DownloadResult, Error>) -> Void
 ```
 
 ## Methods
@@ -49,7 +49,7 @@ public typealias DownloadRequestCompletionBlock = (_ result : Result<OKNetworkin
 Makes a network request with the given url and options and calls the completion handler when finished.
 
 ``` swift
-public class func request(url: String, options: OKOptionSet<OKNetworking.Request.Options> = [], completion: @escaping RequestCompletionBlock)
+public class func request(url: String, options: SKOptionSet<SKNetworking.Request.Options> = [], completion: @escaping RequestCompletionBlock)
 ```
 
 ### `requestDownload(url:options:update:completion:)`
@@ -57,5 +57,5 @@ public class func request(url: String, options: OKOptionSet<OKNetworking.Request
 Makes a network download request with the given url and options and calls the completion handler when finished.
 
 ``` swift
-public class func requestDownload(url: String, options: OKOptionSet<OKNetworking.Request.Options> = [], update: @escaping DownloadRequestUpdateBlock = {_,_ in }, completion: @escaping DownloadRequestCompletionBlock)
+public class func requestDownload(url: String, options: SKOptionSet<SKNetworking.Request.Options> = [], update: @escaping DownloadRequestUpdateBlock = {_,_ in }, completion: @escaping DownloadRequestCompletionBlock)
 ```

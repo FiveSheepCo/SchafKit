@@ -22,7 +22,7 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class OKTimeUnitTests : XCTestCase {
+class SKTimeUnitTests : XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -35,24 +35,24 @@ class OKTimeUnitTests : XCTestCase {
     }
     
     func testSimpleConversion() {
-        XCTAssertEqual(OKTimeUnit.minute.convert(to: .second), 60)
+        XCTAssertEqual(SKTimeUnit.minute.convert(to: .second), 60)
     }
     
     func testChainConversion() {
         XCTAssertEqual(
-            OKTimeUnit.second.convert(to: .millisecond) *
-            OKTimeUnit.minute.convert(to: .second) *
-            OKTimeUnit.hour.convert(to: .minute) *
-            OKTimeUnit.day.convert(to: .hour) *
-            OKTimeUnit.year.convert(to: .day) *
-            OKTimeUnit.decade.convert(to: .year) *
-            OKTimeUnit.century.convert(to: .decade),
+            SKTimeUnit.second.convert(to: .millisecond) *
+            SKTimeUnit.minute.convert(to: .second) *
+            SKTimeUnit.hour.convert(to: .minute) *
+            SKTimeUnit.day.convert(to: .hour) *
+            SKTimeUnit.year.convert(to: .day) *
+            SKTimeUnit.decade.convert(to: .year) *
+            SKTimeUnit.century.convert(to: .decade),
             1000 * 60 * 60 * 24 * 365 * 10 * 10)
     }
     
     func testChainCompleteConversion() {
         XCTAssertEqual(
-            OKTimeUnit.century.convert(to: .millisecond),
+            SKTimeUnit.century.convert(to: .millisecond),
             1000 * 60 * 60 * 24 * 365 * 10 * 10)
     }
 }

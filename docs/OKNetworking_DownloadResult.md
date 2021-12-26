@@ -1,4 +1,4 @@
-# OKNetworking.DownloadResult
+# SKNetworking.DownloadResult
 
 A network download request result.
 
@@ -13,7 +13,7 @@ public struct DownloadResult
 The response.
 
 ``` swift
-let response: OKNetworking.Response
+let response: SKNetworking.Response
 ```
 
 ### `url`

@@ -1,9 +1,9 @@
-# OKHSLARepresentation
+# SKHSLARepresentation
 
 A color representation containing representations of the `hue`, `saturation`, `brightness` and `alpha` values.
 
 ``` swift
-public struct OKHSLARepresentation: Equatable
+public struct SKHSLARepresentation: Equatable
 ```
 
 ## Inheritance
@@ -38,7 +38,7 @@ var alpha: CGFloat
 
 ### `color`
 
-Initializes and returns a `UIColor` object using the specified `OKHSLARepresentation`.
+Initializes and returns a `UIColor` object using the specified `SKHSLARepresentation`.
 
 ``` swift
 var color: UIColor
@@ -49,5 +49,5 @@ var color: UIColor
 ### `==(left:right:)`
 
 ``` swift
-public static func ==(left: OKHSLARepresentation, right: OKHSLARepresentation) -> Bool
+public static func ==(left: SKHSLARepresentation, right: SKHSLARepresentation) -> Bool
 ```

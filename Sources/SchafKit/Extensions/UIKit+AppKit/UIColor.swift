@@ -38,8 +38,8 @@ public extension UIColor {
         #endif
     }
     
-    /// Returns a `OKRGBARepresentation` representing the color.
-    var rgbaRepresentation : OKRGBARepresentation {
+    /// Returns a `SKRGBARepresentation` representing the color.
+    var rgbaRepresentation : SKRGBARepresentation {
         var red : CGFloat = 0
         var green : CGFloat = 0
         var blue : CGFloat = 0
@@ -60,15 +60,15 @@ public extension UIColor {
         }
         #endif
         
-        return OKRGBARepresentation(red: clamp(red), green: clamp(green), blue: clamp(blue), alpha: clamp(alpha))
+        return SKRGBARepresentation(red: clamp(red), green: clamp(green), blue: clamp(blue), alpha: clamp(alpha))
     }
     
     private func clamp(_ c: CGFloat) -> CGFloat {
         max(0, min(1, c))
     }
     
-    /// Returns a `OK8BitRGBARepresentation` representing the color.
-    var bitRGBARepresentation : OK8BitRGBARepresentation {
+    /// Returns a `SK8BitRGBARepresentation` representing the color.
+    var bitRGBARepresentation : SK8BitRGBARepresentation {
         var red : CGFloat = 0
         var green : CGFloat = 0
         var blue : CGFloat = 0
@@ -89,11 +89,11 @@ public extension UIColor {
         }
         #endif
         
-        return OK8BitRGBARepresentation(red : UInt8(clamp(red) * 255), green : UInt8(clamp(green) * 255), blue : UInt8(clamp(blue) * 255), alpha : UInt8(clamp(alpha) * 255))
+        return SK8BitRGBARepresentation(red : UInt8(clamp(red) * 255), green : UInt8(clamp(green) * 255), blue : UInt8(clamp(blue) * 255), alpha : UInt8(clamp(alpha) * 255))
     }
     
-    /// Returns a `OKHSLARepresentation` representing the color.
-    var HSLARepresentation : OKHSLARepresentation {
+    /// Returns a `SKHSLARepresentation` representing the color.
+    var HSLARepresentation : SKHSLARepresentation {
         var hue : CGFloat = 0
         var saturation : CGFloat = 0
         var brightness : CGFloat = 0
@@ -107,7 +107,7 @@ public extension UIColor {
         }
         #endif
         
-        return OKHSLARepresentation(
+        return SKHSLARepresentation(
             hue: hue,
             saturation: saturation,
             brightness: brightness,
@@ -115,16 +115,16 @@ public extension UIColor {
         )
     }
     
-    /// Initializes and returns a color object using the specified `OKRGBARepresentation`.
-    convenience init(representation : OKRGBARepresentation) {
+    /// Initializes and returns a color object using the specified `SKRGBARepresentation`.
+    convenience init(representation : SKRGBARepresentation) {
         self.init(intermediateDisplayP3Red: representation.red,
                   green: representation.green,
                   blue: representation.blue,
                   alpha: representation.alpha)
     }
     
-    /// Initializes and returns a color object using the specified `OK8BitRGBARepresentation`.
-    convenience init(representation : OK8BitRGBARepresentation) {
+    /// Initializes and returns a color object using the specified `SK8BitRGBARepresentation`.
+    convenience init(representation : SK8BitRGBARepresentation) {
         self.init(intermediateDisplayP3Red : CGFloat(representation.red)/255,
                   green : CGFloat(representation.green)/255,
                   blue : CGFloat(representation.blue)/255,
@@ -140,7 +140,7 @@ public extension UIColor {
     }
     
     /// Initializes and returns a color object using the specified RGB component values.
-    convenience init(representation: OKHSLARepresentation) {
+    convenience init(representation: SKHSLARepresentation) {
         self.init(
             hue: representation.hue,
             saturation: representation.saturation,

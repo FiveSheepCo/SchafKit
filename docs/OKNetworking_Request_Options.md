@@ -1,4 +1,4 @@
-# OKNetworking.Request.Options
+# SKNetworking.Request.Options
 
 Options to use on a network request.
 
@@ -8,7 +8,7 @@ enum Options
 
 ## Inheritance
 
-[`OKOptions`](/OKOptions)
+[`SKOptions`](/SKOptions)
 
 ## Enumeration Cases
 
@@ -17,7 +17,7 @@ enum Options
 Defines the request method to use. The default value is `.get`.
 
 ``` swift
-case requestMethod(value: OKNetworking.Request.Method)
+case requestMethod(value: SKNetworking.Request.Method)
 ```
 
 ### `body`
@@ -25,7 +25,7 @@ case requestMethod(value: OKNetworking.Request.Method)
 Defines the request body.
 
 ``` swift
-case body(value: OKNetworking.Request.Body)
+case body(value: SKNetworking.Request.Body)
 ```
 
 ### `headerFields`
@@ -33,7 +33,7 @@ case body(value: OKNetworking.Request.Body)
 Defines the header fields.
 
 ``` swift
-case headerFields(value: [OKNetworking.Request.HeaderField : String])
+case headerFields(value: [SKNetworking.Request.HeaderField : String])
 ```
 
 ### `authChallengeHandler`
@@ -41,7 +41,7 @@ case headerFields(value: [OKNetworking.Request.HeaderField : String])
 Defines an auth challenge handler which handles authentication challenges when needed.
 
 ``` swift
-case authChallengeHandler(value: OKNetworking.AuthChallengeBlock)
+case authChallengeHandler(value: SKNetworking.AuthChallengeBlock)
 ```
 
 ### `cachePolicy`

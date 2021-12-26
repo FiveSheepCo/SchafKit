@@ -1,7 +1,7 @@
-# OKCryptography
+# SKCryptography
 
 Defines Cryptographic Algorithms.
 
 ``` swift
-public struct OKCryptography
+public struct SKCryptography
 ```

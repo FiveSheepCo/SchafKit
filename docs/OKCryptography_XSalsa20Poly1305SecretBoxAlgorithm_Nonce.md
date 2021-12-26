@@ -1,4 +1,4 @@
-# OKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Nonce
+# SKCryptography.XSalsa20Poly1305SecretBoxAlgorithm.Nonce
 
 <dl>
 <dt><code>canImport(TweetNacl)</code></dt>

@@ -1,4 +1,4 @@
-# OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm
+# SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm
 
 <dl>
 <dt><code>canImport(TweetNacl)</code></dt>

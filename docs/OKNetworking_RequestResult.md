@@ -1,4 +1,4 @@
-# OKNetworking.RequestResult
+# SKNetworking.RequestResult
 
 A network request result.
 
@@ -13,7 +13,7 @@ public struct RequestResult
 The response.
 
 ``` swift
-let response: OKNetworking.Response
+let response: SKNetworking.Response
 ```
 
 ### `data`
@@ -34,8 +34,8 @@ var stringValue: String?
 
 ### `jsonValue`
 
-The data as a `OKJsonRepresentable`.
+The data as a `SKJsonRepresentable`.
 
 ``` swift
-var jsonValue: OKJsonRepresentable?
+var jsonValue: SKJsonRepresentable?
 ```

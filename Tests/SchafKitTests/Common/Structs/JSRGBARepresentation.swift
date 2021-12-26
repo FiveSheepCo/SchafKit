@@ -22,7 +22,7 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class OKRGBARepresentationTests : XCTestCase {
+class SKRGBARepresentationTests : XCTestCase {
     
     override func setUp() {
         super.setUp()

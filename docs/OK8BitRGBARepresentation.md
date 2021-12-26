@@ -1,9 +1,9 @@
-# OK8BitRGBARepresentation
+# SK8BitRGBARepresentation
 
 A color representation containing 8-bit representations of the `red`, `blue`, `green` and `alpha` values.
 
 ``` swift
-public struct OK8BitRGBARepresentation: Equatable
+public struct SK8BitRGBARepresentation: Equatable
 ```
 
 ## Inheritance
@@ -14,7 +14,7 @@ public struct OK8BitRGBARepresentation: Equatable
 
 ### `init(red:green:blue:alpha:)`
 
-Initializes and returns a `OK8BitRGBARepresentation` object.
+Initializes and returns a `SK8BitRGBARepresentation` object.
 
 ``` swift
 public init(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8 = 255)
@@ -22,10 +22,10 @@ public init(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8 = 255)
 
 ### `init(representation:)`
 
-Initializes and returns a `OK8BitRGBARepresentation` object.
+Initializes and returns a `SK8BitRGBARepresentation` object.
 
 ``` swift
-public init(representation: OKRGBARepresentation)
+public init(representation: SKRGBARepresentation)
 ```
 
 ## Properties
@@ -56,7 +56,7 @@ let alpha: UInt8
 
 ### `color`
 
-Initializes and returns a `UIColor` object using the specified `OK8BitRGBARepresentation`.
+Initializes and returns a `UIColor` object using the specified `SK8BitRGBARepresentation`.
 
 ``` swift
 var color: UIColor
@@ -67,5 +67,5 @@ var color: UIColor
 ### `==(left:right:)`
 
 ``` swift
-public static func ==(left: OK8BitRGBARepresentation, right: OK8BitRGBARepresentation) -> Bool
+public static func ==(left: SK8BitRGBARepresentation, right: SK8BitRGBARepresentation) -> Bool
 ```

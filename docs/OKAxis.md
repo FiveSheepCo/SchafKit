@@ -1,9 +1,9 @@
-# OKAxis
+# SKAxis
 
 Describes an axis in a 2D environment.
 
 ``` swift
-public enum OKAxis
+public enum SKAxis
 ```
 
 ## Enumeration Cases

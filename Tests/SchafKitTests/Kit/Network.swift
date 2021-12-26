@@ -37,7 +37,7 @@ class NetworkTests : XCTestCase {
     func testRequestInvalidURL() {
         let invalidURL = "///\n\\"
         
-        OKNetworking.request(url: invalidURL) { (result) in
+        SKNetworking.request(url: invalidURL) { (result) in
             XCTAssertEqual((result.failureValue as NSError?)?.code, 19027)
         }
     }
@@ -48,7 +48,7 @@ class NetworkTests : XCTestCase {
         let expectation = XCTestExpectation(description: "Basic Request Success")
         let expectation2 = XCTestExpectation(description: "Basic Options Request Success")
         
-        OKNetworking.request(url: googleURL) { (result) in
+        SKNetworking.request(url: googleURL) { (result) in
             XCTAssertNil(result.failureValue)
             
             if result.value != nil {
@@ -56,8 +56,8 @@ class NetworkTests : XCTestCase {
             }
         }
         
-        let options : OKOptionSet<OKNetworking.Request.Options> = [.body(value: .xWwwFormUrlencoded(value: ["Test" : "Toast"])), .cachePolicy(value: .reloadIgnoringCacheData), .headerFields(value: [:]), .requestMethod(value: .post), .timeoutInterval(value: 10)]
-        OKNetworking.request(url: googleURL, options: options) { (result) in
+        let options : SKOptionSet<SKNetworking.Request.Options> = [.body(value: .xWwwFormUrlencoded(value: ["Test" : "Toast"])), .cachePolicy(value: .reloadIgnoringCacheData), .headerFields(value: [:]), .requestMethod(value: .post), .timeoutInterval(value: 10)]
+        SKNetworking.request(url: googleURL, options: options) { (result) in
             XCTAssertNil(result.failureValue)
             
             if result.value != nil {
@@ -73,7 +73,7 @@ class NetworkTests : XCTestCase {
         
         let requestURL = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/10/albums.json"
         
-        OKNetworking.request(url: requestURL) { (result) in
+        SKNetworking.request(url: requestURL) { (result) in
             if result.value!.jsonValue!.exists {
                 expectation.fulfill()
             }
@@ -84,7 +84,7 @@ class NetworkTests : XCTestCase {
     
     func testEndpoint() {
         let googleURL = "http://www.google.com"
-        let endpoint = OKNetworking.Endpoint(url: googleURL)
+        let endpoint = SKNetworking.Endpoint(url: googleURL)
         
         let expectation = XCTestExpectation(description: "Basic Endpoint Request Success")
         
@@ -103,7 +103,7 @@ class NetworkTests : XCTestCase {
     
     func testEndpointAppendance() {
         let googleURL = "www.google.com"
-        var endpoint = OKNetworking.Endpoint(url: googleURL)
+        var endpoint = SKNetworking.Endpoint(url: googleURL)
         
         endpoint = endpoint.endpointByAppending(pathComponent: "imghp")
         

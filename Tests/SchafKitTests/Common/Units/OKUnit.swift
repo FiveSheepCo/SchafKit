@@ -22,7 +22,7 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class OKUnitTests : XCTestCase {
+class SKUnitTests : XCTestCase {
     let locale = Locale(identifier: "en-US")
     
     override func setUp() {
@@ -36,21 +36,21 @@ class OKUnitTests : XCTestCase {
     }
     
     func testByteConversion() {
-        XCTAssertEqual(OKUnit.getByteSizeString(from: 60, locale: locale), "60 B")
+        XCTAssertEqual(SKUnit.getByteSizeString(from: 60, locale: locale), "60 B")
         
-        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123, locale: locale), "60.12 KB")
-        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobyte")
+        XCTAssertEqual(SKUnit.getByteSizeString(from: 60123, locale: locale), "60.12 KB")
+        XCTAssertEqual(SKUnit.getByteSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobyte")
         
-        XCTAssertEqual(OKUnit.getByteSizeString(from: 60123000, locale: locale), "60.12 MB")
+        XCTAssertEqual(SKUnit.getByteSizeString(from: 60123000, locale: locale), "60.12 MB")
     }
     
     func testBitConversion() {
-        XCTAssertEqual(OKUnit.getBitSizeString(from: 60, locale: locale), "60 bit")
+        XCTAssertEqual(SKUnit.getBitSizeString(from: 60, locale: locale), "60 bit")
         
-        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123, locale: locale), "60.12 Kbit")
-        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobit")
+        XCTAssertEqual(SKUnit.getBitSizeString(from: 60123, locale: locale), "60.12 Kbit")
+        XCTAssertEqual(SKUnit.getBitSizeString(from: 60123, useAbbreviation: false, locale: locale), "60.12 Kilobit")
         
-        XCTAssertEqual(OKUnit.getBitSizeString(from: 60123000, locale: locale), "60.12 Mbit")
+        XCTAssertEqual(SKUnit.getBitSizeString(from: 60123000, locale: locale), "60.12 Mbit")
     }
 }
 #endif

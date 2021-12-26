@@ -22,7 +22,7 @@ import SchafKit
 #if !os(watchOS)
 import XCTest
 
-class OK8BitRGBARepresentationTests : XCTestCase {
+class SK8BitRGBARepresentationTests : XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -40,7 +40,7 @@ class OK8BitRGBARepresentationTests : XCTestCase {
     }
     
     func testPrecisionConversion() {
-        let rep = OK8BitRGBARepresentation(representation : OKRGBARepresentation(red: 1, green: 1, blue: 1))
+        let rep = SK8BitRGBARepresentation(representation : SKRGBARepresentation(red: 1, green: 1, blue: 1))
         XCTAssertEqual(rep.red, 255)
         XCTAssertEqual(rep.green, 255)
         XCTAssertEqual(rep.blue, 255)

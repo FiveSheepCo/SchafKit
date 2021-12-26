@@ -1,9 +1,9 @@
-# OKTimeUnit
+# SKTimeUnit
 
 A common time unit.
 
 ``` swift
-public enum OKTimeUnit
+public enum SKTimeUnit
 ```
 
 ## Inheritance
@@ -91,7 +91,7 @@ case century
 Converts one time unit to another.
 
 ``` swift
-public func convert(to: OKTimeUnit) -> Double
+public func convert(to: SKTimeUnit) -> Double
 ```
 
 ### `convertInteger(to:)`
@@ -99,7 +99,7 @@ public func convert(to: OKTimeUnit) -> Double
 Converts one time unit to another.
 
 ``` swift
-public func convertInteger(to: OKTimeUnit) -> Int
+public func convertInteger(to: SKTimeUnit) -> Int
 ```
 
 > 

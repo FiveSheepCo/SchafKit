@@ -1,4 +1,4 @@
-# OKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.KeyPair
+# SKCryptography.Curve25519XSalsa20Poly1305BoxAlgorithm.KeyPair
 
 <dl>
 <dt><code>canImport(TweetNacl)</code></dt>

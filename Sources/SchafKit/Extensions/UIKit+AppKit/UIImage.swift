@@ -97,7 +97,7 @@ public extension UIImage {
     
      - Important : The size to reference is the `actualSize` value.
     */
-    var colorRepresentations:[[OK8BitRGBARepresentation]]{
+    var colorRepresentations:[[SK8BitRGBARepresentation]]{
         guard let pixelData = cgImage?.dataProvider?.data, let pixelFormat = cgImage?.bitmapInfo.pixelFormat else {
             return []
         }
@@ -108,9 +108,9 @@ public extension UIImage {
         let width = Int(actualSize.width)
         let height = Int(actualSize.height)
         
-        var complete:[[OK8BitRGBARepresentation]] = []
+        var complete:[[SK8BitRGBARepresentation]] = []
         for x in 0..<width {
-            var representations:[OK8BitRGBARepresentation] = []
+            var representations:[SK8BitRGBARepresentation] = []
             for y in 0..<height {
                 let pixelInfo : Int = ((width * y) + x) * 4
                 
@@ -142,7 +142,7 @@ public extension UIImage {
                     a = data[pixelInfo+3]
                 }
                 
-                representations.append(OK8BitRGBARepresentation(red: r, green: g, blue: b, alpha: a))
+                representations.append(SK8BitRGBARepresentation(red: r, green: g, blue: b, alpha: a))
             }
             complete.append(representations)
         }
@@ -151,13 +151,13 @@ public extension UIImage {
     }
     
     /**
-     The `OK8BitRGBARepresentation` of the color at the pixel.
+     The `SK8BitRGBARepresentation` of the color at the pixel.
     
      - Important : If you need a large number of pixels, using the `colorRepresentations` variable might be more efficient.
     */
-    func colorRepresentation(at pixel : CGPoint) -> OK8BitRGBARepresentation {
+    func colorRepresentation(at pixel : CGPoint) -> SK8BitRGBARepresentation {
         guard let pixelData = self.cgImage?.dataProvider?.data else {
-            return OK8BitRGBARepresentation(red: 1, green: 1, blue: 1, alpha: 1)
+            return SK8BitRGBARepresentation(red: 1, green: 1, blue: 1, alpha: 1)
         }
         
         let data : UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
@@ -170,7 +170,7 @@ public extension UIImage {
         let b = data[pixelInfo+2]
         let a = data[pixelInfo+3]
         
-        return OK8BitRGBARepresentation(red: r, green: g, blue: b, alpha: a)
+        return SK8BitRGBARepresentation(red: r, green: g, blue: b, alpha: a)
     }
     
     // TODO: Comment
@@ -216,7 +216,7 @@ public extension UIImage {
      - Note : Appends the image on the X-Axis if the heights match, on the Y-Axis if the widths match. If both match, the X-Axis is chosen.
     */
     func appending(_ other : UIImage, preferYAxis : Bool = false) -> UIImage? {
-        let axis : OKAxis
+        let axis : SKAxis
         
         let size : CGSize
         if self.size.height == other.size.height && !(preferYAxis && self.size.width == other.size.width) {

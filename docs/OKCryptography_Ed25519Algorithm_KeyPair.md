@@ -1,4 +1,4 @@
-# OKCryptography.Ed25519Algorithm.KeyPair
+# SKCryptography.Ed25519Algorithm.KeyPair
 
 <dl>
 <dt><code>canImport(TweetNacl)</code></dt>

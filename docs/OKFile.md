@@ -1,11 +1,11 @@
-# OKFile
+# SKFile
 
 A file representation.
 
 ``` swift
-public class OKFile: OKFileSystemItem
+public class SKFile: SKFileSystemItem
 ```
 
 ## Inheritance
 
-[`OKFileSystemItem`](/OKFileSystemItem)
+[`SKFileSystemItem`](/SKFileSystemItem)

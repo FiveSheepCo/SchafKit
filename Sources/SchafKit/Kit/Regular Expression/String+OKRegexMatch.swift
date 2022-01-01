@@ -1,11 +1,3 @@
-//
-//  String+SKRegexMatch.swift
-//  OpenKit-iOS
-//
-//  Created by Jann Schafranek on 23.06.19.
-//  Copyright © 2019 Jann Schafranek. All rights reserved.
-//
-
 import Foundation
 
 public extension String {

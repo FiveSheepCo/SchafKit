@@ -1,10 +1,3 @@
-//
-//  TimePicker.swift
-//  LockdownWatch WatchKit Extension
-//
-//  Created by Marco Quinten on 23.04.21.
-//
-
 #if os(watchOS) && canImport(SwiftUI)
 
 import SwiftUI

@@ -1,10 +1,3 @@
-//
-//  AppearanceHandler.swift
-//  
-//
-//  Created by Jann Schafranek on 24.04.21.
-//
-
 import Foundation
 import SwiftUI
 

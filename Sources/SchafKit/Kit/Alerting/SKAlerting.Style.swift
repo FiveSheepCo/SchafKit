@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Jann Schafranek on 11.10.19.
-//
-
 #if os(iOS) || os(tvOS)
 import UIKit
 #endif

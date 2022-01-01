@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Jann Schafranek on 05.03.21.
-//
-
 #if os(iOS)
 import UIKit
 

@@ -1,10 +1,3 @@
-//
-//  OrderedDictionary.swift
-//  
-//
-//  Created by Jann Schafranek on 18.03.20.
-//
-
 import Foundation
 
 public struct OrderedDictionary<Key: Equatable, Value>: Sequence {

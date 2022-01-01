@@ -1,11 +1,3 @@
-//
-//  JSStoreKitHelper.swift
-//  Keyboard
-//
-//  Created by Jann Schafranek on 06.03.19.
-//  Copyright © 2019 Jann Thomas. All rights reserved.
-//
-
 import Foundation
 import StoreKit
 

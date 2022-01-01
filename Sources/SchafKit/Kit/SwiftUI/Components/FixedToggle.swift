@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Marco Quinten on 03.01.21.
-//
-
 #if os(iOS)
 
 import SwiftUI

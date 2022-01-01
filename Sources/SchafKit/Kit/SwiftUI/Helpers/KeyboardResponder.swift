@@ -1,9 +1,3 @@
-//
-//  KeyboardResponder.swift
-//
-//  Created by Marco Quinten on 23.04.20.
-//
-
 import SwiftUI
 
 #if os(iOS)

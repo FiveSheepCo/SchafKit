@@ -1,10 +1,3 @@
-//
-//  CGPoint.swift
-//  Scanner
-//
-//  Created by Jann Schafranek on 26.11.21.
-//
-
 import Foundation
 import CoreGraphics
 

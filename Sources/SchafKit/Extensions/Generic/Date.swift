@@ -1,10 +1,3 @@
-//
-//  Date.swift
-//  
-//
-//  Created by Marco Quinten on 28.02.21.
-//
-
 import Foundation
 
 public extension Date {

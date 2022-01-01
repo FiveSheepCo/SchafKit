@@ -1,11 +1,3 @@
-//
-//  Publishable.swift
-//  9List
-//
-//  Created by Jann Schafranek on 12.08.20.
-//  Copyright © 2020 QuintSchaf. All rights reserved.
-//
-
 import Combine
 
 public protocol Publishable {

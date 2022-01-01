@@ -1,10 +1,3 @@
-//
-//  PresentationLink.swift
-//  
-//
-//  Created by Marco Quinten on 11.07.20.
-//
-
 import SwiftUI
 
 /// Sheet presentation button analogue to NavigationLink.

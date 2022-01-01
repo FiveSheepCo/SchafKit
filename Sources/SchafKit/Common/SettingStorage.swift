@@ -1,11 +1,3 @@
-//
-//  SettingStorage.swift
-//  9List
-//
-//  Created by Jann Schafranek on 10.08.20.
-//  Copyright © 2020 QuintSchaf. All rights reserved.
-//
-
 import Foundation
 import Combine
 

@@ -1,10 +1,3 @@
-//
-//  Color+UIColor.swift
-//  
-//
-//  Created by Marco Quinten on 11.07.20.
-//
-
 import SwiftUI
 
 #if os(iOS)

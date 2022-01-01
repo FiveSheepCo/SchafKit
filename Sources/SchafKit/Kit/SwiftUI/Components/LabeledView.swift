@@ -1,10 +1,3 @@
-//
-//  LabeledView.swift
-//  
-//
-//  Created by Marco Quinten on 11.07.20.
-//
-
 import SwiftUI
 
 public struct LabeledView<A: View, B: View>: View {

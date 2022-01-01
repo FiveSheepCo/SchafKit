@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Jann Schafranek on 12.07.20.
-//
-
 import SwiftUI
 
 public struct RoundedCorners: Shape {

@@ -1,10 +1,3 @@
-//
-//  PublishedSettingStorage.swift
-//  
-//
-//  Created by Jann Schafranek on 21.12.21.
-//
-
 import Foundation
 import Combine
 

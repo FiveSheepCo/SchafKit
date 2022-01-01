@@ -1,10 +1,3 @@
-//
-//  Digest+Hex.swift
-//  
-//
-//  Created by Marco Quinten on 18.07.20.
-//
-
 #if canImport(CryptoKit)
 import Foundation
 import CryptoKit

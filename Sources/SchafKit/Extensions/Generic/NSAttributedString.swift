@@ -1,10 +1,3 @@
-//
-//  NSAttributedString.swift
-//  
-//
-//  Created by Jann Schafranek on 19.12.21.
-//
-
 import Foundation
 
 public extension NSAttributedString {

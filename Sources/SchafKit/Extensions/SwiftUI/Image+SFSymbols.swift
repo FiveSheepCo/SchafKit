@@ -1,10 +1,3 @@
-//
-//  Image+SFSymbols.swift
-//
-//  Created by Jann Schafranek on 12.12.20.
-//  Copyright © 2020 Jann Thomas. All rights reserved.
-//
-
 import Foundation
 import SwiftUI
 

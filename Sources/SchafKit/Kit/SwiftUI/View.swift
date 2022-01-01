@@ -3,7 +3,7 @@ import SwiftUI
 
 public extension View {
     
-    func onRender(perform: OKBlock) -> Self {
+    func onRender(perform: SKBlock) -> Self {
         perform()
         return self
     }

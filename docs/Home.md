@@ -103,13 +103,13 @@
 
 # Global Typealiases
 
-  - [OKBlock](/OKBlock):
+  - [SKBlock](/SKBlock):
     A block.
-  - [OKCompletionStatusBlock](/OKCompletionStatusBlock):
+  - [SKCompletionStatusBlock](/SKCompletionStatusBlock):
     A block with a bool indicating whether the task was successfully completed.
-  - [OKJsonRetrievalBlock](/OKJsonRetrievalBlock):
+  - [SKJsonRetrievalBlock](/SKJsonRetrievalBlock):
     A block with a json value.
-  - [OKLoginReturnBlock](/OKLoginReturnBlock):
+  - [SKLoginReturnBlock](/SKLoginReturnBlock):
     A login block.
   - [UIFont](/UIFont)
   - [UIColor](/UIColor)

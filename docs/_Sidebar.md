@@ -69,10 +69,10 @@
 <details>
 <summary>Global Typealiases</summary>
 
-  - [OKBlock](/OKBlock)
-  - [OKCompletionStatusBlock](/OKCompletionStatusBlock)
-  - [OKJsonRetrievalBlock](/OKJsonRetrievalBlock)
-  - [OKLoginReturnBlock](/OKLoginReturnBlock)
+  - [SKBlock](/SKBlock)
+  - [SKCompletionStatusBlock](/SKCompletionStatusBlock)
+  - [SKJsonRetrievalBlock](/SKJsonRetrievalBlock)
+  - [SKLoginReturnBlock](/SKLoginReturnBlock)
   - [SKProductFetchCompletionHandler](/SKProductFetchCompletionHandler)
   - [SKProductsFetchCompletionHandler](/SKProductsFetchCompletionHandler)
   - [SKPurchaseHandler](/SKPurchaseHandler)

@@ -44,7 +44,7 @@ public extension UIAlertController {
             style = .destructive
         }
         
-        let block : OKBlock?
+        let block : SKBlock?
         if let handler = action.handler {
             block = {
                 handler(action, self.textFieldValues)
@@ -64,7 +64,7 @@ public extension UIAlertController {
        - style : The style of the action.
        - handler : The handler to execute when the action gets selected.
     */
-    func addAction(title : String, style : UIAlertAction.Style = .default, handler : OKBlock? = nil){
+    func addAction(title : String, style : UIAlertAction.Style = .default, handler : SKBlock? = nil){
         let block:((UIAlertAction) -> Void)?
         if let handler = handler {
             block = { (action : UIAlertAction) in

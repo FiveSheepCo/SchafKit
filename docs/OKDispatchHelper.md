@@ -13,7 +13,7 @@ public class SKDispatchHelper
 Dispatches a block.
 
 ``` swift
-public class func dispatch(on queue: DispatchQueue, sync: Bool = false, block: @escaping OKBlock)
+public class func dispatch(on queue: DispatchQueue, sync: Bool = false, block: @escaping SKBlock)
 ```
 
 #### Parameters
@@ -27,7 +27,7 @@ public class func dispatch(on queue: DispatchQueue, sync: Bool = false, block: @
 Dispatches a block onto the main queue.
 
 ``` swift
-public class func dispatchOnMainQueue(sync: Bool = true, block: @escaping OKBlock)
+public class func dispatchOnMainQueue(sync: Bool = true, block: @escaping SKBlock)
 ```
 
 #### Parameters
@@ -40,7 +40,7 @@ public class func dispatchOnMainQueue(sync: Bool = true, block: @escaping OKBloc
 Dispatches a block onto the global `userInitiated` queue.
 
 ``` swift
-public class func dispatchUserInitiatedTask(sync: Bool = false, block: @escaping OKBlock)
+public class func dispatchUserInitiatedTask(sync: Bool = false, block: @escaping SKBlock)
 ```
 
 #### Parameters
@@ -53,7 +53,7 @@ public class func dispatchUserInitiatedTask(sync: Bool = false, block: @escaping
 Dispatches a block onto the global `utility` queue.
 
 ``` swift
-public class func dispatchUtilityTask(sync: Bool = false, block: @escaping OKBlock)
+public class func dispatchUtilityTask(sync: Bool = false, block: @escaping SKBlock)
 ```
 
 #### Parameters
@@ -66,7 +66,7 @@ public class func dispatchUtilityTask(sync: Bool = false, block: @escaping OKBlo
 Dispatches a block onto the global `background` queue.
 
 ``` swift
-public class func dispatchBackgroundTask(sync: Bool = false, block: @escaping OKBlock)
+public class func dispatchBackgroundTask(sync: Bool = false, block: @escaping SKBlock)
 ```
 
 #### Parameters

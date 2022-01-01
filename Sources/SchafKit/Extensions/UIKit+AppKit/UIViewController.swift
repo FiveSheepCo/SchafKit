@@ -146,7 +146,7 @@ public extension UIViewController {
        - addingCancelButton : Whether to add a `UIBarButtonItem` with `UIBarButtonSystemItem.cancel` to the `leftBarButtonItems`.
        - completion : Called after the presentation has completed.
     */
-    func presentWithNavigationController(viewControllerToPresent : UIViewController, animated : Bool = true, addingDoneButton : Bool = false, addingCancelButton : Bool = false, completion : OKBlock? = nil){
+    func presentWithNavigationController(viewControllerToPresent : UIViewController, animated : Bool = true, addingDoneButton : Bool = false, addingCancelButton : Bool = false, completion : SKBlock? = nil){
         if addingDoneButton {
             viewControllerToPresent.navigationItem.rightBarButtonItems = (viewControllerToPresent.navigationItem.rightBarButtonItems ?? []) + [UIBarButtonItem(barButtonSystemItem: .done, target: viewControllerToPresent, action: #selector(dismiss(animated:completion:)))] // TODO: Look if this adds it to the right direction
         }

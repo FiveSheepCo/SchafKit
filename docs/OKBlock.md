@@ -1,7 +1,7 @@
-# OKBlock
+# SKBlock
 
 A block.
 
 ``` swift
-public typealias OKBlock = () -> Void
+public typealias SKBlock = () -> Void
 ```

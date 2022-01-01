@@ -15,7 +15,7 @@ public class SKDispatchHelper {
        - queue : The queue onto which to dispatch the block.
        - block : The block to dispatch.
     */
-    public class func dispatch(on queue: DispatchQueue, sync: Bool = false, block: @escaping OKBlock){
+    public class func dispatch(on queue: DispatchQueue, sync: Bool = false, block: @escaping SKBlock){
         if (sync){
             queue.sync(execute: block)
         }else {
@@ -30,7 +30,7 @@ public class SKDispatchHelper {
        - sync : Whether to dispatch the block synchronously.
        - block : The block to dispatch.
     */
-    public class func dispatchOnMainQueue(sync : Bool = true, block:@escaping OKBlock){
+    public class func dispatchOnMainQueue(sync : Bool = true, block:@escaping SKBlock){
         if (Thread.isMainThread){
             block()
         }else {
@@ -45,7 +45,7 @@ public class SKDispatchHelper {
        - sync : Whether to dispatch the block synchronously.
        - block : The block to dispatch.
     */
-    public class func dispatchUserInitiatedTask(sync : Bool = false, block:@escaping OKBlock){
+    public class func dispatchUserInitiatedTask(sync : Bool = false, block:@escaping SKBlock){
         dispatch(on: _userInitiatedQueue, sync: sync, block: block)
     }
     
@@ -56,7 +56,7 @@ public class SKDispatchHelper {
        - sync : Whether to dispatch the block synchronously.
        - block : The block to dispatch.
     */
-    public class func dispatchUtilityTask(sync : Bool = false, block:@escaping OKBlock){
+    public class func dispatchUtilityTask(sync : Bool = false, block:@escaping SKBlock){
         dispatch(on: _utilityQueue, sync: sync, block: block)
     }
     
@@ -67,7 +67,7 @@ public class SKDispatchHelper {
        - sync : Whether to dispatch the block synchronously.
        - block : The block to dispatch.
     */
-    public class func dispatchBackgroundTask(sync : Bool = false, block:@escaping OKBlock){
+    public class func dispatchBackgroundTask(sync : Bool = false, block:@escaping SKBlock){
         dispatch(on: _backgroundQueue, sync: sync, block: block)
     }
 }

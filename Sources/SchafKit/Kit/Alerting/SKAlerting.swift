@@ -12,7 +12,7 @@ public class SKAlerting {
                          message : String? = nil,
                          showOKAction : Bool = true,
                          showCancelAction : Bool = false,
-                         okBlock : SKAlerting.Action.Block? = nil,
+                         SKBlock : SKAlerting.Action.Block? = nil,
                          cancelBlock : SKAlerting.Action.Block? = nil,
                          additionalActions:[SKAlerting.Action] = [],
                          textFieldConfigurations:[SKAlerting.TextFieldConfiguration] = [],
@@ -21,7 +21,7 @@ public class SKAlerting {
         var actions:[SKAlerting.Action] = additionalActions
         
         if showOKAction {
-            actions.insert(SKAlerting.Action.constructOKAction(handler: okBlock), at: 0)
+            actions.insert(SKAlerting.Action.constructOKAction(handler: SKBlock), at: 0)
         }
         
         if showCancelAction {
@@ -49,12 +49,12 @@ public class SKAlerting {
                           message : String? = nil,
                           textFieldConfigurations:[SKAlerting.TextFieldConfiguration] = [],
                           completion : SKAlerting.Action.Block? = nil,
-                          cancellation : OKBlock? = nil)
+                          cancellation : SKBlock? = nil)
     {
         showAlert(title: title,
                   message: message,
                   showCancelAction: true,
-                  okBlock: completion,
+                  SKBlock: completion,
                   cancelBlock: { (_, _) in cancellation?() },
                   textFieldConfigurations: textFieldConfigurations)
     }
@@ -76,8 +76,8 @@ public class SKAlerting {
                                message : String? = nil,
                                userPlaceholder : String = "Username".localized,
                                passwordPlaceholder : String = "Password".localized,
-                               completion:@escaping OKLoginReturnBlock,
-                               cancellation : OKBlock? = nil)
+                               completion:@escaping SKLoginReturnBlock,
+                               cancellation : SKBlock? = nil)
     {
         showPrompt(title: title,
                    message: message,

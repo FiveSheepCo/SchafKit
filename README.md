@@ -133,7 +133,7 @@ We have chosen to use the CC0 1.0 Universal license for SchafKit. The following 
 
 <!-- References -->
 
-[GithubCI_Status]: https://github.com/Quinschaf/SchafKit/actions/workflows/swift.yml/badge.svg?branch=master
-[GithubCI_URL]: https://github.com/Quinschaf/SchafKit/actions/workflows/swift.yml
+[GithubCI_Status]: https://github.com/Quintschaf/SchafKit/actions/workflows/swift.yml/badge.svg?branch=master
+[GithubCI_URL]: https://github.com/Quintschaf/SchafKit/actions/workflows/swift.yml
 [LICENSE_BADGE]: https://badgen.net/github/license/quintschaf/SchafKit
 [LICENSE_URL]: https://github.com/Quintschaf/SchafKit/blob/master/LICENSE

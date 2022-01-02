@@ -14,6 +14,7 @@ A kit providing useful functions across iOS, watchOS, macOS and tvOS, taking adv
       - [Networking](#networking)
       - [RegEx](#regex)
    - [Extensions](#extensions)
+-  [License](#license)
 -  [Installation](#installation)
 -  [To-Do](#to-do)
 

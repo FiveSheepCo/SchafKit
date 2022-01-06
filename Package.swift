@@ -29,6 +29,8 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "SchafKitTests",
-            dependencies: ["SchafKit"]),
+            dependencies: ["SchafKit"],
+            resources: [.copy("Images")]
+        ),
     ]
 )

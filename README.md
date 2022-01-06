@@ -103,14 +103,14 @@ A big part of `SchafKit` are extensions. You can find all of them in the documen
 | tab              | String      | A string containing a tab character.                                        | "\t"                           |
 
 #### Variables
-| Variable         | Return Type | Description                                                                 | Example                                   | Result                         |
-|------------------|-------------|-----------------------------------------------------------------------------|-------------------------------------------|--------------------------------|
-| localized        | String      | A localized version of the receiver.                                        | "DONE_BUTTON_TEXT".localized              | "Done"                         |
-| urlEncoded       | String      | A URL-encoded version of the receiver.                                      | "https://quintschaf.com".urlEncoded       | "https%3A%2F%2Fquintschaf.com" |
-| urlDecoded       | String      | A URL-decoded version of the receiver.                                      | "https%3A%2F%2Fquintschaf.com".urlDecoded | "https://quintschaf.com"       |
-| extractedSeconds | Int?        | Extracts number of seconds from the receiver in a hh:mm:ss/mm:ss/ss format. | "00:02:15".extractedSeconds               | 135                            |
+| Variable         | Return Type | Description                                                                 | Example                                     | Result                         |
+|------------------|-------------|-----------------------------------------------------------------------------|---------------------------------------------|--------------------------------|
+| localized        | String      | A localized version of the receiver.                                        | `"DONE_BUTTON_TEXT".localized`              | "Done"                         |
+| urlEncoded       | String      | A URL-encoded version of the receiver.                                      | `"https://quintschaf.com".urlEncoded`       | "https%3A%2F%2Fquintschaf.com" |
+| urlDecoded       | String      | A URL-decoded version of the receiver.                                      | `"https%3A%2F%2Fquintschaf.com".urlDecoded` | "https://quintschaf.com"       |
+| extractedSeconds | Int?        | Extracts number of seconds from the receiver in a hh:mm:ss/mm:ss/ss format. | `"00:02:15".extractedSeconds`               | 135                            |
 
-SchafKit also included sane subscripts for Strings, making syntax like `"abc"[0...1]` possible.
+SchafKit also includes sane subscripts for Strings, making syntax like `"abc"[0...1]` possible.
 
 # Installation
 

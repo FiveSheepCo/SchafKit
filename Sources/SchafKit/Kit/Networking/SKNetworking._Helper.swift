@@ -17,7 +17,7 @@ extension SKNetworking {
         override private init() {
             super.init()
             
-            urlSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: .main)
+            urlSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         }
         
         // MARK: - Requests

@@ -185,6 +185,13 @@ public extension Array {
             })
         }
     }
+    
+    func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>, ascending: Bool = true) -> [Element] {
+        sorted { a, b in
+            let isAscending = a[keyPath: keyPath] < b[keyPath: keyPath]
+            return isAscending == ascending
+        }
+    }
 }
 
 public extension Array where Element : Equatable {

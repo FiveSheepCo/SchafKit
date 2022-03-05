@@ -73,12 +73,12 @@ public struct BackgroundPublished<Value> {
             return object[keyPath: storageKeyPath].value
         }
         set {
+            object[keyPath: storageKeyPath].value = newValue
             SKDispatchHelper.dispatchOnMainQueue(sync: false) {
                 (object.objectWillChange as! ObservableObjectPublisher).send()
                 object[keyPath: storageKeyPath].objectWillChange?.send()
                 object[keyPath: storageKeyPath].publisher?.subject.send(newValue)
             }
-            object[keyPath: storageKeyPath].value = newValue
         }
         // TODO: Benchmark and explore a possibility to use _modify
     }

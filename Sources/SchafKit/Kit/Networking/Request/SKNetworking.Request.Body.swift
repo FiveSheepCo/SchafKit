@@ -38,8 +38,8 @@ public extension SKNetworking.Request {
                 return "application/x-www-form-urlencoded"
             case .formData:
                 return "multipart/form-data"
-            case .raw(_, _), .binary(_, _):
-                return nil
+            case .raw(_, let contentType), .binary(_, let contentType):
+                return contentType
             }
         }
     }

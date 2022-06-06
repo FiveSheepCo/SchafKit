@@ -14,6 +14,6 @@ public extension NSRegularExpression {
        - string : The string to search.
     */
     func matches(in string : String) -> [NSTextCheckingResult]{
-        return matches(in: string, options: [], range : NSMakeRange(0, string.count))
+        return matches(in: string, options: [], range: NSMakeRange(0, string.utf16.count))
     }
 }

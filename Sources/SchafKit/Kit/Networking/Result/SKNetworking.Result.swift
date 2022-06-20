@@ -5,15 +5,18 @@ extension SKNetworking {
     public struct RequestResult {
         /// The response.
         public let response : SKNetworking.Response
+        /// The response.
+        public let originalRequest : URLRequest
         /// The data.
         public let data : Data
         
-        internal init?(data : Data?, response : URLResponse?) {
+        internal init?(data : Data?, originalRequest : URLRequest, response : URLResponse?) {
             guard let data = data, let response = response else {
                 return nil
             }
             
             self.data = data
+            self.originalRequest = originalRequest
             self.response = SKNetworking.Response(response: response)
         }
         

@@ -34,8 +34,9 @@ extension SKNetworking {
                 return
             }
             
-            let task = urlSession.dataTask(with: request) { (data, response, error) in
-                if let result = SKNetworking.RequestResult(data: data, response: response) {
+            var task: URLSessionDataTask!
+            task = urlSession.dataTask(with: request) { (data, response, error) in
+                if let result = SKNetworking.RequestResult(data: data, originalRequest: task.originalRequest ?? request, response: response) {
                     completion(.success(result))
                 } else {
                     completion(.failure(error ?? standardError))

@@ -44,9 +44,11 @@ extension SKNetworking {
                 self.clearTasks()
             }
             
-            optionsPerTask[task] = options
+            urlSession.delegateQueue.addOperation { [self] in
+                optionsPerTask[task] = options
+                task.resume()
+            }
             
-            task.resume()
         }
         
         // MARK: Download Request
@@ -65,10 +67,12 @@ extension SKNetworking {
             
             let task = urlSession.downloadTask(with: request)
             
-            optionsPerTask[task] = options
-            updateHandlerPerTask[task] = (update, completion)
-            
-            task.resume()
+            urlSession.delegateQueue.addOperation { [self] in
+                optionsPerTask[task] = options
+                updateHandlerPerTask[task] = (update, completion)
+                
+                task.resume()
+            }
         }
         
         // MARK: - Build Request

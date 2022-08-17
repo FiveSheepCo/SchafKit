@@ -1,3 +1,4 @@
+#if canImport(StoreKit)
 import Foundation
 import StoreKit
 
@@ -171,3 +172,4 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
         }
     }
 }
+#endif

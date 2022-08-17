@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 #if os(OSX)
     import AppKit
     
@@ -148,3 +149,4 @@ public extension UIColor {
         self.init(white: white, alpha: 1)
     }
 }
+#endif

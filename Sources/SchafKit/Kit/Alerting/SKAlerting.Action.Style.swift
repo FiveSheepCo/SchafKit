@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 extension SKAlerting.Action {
@@ -13,4 +14,4 @@ extension SKAlerting.Action {
         case destructive
     }
 }
-
+#endif

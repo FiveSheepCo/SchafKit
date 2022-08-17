@@ -1,4 +1,5 @@
 import Foundation
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 
 public extension Timer {
     
@@ -10,3 +11,4 @@ public extension Timer {
         })
     }
 }
+#endif

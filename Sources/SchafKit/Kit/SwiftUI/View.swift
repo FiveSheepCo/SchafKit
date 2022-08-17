@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 import SwiftUI
 
@@ -73,3 +74,4 @@ private struct RoundedCorner: Shape {
 //    }
 //}
 //#endif
+#endif

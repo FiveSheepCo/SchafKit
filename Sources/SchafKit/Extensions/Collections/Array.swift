@@ -5,7 +5,7 @@ import UIKit
 
 public extension Array {
     
-    #if os(iOS)
+#if os(iOS)
     /// Shares the items of the responder using a `UIActivityViewController`.
     @available(iOSApplicationExtension, unavailable)
     func share(applicationActivities : [UIActivity]? = nil) {
@@ -15,7 +15,7 @@ public extension Array {
         
         controller.show(type: .present)
     }
-    #endif
+#endif
     
     /// Removes and returns the first element of the collection, if it exists.
     mutating func removeFirstIfExists() -> Element? {
@@ -28,9 +28,9 @@ public extension Array {
     
     /**
      Removes the specified number of elements from the beginning of the collection, if they exist.
-    
+     
      - Note : If less elements than specified exist, they will be removed anyway.
-    */
+     */
     mutating func removeFirstIfExist(_ n : Int) {
         self.removeFirst(Swift.min(n, self.count))
     }
@@ -46,9 +46,9 @@ public extension Array {
     
     /**
      Removes the specified number of elements from the end of the collection, if they exist.
-    
+     
      - Note : If less elements than specified exist, they will be removed anyway.
-    */
+     */
     mutating func removeLastIfExist(_ n : Int) {
         self.removeLast(Swift.min(n, self.count))
     }
@@ -184,6 +184,78 @@ public extension Array {
                 }
             })
         }
+    }
+    
+    /// The map function but with a `handler` that provides a `callback` for asynchronous operations.
+    func asyncMap<T>(handler: @escaping (Element) async -> T) async -> [T] {
+        
+        var waitingCount = count
+        
+        if waitingCount == 0 {
+            return []
+        }
+        
+        return await withCheckedContinuation({ completion in
+            var ids = [UUID]()
+            var results = [UUID: T]()
+            for item in self {
+                let id = UUID()
+                ids.append(id)
+                
+                Task {
+                    let result = await handler(item)
+                    SKDispatchHelper.dispatchOnMainQueue {
+                        results[id] = result
+                        
+                        waitingCount -= 1
+                        if waitingCount == 0 {
+                            let resultsSorted = results.sorted(by: { lK, rK in
+                                ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
+                            }).map { kVP in
+                                kVP.value
+                            }
+                            
+                            completion.resume(with: .success(resultsSorted))
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    /// The map function but with a `handler` that provides a `callback` for asynchronous operations.
+    func asyncMapOther<T>(handler: @escaping (Element) async -> T) async -> [T] {
+        
+        var waitingCount = count
+        
+        if waitingCount == 0 {
+            return []
+        }
+        
+        return await withCheckedContinuation({ completion in
+            Task {
+                var ids = [UUID]()
+                var results = [UUID: T]()
+                for item in self {
+                    let id = UUID()
+                    ids.append(id)
+                    
+                    let result = await handler(item)
+                    results[id] = result
+                    
+                    waitingCount -= 1
+                    if waitingCount == 0 {
+                        let resultsSorted = results.sorted(by: { lK, rK in
+                            ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
+                        }).map { kVP in
+                            kVP.value
+                        }
+                        
+                        completion.resume(with: .success(resultsSorted))
+                    }
+                }
+            }
+        })
     }
     
     func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>, ascending: Bool = true) -> [Element] {

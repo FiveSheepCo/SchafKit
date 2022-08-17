@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS)
 #if os(OSX)
     import AppKit
 #else
@@ -36,3 +37,4 @@ public struct SK8BitRGBARepresentation: Equatable, Hashable, Codable {
         return SKRGBARepresentation(bitRepresentation: left) == SKRGBARepresentation(bitRepresentation: right)
     }
 }
+#endif

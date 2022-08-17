@@ -2,6 +2,7 @@
 import UIKit
 #endif
 
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 extension SKAlerting {
     public enum Style {
         case alert, actionSheet
@@ -18,3 +19,4 @@ extension SKAlerting {
         #endif
     }
 }
+#endif

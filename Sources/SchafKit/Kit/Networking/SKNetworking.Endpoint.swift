@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 extension SKNetworking {
@@ -32,9 +33,22 @@ extension SKNetworking {
                                  options: baseOptions + options, completion: completion)
         }
         
+        /// Makes a network request with the given url and options and calls the completion handler when finished.
+        public func request(
+            path : String,
+            options : SKOptionSet<SKNetworking.Request.Options> = []
+        ) async throws -> SKNetworking.RequestResult {
+            try await withCheckedThrowingContinuation({ completion in
+                self.request(path: path, options: options, completion: {
+                    completion.resume(with: $0)
+                })
+            })
+        }
+        
         /// Returns a `SKNetworking.Endpoint` by appending the given path component to the base url of the responder.
         public func endpointByAppending(pathComponent : String) -> Endpoint {
             return Endpoint(url: baseURL + "/" + pathComponent.removingOccurancesAtStart(of: "/"), baseOptions: baseOptions)
         }
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import SwiftUI
 
 @available(iOS 14, *)
@@ -43,3 +44,4 @@ struct AlignedText_Previews: PreviewProvider {
         AlignedText("AlignedText")
     }
 }
+#endif

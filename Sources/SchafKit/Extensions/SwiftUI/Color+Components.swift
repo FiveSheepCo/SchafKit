@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS)
 import SwiftUI
 
 extension Color {
@@ -23,3 +24,4 @@ extension Color {
         return (r, g, b, a)
     }
 }
+#endif

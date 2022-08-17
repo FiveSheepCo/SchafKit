@@ -1,4 +1,5 @@
 import Foundation
+#if canImport(Combine)
 import Combine
 
 @propertyWrapper
@@ -100,3 +101,4 @@ public struct PublishedCodableSettingStorage<Value> where Value: Codable {
         // TODO: Benchmark and explore a possibility to use _modify
     }
 }
+#endif

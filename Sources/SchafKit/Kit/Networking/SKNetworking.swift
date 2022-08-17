@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 /// A class helping to make web requests.
@@ -34,3 +35,4 @@ public class SKNetworking {
         _Helper.shared.requestDownload(url: url, options: options, update: update, completion: completion)
     }
 }
+#endif

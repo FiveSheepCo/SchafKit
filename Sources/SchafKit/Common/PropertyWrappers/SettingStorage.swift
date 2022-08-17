@@ -1,4 +1,5 @@
 import Foundation
+#if canImport(Combine)
 import Combine
 
 /// The user defaults instance to use to store Settings. This applies to `SettingsStorage`, `PublishedSettingStorage`, `CodableSettingStorage` and `PublishedCodableSettingStorage`.
@@ -31,3 +32,4 @@ public struct SettingStorage<Value>: Publishable {
     
     public var objectWillChange: ObservableObjectPublisher?
 }
+#endif

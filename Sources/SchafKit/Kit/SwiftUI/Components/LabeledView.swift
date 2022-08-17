@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import SwiftUI
 
 public struct LabeledView<A: View, B: View>: View {
@@ -25,3 +26,4 @@ struct LabeledView_Previews: PreviewProvider {
         }
     }
 }
+#endif

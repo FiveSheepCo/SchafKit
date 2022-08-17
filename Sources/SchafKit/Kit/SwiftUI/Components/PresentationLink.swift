@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import SwiftUI
 
 /// Sheet presentation button analogue to NavigationLink.
@@ -43,4 +44,4 @@ where Label: View, Destination: View {
         }
     }
 }
-
+#endif

@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import SwiftUI
 
 @available(macOS 10.16, *)
@@ -16,3 +17,4 @@ public struct AFText: View {
         text.localized.markdownedText(with: font ?? .body, arguments: arguments)
     }
 }
+#endif

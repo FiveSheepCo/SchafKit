@@ -2,9 +2,10 @@
     import AppKit
     
     public typealias UIImage = NSImage
-#else
+#elseif os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
 #endif
+
 
 public enum PixelFormat
 {
@@ -14,6 +15,7 @@ public enum PixelFormat
     case rgba
 }
 
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 extension CGBitmapInfo
 {
     public static var byteOrder16Host: CGBitmapInfo {
@@ -57,10 +59,11 @@ extension CGBitmapInfo
         }
     }
 }
+#endif
 
+#if os(iOS) || os(tvOS)
 public extension UIImage {
     
-    #if os(iOS) || os(tvOS)
     // TODO: Make macOS versions
     
     /// The actual size of the image, recognizing the scale.
@@ -224,8 +227,8 @@ public extension UIImage {
     convenience init?(named name : String, in bundle : Bundle?) {
         self.init(named: name, in: bundle, compatibleWith: nil)
     }
-    #endif
 }
+#endif
 
 #if os(macOS)
 public extension NSImage {

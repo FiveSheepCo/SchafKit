@@ -1,7 +1,7 @@
+#if os(iOS)
 import Foundation
 import SwiftUI
 
-#if os(iOS)
 fileprivate extension UIApplication {
     func endEditing(_ force: Bool) {
         self.windows

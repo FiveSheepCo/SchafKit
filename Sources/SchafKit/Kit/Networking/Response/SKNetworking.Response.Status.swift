@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 extension SKNetworking.Response {
@@ -140,4 +141,4 @@ extension SKNetworking.Response {
         }
     }
 }
-
+#endif

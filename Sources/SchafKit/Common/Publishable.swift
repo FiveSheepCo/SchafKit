@@ -1,3 +1,4 @@
+#if canImport(Combine)
 import Combine
 
 public protocol Publishable {
@@ -62,3 +63,4 @@ public extension Publishable {
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
 import Foundation
+#if canImport(Combine)
 import Combine
 
 @propertyWrapper
@@ -84,3 +85,4 @@ public struct PublishedSettingStorage<Value> {
         // TODO: Benchmark and explore a possibility to use _modify
     }
 }
+#endif

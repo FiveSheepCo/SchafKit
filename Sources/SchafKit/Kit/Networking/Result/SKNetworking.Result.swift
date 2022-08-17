@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 extension SKNetworking {
@@ -48,4 +49,4 @@ extension SKNetworking {
         }
     }
 }
-
+#endif

@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 public extension NSObject {
@@ -13,3 +14,4 @@ public extension NSObject {
         addObserver(observer, forKeyPath: keyPath, options: [], context: nil)
     }
 }
+#endif

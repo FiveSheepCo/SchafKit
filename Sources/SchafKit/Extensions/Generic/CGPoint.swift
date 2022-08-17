@@ -1,4 +1,5 @@
 import Foundation
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import CoreGraphics
 
 public extension CGPoint {
@@ -9,3 +10,4 @@ public extension CGPoint {
         return CGFloat(sqrt(xDist * xDist + yDist * yDist))
     }
 }
+#endif

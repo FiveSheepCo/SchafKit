@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS)
 #if os(OSX)
     import AppKit
 #else
@@ -20,3 +21,4 @@ public struct SKHSLARepresentation : Equatable, Codable {
         return abs(left.hue - right.hue) < 0.01 && abs(left.saturation - right.saturation) < 0.01 && abs(left.brightness - right.brightness) < 0.01 && abs(left.alpha - right.alpha) < 0.01
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 private let fileSystem = FileManager.default
@@ -124,3 +125,4 @@ public class SKDirectory : SKFileSystemItem {
         return self.path + slash + path.removingOccurancesAtStart(of: slash)
     }
 }
+#endif

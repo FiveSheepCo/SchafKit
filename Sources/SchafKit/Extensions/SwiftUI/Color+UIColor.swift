@@ -1,6 +1,6 @@
+#if os(iOS)
 import SwiftUI
 
-#if os(iOS)
 public extension Color {
     static let lightText = Color(UIColor.lightText)
     static let darkText = Color(UIColor.darkText)

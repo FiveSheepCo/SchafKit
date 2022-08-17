@@ -1,4 +1,4 @@
-#if !os(watchOS)
+#if os(OSX) || os(iOS) || os(tvOS)
 import XCTest
 import SchafKit
 

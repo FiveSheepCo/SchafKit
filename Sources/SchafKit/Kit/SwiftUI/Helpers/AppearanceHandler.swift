@@ -1,7 +1,6 @@
+#if os(iOS)
 import Foundation
 import SwiftUI
-
-#if os(iOS)
 
 private struct AppearanceHandler: UIViewControllerRepresentable {
     

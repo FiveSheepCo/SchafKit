@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 import SwiftUI
 
@@ -2393,3 +2394,4 @@ public extension Image {
         "applelogo"
     ]
 }
+#endif

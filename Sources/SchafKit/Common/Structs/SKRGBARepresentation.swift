@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS)
 #if os(OSX)
     import AppKit
 #else
@@ -36,3 +37,4 @@ public struct SKRGBARepresentation : Equatable, Codable {
         return abs(left.red - right.red) < 0.01 && abs(left.green - right.green) < 0.01 && abs(left.blue - right.blue) < 0.01 && abs(left.alpha - right.alpha) < 0.01
     }
 }
+#endif

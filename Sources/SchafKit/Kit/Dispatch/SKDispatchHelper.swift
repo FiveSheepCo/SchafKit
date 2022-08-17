@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 /// A dispatch helper.
@@ -71,3 +72,4 @@ public class SKDispatchHelper {
         dispatch(on: _backgroundQueue, sync: sync, block: block)
     }
 }
+#endif

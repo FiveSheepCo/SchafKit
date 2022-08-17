@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS)
 import Foundation
 import SwiftUI
 
@@ -13,7 +14,7 @@ public extension NSFont {
         )!
     }
 }
-#else
+#elseif os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
 public typealias NativeFont = UIFont
 
@@ -244,3 +245,4 @@ public extension String {
         return text
     }
 }
+#endif

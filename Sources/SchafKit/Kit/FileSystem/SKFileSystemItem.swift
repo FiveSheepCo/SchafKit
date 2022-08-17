@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 private let fileSystem = FileManager.default
@@ -25,3 +26,4 @@ public class SKFileSystemItem {
         self.path = path
     }
 }
+#endif

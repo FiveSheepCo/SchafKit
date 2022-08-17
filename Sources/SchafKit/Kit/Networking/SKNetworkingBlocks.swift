@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 extension SKNetworking {
@@ -13,3 +14,4 @@ extension SKNetworking {
     /// A network download request completion block.
     public typealias DownloadRequestCompletionBlock = (_ result : Result<SKNetworking.DownloadResult, Error>) -> Void
 }
+#endif

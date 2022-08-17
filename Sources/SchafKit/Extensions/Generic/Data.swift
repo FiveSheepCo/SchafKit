@@ -2,6 +2,7 @@ import Foundation
 
 public extension Data {
     
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
     /// Initialize data with secure random numbers.
     ///
     /// - Parameter count: The number of random bytes.
@@ -12,6 +13,7 @@ public extension Data {
         
         self.init(bytes: &bytes, count: count)
     }
+    #endif
     
     /// Append data to this instance, creating a new `Data` instance.
     ///
@@ -25,6 +27,7 @@ public extension Data {
         return result
     }
     
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
     /// Appends the receiver to the file at the given path.
     func append(to filePath: String) throws {
         if let fileHandle = FileHandle(forWritingAtPath: filePath) {
@@ -37,4 +40,5 @@ public extension Data {
             FileManager.default.createFile(atPath: filePath, contents: self, attributes: nil)
         }
     }
+    #endif
 }

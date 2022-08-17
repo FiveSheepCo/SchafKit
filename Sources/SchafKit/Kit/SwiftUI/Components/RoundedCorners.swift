@@ -1,3 +1,4 @@
+#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import SwiftUI
 
 public struct RoundedCorners: Shape {
@@ -50,3 +51,4 @@ public struct RoundedCorners: Shape {
         return path
     }
 }
+#endif

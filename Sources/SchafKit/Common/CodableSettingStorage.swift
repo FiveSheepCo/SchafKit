@@ -1,4 +1,5 @@
 import Foundation
+#if canImport(Combine)
 import Combine
 
 @propertyWrapper
@@ -32,3 +33,4 @@ public struct CodableSettingStorage<Value>: Publishable where Value: Codable {
     
     public var objectWillChange: ObservableObjectPublisher?
 }
+#endif

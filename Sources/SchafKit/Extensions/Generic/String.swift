@@ -117,7 +117,11 @@ public extension String {
     
     // Returns a localized version of the receiver.
     func localized(with comment : String = .empty) -> String {
+        #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
         return NSLocalizedString(self, comment: comment)
+        #else
+        return self
+        #endif
     }
     
     // MARK: - Useful Additions
@@ -264,11 +268,13 @@ public extension String {
         return self[aRange.location..<aRange.upperBound]
     }
     
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
     /// Appends a utf8 encoded datarepresentation of the receiver to the file at the given url.
     func appendToURL(to filePath: String) throws {
         let data = self.data(using: String.Encoding.utf8)!
         try data.append(to: filePath)
     }
+    #endif
 }
 
 // - MARK: Identifiable

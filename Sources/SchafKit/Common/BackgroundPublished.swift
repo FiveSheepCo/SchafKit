@@ -1,4 +1,5 @@
 import Foundation
+#if canImport(Combine)
 import Combine
 
 @propertyWrapper
@@ -16,7 +17,7 @@ public struct BackgroundPublished<Value> {
     }
 
     /// A publisher for properties marked with the `@BackrgoundPublished` attribute.
-    public struct Publisher: Combine.Publisher {
+    public struct Publisher: CombinePublisher {
 
         public typealias Output = Value
 
@@ -83,3 +84,4 @@ public struct BackgroundPublished<Value> {
         // TODO: Benchmark and explore a possibility to use _modify
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 
 private let standardError = NSError(domain: "Invalid URL", code: SchafKitErrorCode, userInfo: nil)
@@ -158,3 +159,4 @@ extension SKNetworking {
         }
     }
 }
+#endif

@@ -1,4 +1,6 @@
+#if canImport(Combine)
 import Combine
+typealias CombinePublisher = Combine.Publisher
 
 @propertyWrapper
 public struct EquatablePublished<Value: Equatable> {
@@ -15,7 +17,7 @@ public struct EquatablePublished<Value: Equatable> {
     }
 
     /// A publisher for properties marked with the `@EquatablePublished` attribute.
-    public struct Publisher: Combine.Publisher {
+    public struct Publisher: CombinePublisher {
 
         public typealias Output = Value
 
@@ -62,3 +64,4 @@ public struct EquatablePublished<Value: Equatable> {
         }
     }
 }
+#endif

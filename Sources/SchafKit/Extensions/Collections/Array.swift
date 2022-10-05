@@ -186,35 +186,39 @@ public extension Array {
         }
     }
     
-    /// The map function but with a `handler` that provides a `callback` for asynchronous operations.
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+    /// The map function but with an async `handler` for asynchronous operations.
+    ///
+    /// - note: `asyncMap` performs all tasks parallel.
     func asyncMap<T>(handler: @escaping (Element) async -> T) async -> [T] {
         
-        var waitingCount = count
-        
-        if waitingCount == 0 {
+        let count = self.count
+        if count == 0 {
             return []
         }
         
         return await withCheckedContinuation({ completion in
-            var ids = [UUID]()
-            var results = [UUID: T]()
+            let store = _AsyncMapResultStore<T>(waitingCount: count)
+            
             for item in self {
                 let id = UUID()
-                ids.append(id)
                 
                 Task {
+                    await store.append(id: id)
+                    
                     let result = await handler(item)
-                    SKDispatchHelper.dispatchOnMainQueue {
-                        results[id] = result
+                    await store.set(result: result, for: id)
+                    
+                    await store.decreaseWaitingCount()
+                    if await store.waitingCount == 0 {
+                        let ids = await store.ids
+                        let resultsSorted = await store.results.sorted(by: { lK, rK in
+                            ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
+                        }).map { kVP in
+                            kVP.value
+                        }
                         
-                        waitingCount -= 1
-                        if waitingCount == 0 {
-                            let resultsSorted = results.sorted(by: { lK, rK in
-                                ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
-                            }).map { kVP in
-                                kVP.value
-                            }
-                            
+                        SKDispatchHelper.dispatchOnMainQueue {
                             completion.resume(with: .success(resultsSorted))
                         }
                     }
@@ -223,40 +227,18 @@ public extension Array {
         })
     }
     
-    /// The map function but with a `handler` that provides a `callback` for asynchronous operations.
-    func asyncMapOther<T>(handler: @escaping (Element) async -> T) async -> [T] {
-        
-        var waitingCount = count
-        
-        if waitingCount == 0 {
-            return []
+    /// The map function but with an async `handler` for asynchronous operations.
+    ///
+    /// - note: While `asyncMap` performs all tasks parallel, `asyncMapConsecutive` performs them consecutively.
+    func asyncMapConsecutive<T>(handler: @escaping (Element) async -> T) async -> [T] {
+        var results = [T]()
+        for item in self {
+            results.append(await handler(item))
         }
         
-        return await withCheckedContinuation({ completion in
-            Task {
-                var ids = [UUID]()
-                var results = [UUID: T]()
-                for item in self {
-                    let id = UUID()
-                    ids.append(id)
-                    
-                    let result = await handler(item)
-                    results[id] = result
-                    
-                    waitingCount -= 1
-                    if waitingCount == 0 {
-                        let resultsSorted = results.sorted(by: { lK, rK in
-                            ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
-                        }).map { kVP in
-                            kVP.value
-                        }
-                        
-                        completion.resume(with: .success(resultsSorted))
-                    }
-                }
-            }
-        })
+        return results
     }
+    #endif
     
     func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>, ascending: Bool = true) -> [Element] {
         sorted { a, b in
@@ -303,5 +285,31 @@ public extension Array where Element : Equatable {
     /// Removes duplicates in an array.
     mutating func removeDuplicates() {
         self = removingDuplicates()
+    }
+}
+
+private actor _AsyncMapResultStore<T> {
+    var waitingCount: Int
+    var ids = [UUID]()
+    var results = [UUID: T]()
+    
+    init(waitingCount: Int) {
+        self.waitingCount = waitingCount
+    }
+    
+    func set(waitingCount: Int) {
+        self.waitingCount = waitingCount
+    }
+    
+    func decreaseWaitingCount() {
+        waitingCount -= 1
+    }
+    
+    func set(result: T, for key: UUID) {
+        results[key] = result
+    }
+    
+    func append(id: UUID) {
+        ids.append(id)
     }
 }

@@ -275,6 +275,16 @@ public extension String {
         try data.append(to: filePath)
     }
     #endif
+    
+    /// Removes Unicode Object Replacement Markers from the string.
+    ///
+    /// **Context**
+    ///
+    /// For some reason, the dictation feature inserts this marker at the end of the string.
+    /// For RTL languages like arabic, it's at the beginning of the string.
+    func removingObjectReplacementMarkers() -> String {
+        return self.replacingOccurrences(of: "\u{fffc}", with: "", options: String.CompareOptions.literal, range: nil)
+    }
 }
 
 // - MARK: Identifiable

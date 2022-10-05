@@ -1,9 +1,9 @@
 #if os(OSX)
-    import AppKit
-    
-    public typealias UIImage = NSImage
+import AppKit
+
+public typealias UIImage = NSImage
 #elseif os(iOS) || os(tvOS) || os(watchOS)
-    import UIKit
+import UIKit
 #endif
 
 
@@ -21,7 +21,7 @@ extension CGBitmapInfo
     public static var byteOrder16Host: CGBitmapInfo {
         return CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) ? .byteOrder16Little : .byteOrder16Big
     }
-
+    
     public static var byteOrder32Host: CGBitmapInfo {
         return CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) ? .byteOrder32Little : .byteOrder32Big
     }
@@ -30,22 +30,22 @@ extension CGBitmapInfo
 extension CGBitmapInfo
 {
     public var pixelFormat: PixelFormat? {
-
+        
         // AlphaFirst – the alpha channel is next to the red channel, argb and bgra are both alpha first formats.
         // AlphaLast – the alpha channel is next to the blue channel, rgba and abgr are both alpha last formats.
         // LittleEndian – blue comes before red, bgra and abgr are little endian formats.
         // Little endian ordered pixels are BGR (BGRX, XBGR, BGRA, ABGR, BGR).
         // BigEndian – red comes before blue, argb and rgba are big endian formats.
         // Big endian ordered pixels are RGB (XRGB, RGBX, ARGB, RGBA, RGB).
-
+        
         let alphaInfo: CGImageAlphaInfo? = CGImageAlphaInfo(rawValue: self.rawValue & type(of: self).alphaInfoMask.rawValue)
         let alphaFirst: Bool = alphaInfo == .premultipliedFirst || alphaInfo == .first || alphaInfo == .noneSkipFirst
         let alphaLast: Bool = alphaInfo == .premultipliedLast || alphaInfo == .last || alphaInfo == .noneSkipLast
         let endianLittle: Bool = self.contains(.byteOrder32Little)
-
+        
         // This is slippery… while byte order host returns little endian, default bytes are stored in big endian
         // format. Here we just assume if no byte order is given, then simple RGB is used, aka big endian, though…
-
+        
         if alphaFirst && endianLittle {
             return .bgra
         } else if alphaFirst {
@@ -76,11 +76,11 @@ public extension UIImage {
     
     /**
      The `RGBARepresentation`s of the colors at each pixel.
-    
+     
      - Note : The first array represents the x-value, the second array represents the y-value.
-    
+     
      - Important : The size to reference is the `actualSize` value.
-    */
+     */
     var colorRepresentations:[[SK8BitRGBARepresentation]]{
         guard let pixelData = cgImage?.dataProvider?.data, let pixelFormat = cgImage?.bitmapInfo.pixelFormat else {
             return []
@@ -136,9 +136,9 @@ public extension UIImage {
     
     /**
      The `SK8BitRGBARepresentation` of the color at the pixel.
-    
+     
      - Important : If you need a large number of pixels, using the `colorRepresentations` variable might be more efficient.
-    */
+     */
     func colorRepresentation(at pixel : CGPoint) -> SK8BitRGBARepresentation {
         guard let pixelData = self.cgImage?.dataProvider?.data else {
             return SK8BitRGBARepresentation(red: 1, green: 1, blue: 1, alpha: 1)
@@ -194,11 +194,11 @@ public extension UIImage {
     
     /**
      Returns an image containing the given image appended to the receiver.
-    
+     
      - parameter preferYAxis : Overrides the default behaviour to append on the X-Axis when both the heights and widths match.
-    
+     
      - Note : Appends the image on the X-Axis if the heights match, on the Y-Axis if the widths match. If both match, the X-Axis is chosen.
-    */
+     */
     func appending(_ other : UIImage, preferYAxis : Bool = false) -> UIImage? {
         let axis : SKAxis
         
@@ -235,15 +235,46 @@ public extension NSImage {
     func tinted(with color: NSColor) -> NSImage {
         let image = self.copy() as! NSImage
         image.lockFocus()
-
+        
         color.set()
-
+        
         let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
         imageRect.fill(using: .sourceAtop)
-
+        
         image.unlockFocus()
-
+        
         return image
     }
 }
 #endif
+
+public extension UIImage {
+    
+    /// Crops the insets of transparency around the image.
+    ///
+    /// - Parameters:
+    ///   - maximumAlphaChannel: The maximum alpha channel value to consider  _transparent_ and thus crop. Any alpha value strictly greater than `maximumAlphaChannel` will be considered opaque.
+    func trimmingTransparentPixels(maximumAlphaChannel: UInt8 = 0) -> UIImage? {
+        guard size.height > 1 && size.width > 1 else { return self }
+        
+        #if canImport(UIKit)
+        guard let cgImage = cgImage?.trimmingTransparentPixels(maximumAlphaChannel: maximumAlphaChannel)
+        else { return nil }
+        
+        return UIImage(cgImage: cgImage, scale: scale, orientation: imageOrientation)
+        #else
+        guard let cgImage = cgImage(forProposedRect: nil, context: nil, hints: nil)?
+            .trimmingTransparentPixels(maximumAlphaChannel: maximumAlphaChannel)
+        else { return nil }
+        
+        let scale = recommendedLayerContentsScale(0)
+        let scaledSize = CGSize(
+            width: CGFloat(cgImage.width) / scale,
+            height: CGFloat(cgImage.height) / scale)
+        let image = NSImage(cgImage: cgImage, size: scaledSize
+        )
+        image.isTemplate = isTemplate
+        return image
+        #endif
+    }
+}

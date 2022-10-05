@@ -231,38 +231,12 @@ public extension Array {
     ///
     /// - note: While `asyncMap` performs all tasks parallel, `asyncMapConsecutive` performs them consecutively.
     func asyncMapConsecutive<T>(handler: @escaping (Element) async -> T) async -> [T] {
-        await withCheckedContinuation({ completion in
-            
-            Task {
-                var waitingCount = count
-                
-                if waitingCount == 0 {
-                    completion.resume(with: .success([]))
-                    return
-                }
-                
-                var ids = [UUID]()
-                var results = [UUID: T]()
-                for item in self {
-                    let id = UUID()
-                    ids.append(id)
-                    
-                    let result = await handler(item)
-                    results[id] = result
-                    
-                    waitingCount -= 1
-                    if waitingCount == 0 {
-                        let resultsSorted = results.sorted(by: { lK, rK in
-                            ids.firstIndex(of: lK.key) ?? 0 < ids.firstIndex(of: rK.key) ?? 0
-                        }).map { kVP in
-                            kVP.value
-                        }
-                        
-                        completion.resume(with: .success(resultsSorted))
-                    }
-                }
-            }
-        })
+        var results = [T]()
+        for item in self {
+            results.append(await handler(item))
+        }
+        
+        return results
     }
     #endif
     

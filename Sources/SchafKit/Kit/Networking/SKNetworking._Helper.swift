@@ -21,6 +21,21 @@ extension SKNetworking {
             urlSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         }
         
+        #if os(macOS)
+        internal init(httpsProxy: String, httpsProxyPort: Int) {
+            super.init()
+            
+            let config = URLSessionConfiguration.default
+            config.connectionProxyDictionary = [
+                kCFNetworkProxiesHTTPSEnable: true as CFNumber,
+                kCFNetworkProxiesHTTPSProxy: httpsProxy as CFString,
+                kCFNetworkProxiesHTTPSPort: httpsProxyPort as CFNumber
+            ]
+            
+            urlSession = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+        }
+        #endif
+        
         // MARK: - Requests
         // MARK: Standard Request
         

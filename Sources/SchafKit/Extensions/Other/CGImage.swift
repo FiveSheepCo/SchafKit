@@ -1,6 +1,6 @@
 import CoreGraphics
 
-extension CGImage {
+public extension CGImage {
 
     /// Crops the insets of transparency around the image.
     ///

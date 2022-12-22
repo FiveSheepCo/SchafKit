@@ -246,6 +246,46 @@ public extension Array {
             return isAscending == ascending
         }
     }
+    
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+    
+    func min<T: Comparable>(byValue value: KeyPath<Element, T>) -> Element? {
+        self.min(by: {
+            $0[keyPath: value] < $1[keyPath: value]
+        })
+    }
+    
+    func max<T: Comparable>(byValue value: KeyPath<Element, T>) -> Element? {
+        self.max(by: {
+            $0[keyPath: value] < $1[keyPath: value]
+        })
+    }
+    
+    func split(isInFirstArray: (Element) -> Bool) -> ([Element], [Element]) {
+        var first = [Element]()
+        var second = [Element]()
+        
+        for element in self {
+            if isInFirstArray(element) {
+                first.append(element)
+            } else {
+                second.append(element)
+            }
+        }
+        
+        return (first, second)
+    }
+    
+    func removingFirstIfExists() -> ArraySlice<Element> {
+        if self.count == 0 {
+            return self[...]
+        }
+        return self[1..<self.count]
+    }
 }
 
 public extension Array where Element : Equatable {

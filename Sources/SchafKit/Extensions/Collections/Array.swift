@@ -190,7 +190,7 @@ public extension Array {
     /// The map function but with an async `handler` for asynchronous operations.
     ///
     /// - note: `asyncMap` performs all tasks parallel.
-    func asyncMap<T>(handler: @escaping (Element) async -> T) async -> [T] {
+    func asyncMap<T>(priority: TaskPriority, handler: @escaping (Element) async -> T) async -> [T] {
         
         let count = self.count
         if count == 0 {
@@ -203,7 +203,7 @@ public extension Array {
             for item in self {
                 let id = UUID()
                 
-                Task {
+                Task(priority: priority) {
                     await store.append(id: id)
                     
                     let result = await handler(item)

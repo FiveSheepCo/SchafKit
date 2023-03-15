@@ -13,7 +13,7 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     - uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: 12
+        xcode-version: 14
     - name: Get swift version
       run: swift --version
     - name: Build

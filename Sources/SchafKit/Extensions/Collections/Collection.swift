@@ -6,4 +6,12 @@ public extension Collection {
     subscript (ifExists index : Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
+    
+    /// Returns nil if the collection is empty.
+    var nilIfEmpty: Self? {
+        if self.isEmpty {
+            return nil
+        }
+        return self
+    }
 }

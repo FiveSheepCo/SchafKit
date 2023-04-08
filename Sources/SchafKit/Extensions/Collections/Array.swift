@@ -149,6 +149,13 @@ public extension Array {
     }
     
     /// Get the elements of the array sliced to include at most the first `count` items. If less items than `count` are in the array, all items are returned.
+    func sliced(upFrom index: Int) -> [Element] {
+        guard count > index else { return [] }
+        
+        return Array(self[index..<count])
+    }
+    
+    /// Get the elements of the array sliced to include at most the first `count` items. If less items than `count` are in the array, all items are returned.
     func sliced(upTo count: Int) -> [Element] {
         Array(self[0..<Swift.min(count, self.count)])
     }

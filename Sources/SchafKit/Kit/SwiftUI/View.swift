@@ -1,6 +1,9 @@
 #if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 import Foundation
 import SwiftUI
+import Combine
+
+// MARK: Additional View Modifiers
 
 public extension View {
     
@@ -9,7 +12,6 @@ public extension View {
         return self
     }
     
-    @available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 11.0, *)
     func sizeReader(updateSize: @escaping (CGSize) -> Void) -> some View {
         self
             .background(
@@ -25,7 +27,6 @@ public extension View {
             )
     }
     
-    @available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *)
     func onAppearAndChange<V>(of value: V, perform action: @escaping (V) -> Void) -> some View where V : Equatable {
         self
             .onAppear {
@@ -40,6 +41,49 @@ public extension View {
     }
     #endif
 }
+
+// MARK: - onChange for iOS 13
+
+public struct ChangeObserver<V: Equatable>: ViewModifier {
+    public init(newValue: V, action: @escaping (V) -> Void) {
+        self.newValue = newValue
+        self.newAction = action
+    }
+
+    private typealias Action = (V) -> Void
+
+    private let newValue: V
+    private let newAction: Action
+
+    @State private var state: (V, Action)?
+
+    public func body(content: Content) -> some View {
+        if #available(iOS 14, *) {
+            assertionFailure("Please don't use this ViewModifer directly and use the `onChange(of:perform:)` modifier instead.")
+        }
+        return content
+            .onAppear()
+            .onReceive(Just(newValue)) { newValue in
+                if let (currentValue, action) = state, newValue != currentValue {
+                    action(newValue)
+                }
+                state = (newValue, newAction)
+            }
+    }
+}
+
+extension View {
+    @_disfavoredOverload
+    @ViewBuilder public func onChange<V>(of value: V, perform action: @escaping (V) -> Void) -> some View where V: Equatable {
+        if #available(iOS 14, macOS 11, tvOS 14, watchOS 7, *) {
+            onChange(of: value, perform: action)
+        } else {
+            modifier(ChangeObserver(newValue: value, action: action))
+        }
+    }
+}
+
+// MARK: - Rounded Corners
 
 #if !os(macOS)
 private struct RoundedCorner: Shape {

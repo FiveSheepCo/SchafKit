@@ -168,7 +168,7 @@ internal class _SKStoreKitProductRequest : NSObject, SKProductsRequestDelegate {
     
     func requestDidFinish(_ request: SKRequest) {
         SKDispatchHelper.dispatchOnMainQueue {
-            _SKStoreKitProductRequest.currentRequests.remove(object: self)
+            _SKStoreKitProductRequest.currentRequests.remove(subject: self)
         }
     }
 }

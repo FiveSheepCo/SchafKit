@@ -87,16 +87,16 @@ class ArrayTests : XCTestCase {
         var array2 = [1, 2, 3, 4, 5, 5, 4, 3]
         var array3 = [Int]()
         
-        array.remove(object: 1)
+        array.remove(subject: 1)
         XCTAssertEqual(array, [2, 3, 4, 5])
         
-        array2.remove(object: 4)
+        array2.remove(subject: 4)
         XCTAssertEqual(array2, [1, 2, 3, 5, 5, 3])
         
-        array2.remove(object: 5)
+        array2.remove(subject: 5)
         XCTAssertEqual(array2, [1, 2, 3, 3])
         
-        array3.remove(object: 1)
+        array3.remove(subject: 1)
         XCTAssertEqual(array3, [])
     }
     

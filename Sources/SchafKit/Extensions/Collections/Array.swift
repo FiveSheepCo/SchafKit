@@ -295,7 +295,7 @@ public extension Array {
     }
 }
 
-public extension Array where Element : Equatable {
+public extension Array where Element: Equatable {
     
     /// Whether the receiver ends with the other array.
     func ends(with possiblePostfix : Array) -> Bool {
@@ -309,24 +309,28 @@ public extension Array where Element : Equatable {
         return Array(self[startIndex..<count]) == possiblePostfix
     }
     
-    /// Returns an array with the duplicates removed.
-    func removingDuplicates() -> [Element] {
-        var finalArray:[Element] = []
-        
-        for element in self where !finalArray.contains(element){
-            finalArray.append(element)
-        }
-        
-        return finalArray
+    /// Returns an array with the occurances of the given subject removed.
+    func removing(subject: Element) -> [Element] {
+        var new = self
+        new.remove(subject: subject)
+        return new
     }
     
-    /// Removes all occurances of the given object.
-    mutating func remove(object : Element) {
+    /// Removes all occurances of the given subject.
+    mutating func remove(subject: Element) {
         for i in (0..<self.count).reversed() {
-            if self[i] == object {
+            if self[i] == subject {
                 self.remove(at: i)
             }
         }
+    }
+}
+
+public extension Array where Element: Hashable {
+    
+    /// Returns an array with the duplicates removed.
+    func removingDuplicates() -> [Element] {
+        Array(Dictionary<Element, [Element]>(grouping: self, by: { $0 as Element }).keys)
     }
     
     /// Removes duplicates in an array.

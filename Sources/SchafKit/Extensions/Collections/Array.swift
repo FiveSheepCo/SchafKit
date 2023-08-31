@@ -330,7 +330,17 @@ public extension Array where Element: Hashable {
     
     /// Returns an array with the duplicates removed.
     func removingDuplicates() -> [Element] {
-        Array(Dictionary<Element, [Element]>(grouping: self, by: { $0 as Element }).keys)
+        var newArray = Self()
+        var checkingDict: [Element: Bool] = [:]
+        
+        for element in self {
+            if checkingDict[element] != true {
+                newArray.append(element)
+                checkingDict[element] = true
+            }
+        }
+            
+        return newArray
     }
     
     /// Removes duplicates in an array.

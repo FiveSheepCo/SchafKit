@@ -64,4 +64,6 @@ public struct EquatablePublished<Value: Equatable> {
         }
     }
 }
+
+extension EquatablePublished: Codable where Value: Codable {}
 #endif
